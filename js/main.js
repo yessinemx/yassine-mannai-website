@@ -42,7 +42,7 @@
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < LINK_DIST) {
                     const alpha = (1 - dist / LINK_DIST) * 0.35;
-                    ctx.strokeStyle = `rgba(94, 234, 212, ${alpha})`;
+                    ctx.strokeStyle = `rgba(224, 176, 110, ${alpha})`;
                     ctx.lineWidth = 0.6;
                     ctx.beginPath();
                     ctx.moveTo(a.x, a.y);
@@ -55,7 +55,7 @@
         for (const n of nodes) {
             ctx.beginPath();
             ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(167, 139, 250, 0.55)';
+            ctx.fillStyle = 'rgba(207, 143, 111, 0.5)';
             ctx.fill();
         }
 

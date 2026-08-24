@@ -2,19 +2,20 @@
    Design tokens
    ================================================================ */
 :root {
-    --bg: #0a0e17;
-    --bg-alt: #0d1220;
-    --surface: #111827;
-    --surface-2: #161f33;
-    --border: #232c42;
-    --text: #e7ecf6;
-    --text-dim: #9aa5bd;
-    --text-faint: #5c6786;
-    --accent: #5eead4;
-    --accent-2: #a78bfa;
-    --accent-3: #60a5fa;
+    --bg: #12100d;
+    --bg-alt: #17130f;
+    --surface: #1c1712;
+    --surface-2: #241d15;
+    --border: #362d22;
+    --text: #f2ece1;
+    --text-dim: #b6a891;
+    --text-faint: #7d7160;
+    --accent: #e0b06e;
+    --accent-2: #cf8f6f;
+    --accent-3: #f0d3a0;
     --mono: 'JetBrains Mono', 'Courier New', monospace;
     --sans: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
     --maxw: 1120px;
 }
 
@@ -44,6 +45,13 @@ h3 {
     margin: 0;
 }
 
+.hero h1,
+.section-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
 p {
     margin: 0 0 1em;
     color: var(--text-dim);
@@ -62,7 +70,7 @@ ul {
 
 ::selection {
     background: var(--accent);
-    color: #0a0e17;
+    color: #221a0e;
 }
 
 /* ================================================================
@@ -316,12 +324,12 @@ footer {
 
 .btn-primary {
     background: var(--accent);
-    color: #06231f;
+    color: #221a0e;
     font-weight: 700;
 }
 
 .btn-primary:hover {
-    background: #85f3e0;
+    background: #ecc487;
     transform: translateY(-2px);
 }
 
