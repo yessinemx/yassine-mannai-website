@@ -72,20 +72,48 @@
    ================================================================ */
 (function navToggle() {
     const toggle = document.getElementById('nav-toggle');
-    const links = document.getElementById('nav-links');
-    if (!toggle || !links) return;
+    const sidebar = document.getElementById('sidebar');
+    if (!toggle || !sidebar) return;
 
     toggle.addEventListener('click', () => {
-        const open = links.classList.toggle('open');
+        const open = sidebar.classList.toggle('open');
         toggle.setAttribute('aria-expanded', String(open));
     });
 
-    links.querySelectorAll('a').forEach((a) =>
+    sidebar.querySelectorAll('a').forEach((a) =>
         a.addEventListener('click', () => {
-            links.classList.remove('open');
+            sidebar.classList.remove('open');
             toggle.setAttribute('aria-expanded', 'false');
         })
     );
+})();
+
+/* ================================================================
+   Scroll spy — highlight the active section in the sidebar nav
+   ================================================================ */
+(function scrollSpy() {
+    const links = Array.from(document.querySelectorAll('.sidebar-nav a'));
+    if (!('IntersectionObserver' in window) || !links.length) return;
+
+    const map = new Map();
+    links.forEach((a) => {
+        const sec = document.getElementById(a.getAttribute('href').slice(1));
+        if (sec) map.set(sec, a);
+    });
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    links.forEach((l) => l.classList.remove('active'));
+                    const active = map.get(entry.target);
+                    if (active) active.classList.add('active');
+                }
+            });
+        },
+        { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+    );
+    map.forEach((_, sec) => observer.observe(sec));
 })();
 
 /* ================================================================
