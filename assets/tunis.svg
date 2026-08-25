@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Tunis skyline">
+  <defs>
+    <linearGradient id="tunisSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161f33"/>
+      <stop offset="1" stop-color="#0a0e17"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#tunisSky)"/>
+
+  <!-- crescent moon -->
+  <g transform="translate(312 66)">
+    <circle r="26" fill="#a78bfa" opacity="0.22"/>
+    <path d="M6 -20 A22 22 0 1 0 6 20 A17 17 0 1 1 6 -20 Z" fill="#a78bfa" opacity="0.85"/>
+  </g>
+
+  <!-- stars -->
+  <g fill="#e7ecf6" opacity="0.6">
+    <circle cx="70" cy="52" r="1.5"/>
+    <circle cx="120" cy="34" r="1.2"/>
+    <circle cx="190" cy="60" r="1.4"/>
+    <circle cx="255" cy="40" r="1.1"/>
+  </g>
+
+  <g fill="none" stroke="#5eead4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- domed building left -->
+    <path d="M60 250 V178 h56 V250"/>
+    <path d="M56 178 q32 -34 64 0"/>
+    <line x1="88" y1="152" x2="88" y2="140"/>
+    <!-- windows -->
+    <path d="M78 205 v22" stroke-width="1.6"/>
+    <path d="M98 205 v22" stroke-width="1.6"/>
+
+    <!-- square minaret -->
+    <path d="M176 250 V96 h40 V250"/>
+    <path d="M176 96 h40 l-6 -14 h-28 Z"/>
+    <line x1="196" y1="82" x2="196" y2="66"/>
+    <path d="M188 66 a8 8 0 1 1 16 0" stroke-width="1.8"/>
+    <path d="M184 132 h24 M184 164 h24 M184 196 h24" stroke-width="1.4"/>
+
+    <!-- domed building right -->
+    <path d="M262 250 V190 h72 V250"/>
+    <path d="M256 190 q42 -40 84 0"/>
+    <line x1="298" y1="160" x2="298" y2="148"/>
+    <path d="M282 214 v20 M314 214 v20" stroke-width="1.6"/>
+  </g>
+
+  <line x1="30" y1="250" x2="370" y2="250" stroke="#60a5fa" stroke-width="2" opacity="0.5"/>
+</svg>

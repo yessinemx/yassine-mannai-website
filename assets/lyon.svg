@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Lyon skyline">
+  <defs>
+    <linearGradient id="lyonSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161f33"/>
+      <stop offset="1" stop-color="#0a0e17"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#lyonSky)"/>
+
+  <!-- sun -->
+  <circle cx="86" cy="70" r="26" fill="#60a5fa" opacity="0.2"/>
+  <circle cx="86" cy="70" r="16" fill="#60a5fa" opacity="0.45"/>
+
+  <!-- hill -->
+  <path d="M0 250 q120 -90 220 -40 q100 44 180 8 V300 H0 Z" fill="#161f33" opacity="0.9"/>
+  <path d="M0 250 q120 -90 220 -40 q100 44 180 8" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.55"/>
+
+  <!-- Fourvière basilica -->
+  <g fill="none" stroke="#5eead4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -6)">
+    <!-- main body -->
+    <path d="M232 210 V150 h56 V210"/>
+    <!-- roofline -->
+    <path d="M228 150 h64"/>
+    <!-- corner towers -->
+    <path d="M226 210 V132 h16 V210"/>
+    <path d="M282 210 V132 h16 V210"/>
+    <path d="M224 132 h20 l-10 -18 Z"/>
+    <path d="M280 132 h20 l-10 -18 Z"/>
+    <!-- central tower + spire -->
+    <path d="M250 150 V108 h24 V150"/>
+    <path d="M248 108 h28 l-14 -22 Z"/>
+    <line x1="262" y1="86" x2="262" y2="72"/>
+    <!-- rose window + doors -->
+    <circle cx="262" cy="166" r="7" stroke-width="1.6"/>
+    <path d="M246 210 v-22 a8 8 0 0 1 16 0 v22" stroke-width="1.6"/>
+  </g>
+
+  <!-- Saône river -->
+  <g stroke="#60a5fa" stroke-width="2" opacity="0.6" fill="none">
+    <path d="M20 268 q90 -14 180 0 q90 14 180 0"/>
+    <path d="M40 282 q80 -10 160 0 q80 10 160 0" opacity="0.4"/>
+  </g>
+</svg>

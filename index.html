@@ -6,17 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yassine Mannai — Quantitative Researcher</title>
   <meta name="description"
-    content="Yassine Mannai — Quantitative Strategist at Generali France & Master's candidate at Paris Dauphine-PSL. Research on macro-financial regimes, dynamic graphs, generative models and robust portfolio optimization.">
+    content="Yassine Mannai — Quantitative Strategist at Generali France & Master's candidate at Paris Dauphine-PSL. Research on dynamic graphs, generative models and robust portfolio optimization.">
+  <!-- Update the domain below to your deployed URL -->
+  <link rel="canonical" href="https://yessinemx.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yessinemx.github.io/">
+  <meta property="og:title" content="Yassine Mannai — Quantitative Researcher">
+  <meta property="og:description"
+    content="Quantitative Strategist at Generali France & Master's candidate at Paris Dauphine-PSL. Research on dynamic graphs, generative models and robust portfolio optimization.">
+  <meta property="og:image" content="https://yessinemx.github.io/media/ym.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Yassine Mannai — Quantitative Researcher">
+  <meta name="twitter:description"
+    content="Quantitative Strategist at Generali France & Master's candidate at Paris Dauphine-PSL.">
+  <meta name="twitter:image" content="https://yessinemx.github.io/media/ym.jpg">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+
+  <div class="scroll-progress" id="scroll-progress"></div>
 
   <canvas id="net-bg"></canvas>
 
@@ -25,7 +41,7 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-inner">
       <a href="#top" class="sidebar-brand" aria-label="Yassine Mannai">
-        <span class="sidebar-photo"><img src="assets/profile.jpg" alt="Yassine Mannai"></span>
+        <span class="sidebar-photo"><img src="media/ym.jpg" alt="Yassine Mannai"></span>
       </a>
       <h1 class="sidebar-name">Yassine <span class="accent">Mannai</span></h1>
       <p class="sidebar-role">Quantitative Finance</p>
@@ -62,9 +78,12 @@
       <div class="intro-inner reveal">
         <p class="intro-kicker">// Trading &middot; Structuring &middot; Quant Research</p>
         <h2 class="intro-head">Quantitative finance,<br><span class="accent">from Tunis to Paris.</span></h2>
+        <p class="intro-availability"><span class="dot"></span> Open to full-time quant roles from November 2026</p>
         <div class="cta-row">
           <a href="#projects" class="btn btn-primary">View Projects</a>
           <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+          <a href="assets/Yassine-MANNAI-Resume.pdf" class="btn btn-ghost" target="_blank"
+            rel="noopener noreferrer">Resume</a>
         </div>
       </div>
     </section>
@@ -97,26 +116,38 @@
         <span class="tag">01 / About</span>
         <h2>Who I am</h2>
       </div>
-      <div class="about-route reveal" aria-hidden="true">
-        <span class="about-route-city">Tunis</span>
-        <svg class="about-route-line" viewBox="0 0 140 24" preserveAspectRatio="none">
+      <div class="about-route reveal">
+        <figure class="route-stop">
+          <span class="route-frame"><img src="assets/tunis.svg" alt="Tunis skyline" loading="lazy" width="120"
+              height="90"></span>
+          <figcaption class="about-route-city">Tunis</figcaption>
+        </figure>
+        <svg class="about-route-line" viewBox="0 0 140 24" preserveAspectRatio="none" aria-hidden="true">
           <line x1="8" y1="12" x2="132" y2="12" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8" />
           <circle cx="8" cy="12" r="6" fill="currentColor" />
           <circle cx="132" cy="12" r="5" fill="currentColor" />
         </svg>
-        <span class="about-route-city">Lyon</span>
-        <svg class="about-route-line" viewBox="0 0 140 24" preserveAspectRatio="none">
+        <figure class="route-stop">
+          <span class="route-frame"><img src="assets/lyon.svg" alt="Lyon skyline" loading="lazy" width="120"
+              height="90"></span>
+          <figcaption class="about-route-city">Lyon</figcaption>
+        </figure>
+        <svg class="about-route-line" viewBox="0 0 140 24" preserveAspectRatio="none" aria-hidden="true">
           <line x1="8" y1="12" x2="132" y2="12" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8" />
           <circle cx="8" cy="12" r="5" fill="currentColor" />
           <path d="M132 12 L122 7 L122 17 Z" fill="currentColor" />
         </svg>
-        <span class="about-route-city">Paris</span>
+        <figure class="route-stop">
+          <span class="route-frame"><img src="assets/paris.svg" alt="Paris skyline" loading="lazy" width="120"
+              height="90"></span>
+          <figcaption class="about-route-city">Paris</figcaption>
+        </figure>
       </div>
       <div class="about-grid reveal">
         <div class="about-text">
           <p>
             I'm the kind of person who needs to understand how something
-            works all the way down &mdash; whether that's a stochastic
+            works all the way down, whether that's a stochastic
             volatility model, a football team's pressing scheme, or why a
             Grand Slam final turns on one point. That obsession with detail is
             what pulled me toward <strong>quantitative finance</strong>: I hold
@@ -127,45 +158,45 @@
             Generali France's Investment Division.
           </p>
           <p>
-            I'm equally comfortable in a spreadsheet and in a conversation
-            &mdash; methodical and a little stubborn about getting things
+            I'm equally comfortable in a spreadsheet and in a conversation,
+            methodical and a little stubborn about getting things
             right, but also curious enough to keep pulling on unrelated
             threads (crypto, DJ sets, valuation multiples, Serie A transfer
             rumours) just to see where they lead. Professionally, that
             translates into a preference for methods that are rigorous
-            &mdash; dynamic graphs, diffusion models, distributionally robust
-            optimisation &mdash; but judged, first and foremost, by the real
+            (dynamic graphs, diffusion models, distributionally robust
+            optimisation) but judged, first and foremost, by the real
             economic value they create.
           </p>
           <p>
             I was born and raised in <strong>Tunis, Tunisia</strong>, where I
             did all my schooling before university and graduated with a
             Tunisian High School Degree (Baccalaureate) in Mathematics with
-            <strong>highest honours</strong> &mdash; part of the &ldquo;Covid
+            <strong>highest honours</strong>, part of the &ldquo;Covid
             Baccalaureate&rdquo; cohort that sat its exams in July under
             40&deg;C heat. Moving from
             Tunis to Lyon and then to Paris on my own taught me to adapt fast
             and bet on myself, which is probably why I'm still comfortable
-            weighing a handful of very different paths &mdash; a PhD, another
-            Master's, a permanent role &mdash; instead of picking the
-            safest-looking one.
+            weighing a few different paths (another Master's or a permanent
+            role) instead of picking the
+            safest option.
           </p>
           <p>
-            Leaving a strict, conservative family home at eighteen &mdash; the
-            only comfort zone I'd known for that long &mdash; to build a life
+            Leaving a protective family home at eighteen, the
+            only comfort zone I'd known for that long, to build a life
             on my own is probably the single biggest thing that shaped who I
             am today. It made me stubborn, independent and entirely
-            self-reliant, and it turned me into someone who doesn't flinch at
+            autonomous, and it turned me into someone who doesn't flinch at
             the size of a problem: whether it takes me an hour, a few days or
-            a few weeks, I know I'll solve it, and I do it with a cold-blooded
+            a few weeks, I know I'll solve it, and I do it with a steady
             calm rather than stress. That's probably the trait people notice
-            most about me &mdash; I stay chill and relaxed under pressure, and
+            most about me, I stay chill and relaxed under pressure, and
             people know that if they hand me something, it gets done, no
             excuses.
           </p>
           <p>
-            I pay attention to the small things &mdash; the haircut, the
-            outfit, the smile, the energy someone gives off &mdash; because I
+            I pay attention to the small things, the haircut, the
+            outfit, the smile, the energy someone gives off, because I
             believe that's the first impression you leave on people, right
             alongside the way you talk, the way you act, and the way you keep
             your silence. I'm quite attentive and aesthetic about it, on
@@ -175,23 +206,23 @@
             Humility, no matter what you achieve, respect and kindness are
             the values I hold onto the most. Empathy and care matter to me:
             you should help people and bring them up with you rather than
-            climb alone. I have little patience for self-centred people who
-            take everything for granted and keep it all to themselves &mdash;
-            your colleagues, your friends and your family are just as
+            climb alone. I have little patience for selfish people who
+            take everything for granted and keep it all to themselves. Your
+            colleagues, your friends and your family are just as
             important as you are, and they deserve to be cared for.
           </p>
         </div>
         <aside class="about-frames">
           <figure class="frame" style="--tilt: -3.5deg">
-            <div class="frame-photo" data-city="Tunis"></div>
+            <div class="frame-photo"><img src="media/tunis.jpg" alt="Tunis" loading="lazy"></div>
             <figcaption>Tunis</figcaption>
           </figure>
           <figure class="frame" style="--tilt: 2.5deg">
-            <div class="frame-photo" data-city="Lyon"></div>
+            <div class="frame-photo"><img src="media/lyon.jpg" alt="Lyon" loading="lazy"></div>
             <figcaption>Lyon</figcaption>
           </figure>
           <figure class="frame" style="--tilt: -1.5deg">
-            <div class="frame-photo" data-city="Paris"></div>
+            <div class="frame-photo"><img src="media/paris.jpg" alt="Paris" loading="lazy"></div>
             <figcaption>Paris</figcaption>
           </figure>
         </aside>
@@ -211,21 +242,11 @@
           <li class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <span class="timeline-date">Sep 2026</span>
-              <h3>Weighing My Options</h3>
-              <p>
-                Currently deciding between three paths: a specialized Master's
-                in Data Science at ENSAE (admitted), a CIFRE PhD at Generali
-                France (offer in hand), or moving into a permanent role.
-              </p>
-            </div>
-          </li>
-          <li class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
               <span class="timeline-date">Sep 2025 &ndash; Present</span>
               <h3>Quantitative Strategist &mdash; Apprentice</h3>
-              <p class="timeline-org">Generali France, Paris</p>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/generali.png" alt="Generali"
+                    loading="lazy"></span>Generali France, Paris</p>
+              </p>
               <p>
                 Replicated the GSRAI stress index from Bloomberg credit-spread,
                 rates, equity-volatility and FX data; built and backtested a
@@ -240,7 +261,9 @@
             <div class="timeline-content">
               <span class="timeline-date">Mar 2025 &ndash; Aug 2025</span>
               <h3>Cross-Asset Structured Products Sales &mdash; Intern</h3>
-              <p class="timeline-org">BNP Paribas CIB, Paris</p>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/bnpparibas.png" alt="BNP Paribas"
+                    loading="lazy"></span>BNP Paribas CIB, Paris</p>
+              </p>
               <p>
                 Priced cross-asset structured products &mdash; Autocalls, CLNs,
                 Sharkfins, Steepeners &mdash; coordinating with Trading and
@@ -253,7 +276,9 @@
             <div class="timeline-content">
               <span class="timeline-date">Sep 2024 &ndash; Feb 2025</span>
               <h3>Quantitative Risk Analyst &mdash; Intern</h3>
-              <p class="timeline-org">Cr&eacute;dit Agricole CIB, Paris</p>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/cacib.png"
+                    alt="Cr&eacute;dit Agricole CIB" loading="lazy"></span>Cr&eacute;dit Agricole
+                CIB, Paris</p>
               <p>
                 Built a Python historical-simulation framework to model stressed
                 liquidity gaps and tail risk, and automated sensitivity /
@@ -266,7 +291,8 @@
             <div class="timeline-content">
               <span class="timeline-date">Jun 2024 &ndash; Aug 2024</span>
               <h3>FX &amp; Commodity Derivatives Trading &mdash; Intern</h3>
-              <p class="timeline-org">BIAT CIB, Tunis</p>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/biat.jpg" alt="BIAT"
+                    loading="lazy"></span>BIAT CIB, Tunis</p>
               <p>
                 Built a commodity-option pricing engine combining Black&ndash;Scholes
                 and Schwartz&ndash;Smith models, and implemented a calibrated
@@ -279,7 +305,8 @@
             <div class="timeline-content">
               <span class="timeline-date">Jun 2023 &ndash; Jul 2023</span>
               <h3>Equity Research Analyst &mdash; Intern</h3>
-              <p class="timeline-org">ODDO BHF</p>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/oddo.jpg" alt="ODDO BHF"
+                    loading="lazy"></span>ODDO BHF</p>
               <p>
                 Rotated across three coverage teams &mdash; Automobile, Oil &amp; Gas
                 and Small Caps. Researched key ratios and figures from quarterly
@@ -300,8 +327,10 @@
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-date">2025 &ndash; 2026</span>
-              <h3>MSc Quantitative Finance &mdash; Master 272 (2nd year)</h3>
-              <p class="timeline-org">Universit&eacute; Paris Dauphine-PSL</p>
+              <h3>Master's in Quantitative Finance, 2nd year</h3>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/dauphine.png"
+                    alt="Universit&eacute; Paris Dauphine-PSL" loading="lazy"></span>Universit&eacute; Paris
+                Dauphine-PSL</p>
               <p>
                 Financial and Economic Engineering track: stochastic calculus,
                 asset pricing, portfolio optimisation and machine learning for
@@ -316,8 +345,8 @@
               <h3>Gap Year</h3>
               <p class="timeline-org">Between the two years of the Master's</p>
               <p>
-                Spent on the Cr&eacute;dit Agricole CIB and BIAT CIB internships
-                listed under Professional Experience.
+                Spent on the BIAT CIB, Cr&eacute;dit Agricole CIB and BNP Paribas
+                CIB internships listed under Professional Experience.
               </p>
             </div>
           </li>
@@ -325,16 +354,20 @@
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-date">2023 &ndash; 2024</span>
-              <h3>Master's, 1st year &mdash; Economics and Finance</h3>
-              <p class="timeline-org">Universit&eacute; Paris Dauphine-PSL</p>
+              <h3>Master's in Economics and Finance, 1st year</h3>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/dauphine.png"
+                    alt="Universit&eacute; Paris Dauphine-PSL" loading="lazy"></span>Universit&eacute; Paris
+                Dauphine-PSL</p>
             </div>
           </li>
           <li class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-date">2022 &ndash; 2023</span>
-              <h3>Bachelor's, 3rd year &mdash; Economics and Financial Engineering</h3>
-              <p class="timeline-org">Universit&eacute; Paris Dauphine-PSL</p>
+              <h3>Bachelor's in Economics and Financial Engineering, 3rd year</h3>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/dauphine.png"
+                    alt="Universit&eacute; Paris Dauphine-PSL" loading="lazy"></span>Universit&eacute; Paris
+                Dauphine-PSL</p>
             </div>
           </li>
           <li class="timeline-item reveal">
@@ -342,7 +375,9 @@
             <div class="timeline-content">
               <span class="timeline-date">2020 &ndash; 2022</span>
               <h3>Bachelor's in Economics, 1st &amp; 2nd year</h3>
-              <p class="timeline-org">Universit&eacute; Lyon 2</p>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/lyon2.png"
+                    alt="Universit&eacute; Lumi&egrave;re Lyon 2" loading="lazy"></span>Universit&eacute; Lyon 2
+              </p>
               <p>
                 Two years of undergraduate economics in Lyon, France, before
                 moving to Paris to complete my bachelor's at Dauphine.
@@ -360,7 +395,9 @@
             <div class="timeline-content">
               <span class="timeline-date">Nov 2023 &ndash; Apr 2024</span>
               <h3>Customer Service Representative</h3>
-              <p class="timeline-org">BNP Paribas, Bosquet &amp; Gambetta agencies</p>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/bnpparibas.png" alt="BNP Paribas"
+                    loading="lazy"></span>BNP Paribas, Bosquet
+                &amp; Gambetta agencies</p>
               <p>
                 Part-time alongside the first year of my Master's at Dauphine.
               </p>
@@ -371,7 +408,9 @@
             <div class="timeline-content">
               <span class="timeline-date">Sep 2021 &ndash; Apr 2022</span>
               <h3>Team Member</h3>
-              <p class="timeline-org">McDonald's, Tassin-la-Demi-Lune, Lyon</p>
+              <p class="timeline-org"><span class="org-logo"><img src="assets/logos/mcdo.png" alt="McDonald's"
+                    loading="lazy"></span>McDonald's,
+                Tassin-la-Demi-Lune, Lyon</p>
               <p>
                 Part-time student job alongside my bachelor's studies in Lyon.
               </p>
@@ -385,14 +424,137 @@
     <section class="section" id="projects">
       <div class="section-head reveal">
         <span class="tag">03 / Projects</span>
-        <h2>Side projects</h2>
+        <h2>Academic projects</h2>
+      </div>
+      <div class="thesis-callout reveal">
+        <span class="thesis-tag">Master's Thesis</span>
+        <h3>Regime-Conditional Total Portfolio Approach</h3>
+        <p>
+          Developed a four-state Hidden Markov Model to support dynamic
+          strategic asset allocation and quantify regime-dependent
+          opportunity costs.
+        </p>
       </div>
       <div class="pub-list">
         <article class="pub reveal">
           <div class="pub-meta">
             <span class="pub-date">Jan 2026 &ndash; Present</span>
+            <a class="pub-repo" href="https://github.com/yessinemx/MC-Longstaff-Schwartz-Pricing" target="_blank"
+              rel="noopener noreferrer" aria-label="View on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>Code</a>
           </div>
           <h3>Longstaff&ndash;Schwartz American Options Pricer</h3>
+          <p>
+            Priced American options with least-squares Monte Carlo, regressing
+            continuation values to recover the optimal early-exercise boundary.
+          </p>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-meta">
+            <span class="pub-date">Jun 2026</span>
+            <a class="pub-repo" href="https://github.com/yessinemx/Trading-vol" target="_blank"
+              rel="noopener noreferrer" aria-label="View on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>Code</a>
+          </div>
+          <h3>Volatility Strategies on FX Options</h3>
+          <p>
+            Backtesting framework and volatility strategies on FX options,
+            built in Python.
+          </p>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-meta">
+            <span class="pub-date">Jun 2026</span>
+            <a class="pub-repo" href="https://github.com/yessinemx/Backtesting_Framework" target="_blank"
+              rel="noopener noreferrer" aria-label="View on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>Code</a>
+          </div>
+          <h3>Systematic Strategies Backtesting Framework</h3>
+          <p>
+            Backtesting framework for systematic strategies, pulling market
+            data through the Bloomberg API.
+          </p>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-meta">
+            <span class="pub-date">May 2026</span>
+          </div>
+          <h3>Pairs Trading with Wavelet Denoising</h3>
+          <p>
+            Replicated Eroglu et al. (2023), applying MODWT sym22 denoising
+            before cointegration-based pair selection on S&amp;P 500
+            constituents; the backtested strategy returned ~10% annualized
+            versus &minus;1.8% unfiltered.
+          </p>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-meta">
+            <span class="pub-date">May 2026</span>
+            <a class="pub-repo" href="https://github.com/yessinemx/Trading_Commo" target="_blank"
+              rel="noopener noreferrer" aria-label="View on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>Code</a>
+          </div>
+          <h3>Commodity Trading on the S&amp;P GSCI</h3>
+          <p>
+            Systematic trading strategies on the S&amp;P GSCI Excess Return
+            commodity index.
+          </p>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-meta">
+            <span class="pub-date">Apr 2026</span>
+            <a class="pub-repo" href="https://github.com/yessinemx/Mfbm_realized_vol" target="_blank"
+              rel="noopener noreferrer" aria-label="View on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>Code</a>
+          </div>
+          <h3>Multivariate Rough-Volatility Forecasting</h3>
+          <p>
+            Replicated Bibinger et al. (2025), estimating component-wise Hurst
+            exponents and forecasting realized volatility across DJIA
+            constituents with mfBm, achieving lower out-of-sample RMSFE than
+            HAR benchmarks.
+          </p>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-meta">
+            <span class="pub-date">Apr 2026</span>
+            <a class="pub-repo" href="https://github.com/yessinemx/Structured-Products-Pricer" target="_blank"
+              rel="noopener noreferrer" aria-label="View on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>Code</a>
+          </div>
+          <h3>Cross-Asset Structured Products Pricer</h3>
+          <p>
+            Pricer for multi-asset, cross-asset structured products across
+            several payoff types.
+          </p>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-meta">
+            <span class="pub-date">Mar 2026</span>
+            <a class="pub-repo" href="https://github.com/yessinemx/HF_CFM_Challenge" target="_blank"
+              rel="noopener noreferrer" aria-label="View on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>Code</a>
+          </div>
+          <h3>CFM Data Challenge &mdash; HFT Microstructure Classification</h3>
+          <p>
+            Classified underlying assets from tick-by-tick order-flow data
+            through microstructure feature engineering and irregular
+            time-series modeling, achieving 56% out-of-sample accuracy.
+          </p>
         </article>
         <article class="pub reveal">
           <div class="pub-meta">
@@ -419,10 +581,19 @@
             <span class="pub-date">Nov 2025 &ndash; Dec 2025</span>
           </div>
           <h3>RF-BL Macro Asset Allocation</h3>
+          <p>
+            Combined random-forest return signals with the Black&ndash;Litterman
+            model to build a macro-driven asset allocation.
+          </p>
         </article>
         <article class="pub reveal">
           <div class="pub-meta">
             <span class="pub-date">Oct 2025 &ndash; Nov 2025</span>
+            <a class="pub-repo" href="https://github.com/yessinemx/StratlabX-Game" target="_blank"
+              rel="noopener noreferrer" aria-label="View on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>Code</a>
           </div>
           <h3>StratLab X</h3>
           <p>
@@ -434,25 +605,48 @@
             <span class="pub-date">Jul 2024 &ndash; Aug 2024</span>
           </div>
           <h3>Commodity Derivatives Options Pricer</h3>
+          <p>
+            Option-pricing engine for commodity derivatives, calibrated to
+            market quotes across several payoff structures.
+          </p>
         </article>
         <article class="pub reveal">
           <div class="pub-meta">
             <span class="pub-date">Oct 2023 &ndash; Nov 2023</span>
           </div>
           <h3>VIX &amp; WTI Correlation and Prediction Analysis</h3>
+          <p>
+            Studied the link between the VIX and WTI crude oil, building models
+            to predict equity volatility from oil-price moves.
+          </p>
         </article>
         <article class="pub reveal">
           <div class="pub-meta">
             <span class="pub-date">Mar 2023 &ndash; Apr 2023</span>
           </div>
           <h3>CreditMetrics Model &amp; VaR Calculations</h3>
+          <p>
+            Implemented the CreditMetrics framework to estimate portfolio
+            credit VaR from rating-migration and default probabilities.
+          </p>
         </article>
         <article class="pub reveal">
           <div class="pub-meta">
             <span class="pub-date">Feb 2022 &ndash; Apr 2022</span>
           </div>
           <h3>Corporate Bonds and Yield Curve Pricer</h3>
+          <p>
+            Bootstrapped the yield curve to price corporate bonds and compute
+            spreads, duration and convexity.
+          </p>
         </article>
+      </div>
+      <div class="projects-cta reveal">
+        <a href="https://github.com/yessinemx" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12\" />
+          </svg>\n Browse the code on GitHub\n </a>\n
       </div>
     </section>
 
@@ -464,34 +658,48 @@
       </div>
       <div class="skills-grid reveal">
         <div class="skill-group">
-          <h3>Quant &amp; ML</h3>
+          <h3>Programming</h3>
           <ul class="tag-list">
             <li>Python</li>
-            <li>Graph Neural Networks</li>
-            <li>Diffusion Models</li>
-            <li>Hidden Markov Models</li>
-            <li>Distributionally Robust Optimisation</li>
-            <li>Time Series</li>
+            <li>R</li>
+            <li>SQL</li>
+            <li>VBA</li>
+            <li>C#</li>
+            <li>MATLAB</li>
           </ul>
         </div>
         <div class="skill-group">
-          <h3>Finance &amp; Insurance</h3>
+          <h3>Python &amp; ML</h3>
+          <ul class="tag-list">
+            <li>NumPy</li>
+            <li>Pandas</li>
+            <li>SciPy</li>
+            <li>statsmodels</li>
+            <li>scikit-learn</li>
+            <li>PyTorch</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Quant &amp; Finance</h3>
           <ul class="tag-list">
             <li>Strategic Asset Allocation</li>
             <li>Total Portfolio Approach</li>
+            <li>Hidden Markov Models</li>
+            <li>Distributionally Robust Optimisation</li>
             <li>Solvency&nbsp;II</li>
-            <li>Asset&ndash;Liability Management</li>
-            <li>Capital Market Assumptions</li>
           </ul>
         </div>
         <div class="skill-group">
-          <h3>Data &amp; Tools</h3>
+          <h3>Platforms &amp; AI</h3>
           <ul class="tag-list">
             <li>Bloomberg</li>
-            <li>ECB / Eurostat</li>
-            <li>SQL</li>
+            <li>Refinitiv</li>
+            <li>Power BI</li>
+            <li>Power Automate</li>
+            <li>LLM APIs</li>
+            <li>NLP</li>
             <li>LaTeX</li>
-            <li>Git</li>
+            <li>Git/GitHub</li>
           </ul>
         </div>
         <div class="skill-group">
@@ -500,7 +708,7 @@
             <li>Arabic (native)</li>
             <li>French (fluent)</li>
             <li>English (fluent)</li>
-            <li>Spanish (high school level)</li>
+            <li>Spanish (beginner)</li>
           </ul>
         </div>
       </div>
@@ -561,11 +769,12 @@
         <span class="tag">07 / Beyond the Desk</span>
         <h2>Off the clock</h2>
         <p class="section-sub">
-          When I'm not looking at regime shifts, I'm usually watching one.
+          When I'm not studying market shifts, I'm usually watching one.
         </p>
       </div>
       <div class="research-grid">
         <article class="card reveal">
+          <div class="card-photo"><img src="media/inter.jpg" alt="Inter Milan" loading="lazy"></div>
           <span class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
@@ -584,6 +793,7 @@
           </p>
         </article>
         <article class="card reveal">
+          <div class="card-photo"><img src="media/f1.jpg" alt="Formula 1" loading="lazy"></div>
           <span class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <path d="M3 15c1-4 4-7 9-7s8 3 9 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
@@ -600,6 +810,7 @@
           </p>
         </article>
         <article class="card reveal">
+          <div class="card-photo"><img src="media/tennis.jpg" alt="Tennis" loading="lazy"></div>
           <span class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <ellipse cx="9.5" cy="9" rx="5.5" ry="6.5" transform="rotate(-25 9.5 9)" stroke="currentColor"
@@ -618,6 +829,7 @@
           </p>
         </article>
         <article class="card reveal">
+          <div class="card-photo"><img src="media/video-games.jpg" alt="Video games" loading="lazy"></div>
           <span class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <rect x="3" y="8" width="18" height="9" rx="4.5" stroke="currentColor" stroke-width="1.6" />
@@ -636,6 +848,8 @@
           </p>
         </article>
         <article class="card reveal">
+          <div class="card-photo card-photo--bottom"><img src="media/music.jpg" alt="Music and DJing" loading="lazy">
+          </div>
           <span class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <path d="M4 16V8.5C4 6 6 4.5 9 4l8-1.2V13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
@@ -656,6 +870,7 @@
           </p>
         </article>
         <article class="card reveal">
+          <div class="card-photo"><img src="media/weekinlife.jpg" alt="A week in my life" loading="lazy"></div>
           <span class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
@@ -682,35 +897,43 @@
         <span class="tag">08 / Contact</span>
         <h2>Let's talk</h2>
         <p class="section-sub">
-          Open to conversations on regime-aware allocation, dynamic graphs,
+          Open to conversations on adaptive asset allocation, dynamic graphs,
           generative models, or academic collaboration.
         </p>
       </div>
       <div class="contact-grid reveal">
         <a class="contact-card" href="mailto:yassine.mannai@dauphine.eu">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+              <path d="M4 7.5l8 5.5 8-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span>
           <span class="contact-label">Email</span>
           <span class="contact-value">yassine.mannai@dauphine.eu</span>
         </a>
         <a class="contact-card" href="tel:+33623643180">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+            </svg></span>
           <span class="contact-label">Phone / WhatsApp</span>
           <span class="contact-value">+33 (0)6 23 64 31 80</span>
         </a>
         <a class="contact-card" href="https://www.linkedin.com/in/yassine-mannai" target="_blank"
           rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+            </svg></span>
           <span class="contact-label">LinkedIn</span>
           <span class="contact-value">yassine-mannai</span>
         </a>
         <a class="contact-card" href="https://github.com/yessinemx" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+            </svg></span>
           <span class="contact-label">GitHub</span>
-          <span class="contact-value">yessinemx</span>
-        </a>
-        <a class="contact-card" href="https://vsco.co/yessinemx" target="_blank" rel="noopener noreferrer">
-          <span class="contact-label">VSCO</span>
-          <span class="contact-value">yessinemx</span>
-        </a>
-        <a class="contact-card" href="https://open.spotify.com/user/yessinemx" target="_blank"
-          rel="noopener noreferrer">
-          <span class="contact-label">Spotify</span>
           <span class="contact-value">yessinemx</span>
         </a>
       </div>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yessinemx.github.io/sitemap.xml

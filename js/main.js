@@ -59,12 +59,27 @@
             ctx.fill();
         }
 
-        if (!prefersReducedMotion) requestAnimationFrame(step);
+        if (!prefersReducedMotion && !document.hidden) {
+            requestAnimationFrame(step);
+        } else {
+            running = false;
+        }
+    }
+
+    let running = false;
+    function start() {
+        if (!running && !prefersReducedMotion && !document.hidden) {
+            running = true;
+            requestAnimationFrame(step);
+        }
     }
 
     window.addEventListener('resize', resize);
+    // Pause the loop while the tab is hidden to save battery/CPU.
+    document.addEventListener('visibilitychange', start);
     resize();
-    step();
+    start();
+    if (prefersReducedMotion) step();
 })();
 
 /* ================================================================
@@ -147,7 +162,23 @@
     if (!btn) return;
     window.addEventListener('scroll', () => {
         btn.classList.toggle('visible', window.scrollY > 600);
-    });
+    }, { passive: true });
+})();
+
+/* ================================================================
+   Scroll progress bar
+   ================================================================ */
+(function scrollProgress() {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    const update = () => {
+        const el = document.documentElement;
+        const max = el.scrollHeight - el.clientHeight;
+        bar.style.width = max > 0 ? (el.scrollTop / max) * 100 + '%' : '0%';
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
 })();
 
 /* ================================================================
