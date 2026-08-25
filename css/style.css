@@ -101,6 +101,168 @@ ul {
     background-size: 3px 3px;
 }
 
+/* ----------------------------------------------------------------
+   Trading floor clocks — live session times sitting in the
+   background, behind the content layer.
+   ---------------------------------------------------------------- */
+.mkt-clocks {
+    position: fixed;
+    top: 50%;
+    right: 26px;
+    transform: translateY(-50%);
+    z-index: 1;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    font-family: var(--mono);
+    opacity: 0.55;
+    user-select: none;
+}
+
+.mkt {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 2px 10px;
+    width: 190px;
+}
+
+.mkt-city {
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.mkt-zone {
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+    opacity: 0.7;
+    text-align: right;
+}
+
+.mkt-time {
+    grid-column: 1 / -1;
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+}
+
+.mkt-time .sec {
+    font-size: 0.78em;
+    opacity: 0.55;
+}
+
+.mkt-bar {
+    grid-column: 1 / -1;
+    height: 2px;
+    margin: 5px 0 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.mkt-bar i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--text-faint);
+    transition: width 0.6s linear;
+}
+
+.mkt-state {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.57rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--text-faint);
+}
+
+.mkt-state::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    flex: none;
+}
+
+.mkt.is-open .mkt-time {
+    color: var(--accent);
+}
+
+.mkt.is-open .mkt-state {
+    color: var(--accent);
+}
+
+.mkt.is-open .mkt-bar i {
+    background: var(--accent);
+}
+
+.mkt.is-open .mkt-state::before {
+    animation: mkt-pulse 2.4s ease-in-out infinite;
+}
+
+.mkt.is-break .mkt-time,
+.mkt.is-break .mkt-state {
+    color: var(--accent-2);
+}
+
+.mkt.is-break .mkt-bar i {
+    background: var(--accent-2);
+}
+
+@keyframes mkt-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.35);
+    }
+
+    50% {
+        box-shadow: 0 0 0 4px rgba(15, 118, 110, 0);
+    }
+}
+
+/* The side gutter shrinks with the viewport: fade and compact, then drop. */
+@media (max-width: 1560px) {
+    .mkt-clocks {
+        right: 12px;
+        gap: 16px;
+        opacity: 0.34;
+    }
+
+    .mkt {
+        width: 158px;
+    }
+
+    .mkt-time {
+        font-size: 1.05rem;
+    }
+
+    .mkt-state {
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 1240px) {
+    .mkt-clocks {
+        display: none;
+    }
+}
+
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -1066,10 +1228,58 @@ footer {
 }
 
 /* ---------------- publications ---------------- */
-.pub-list {
+.pub-filters {
     display: flex;
-    flex-direction: column;
-    gap: 28px;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 26px;
+}
+
+.pub-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.pub-filter i {
+    font-style: normal;
+    font-size: 0.66rem;
+    color: var(--text-faint);
+}
+
+.pub-filter:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.pub-filter.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+}
+
+.pub-filter.is-active i {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.pub-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 22px;
+}
+
+.pub.is-hidden {
+    display: none;
 }
 
 .thesis-callout {
@@ -1078,6 +1288,14 @@ footer {
     padding: 28px 32px;
     margin-bottom: 32px;
     background: linear-gradient(135deg, rgba(94, 234, 212, 0.07), rgba(96, 165, 250, 0.05));
+}
+
+.thesis-body {
+    min-width: 0;
+}
+
+.thesis-meta {
+    margin: 16px 0 0;
 }
 
 .thesis-tag {
@@ -1118,8 +1336,149 @@ footer {
 .pub {
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 28px 32px;
+    padding: 24px 26px;
     background: var(--surface);
+}
+
+.pub p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.pub-metric {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    margin: 14px 0 0;
+}
+
+.pub-metric b {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.pub-metric b.neg {
+    color: #b45309;
+}
+
+/* ---- result figures: schematic, drawn in the site palette ---- */
+.pub-fig {
+    margin: 0;
+}
+
+.pub-fig svg {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    padding: 6px 4px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.pub-fig figcaption {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    line-height: 1.5;
+    color: var(--text-faint);
+    max-width: 420px;
+    margin-top: 8px;
+}
+
+.pub-fig {
+    margin-top: 18px;
+}
+
+.fig-axis {
+    stroke: var(--border);
+    stroke-width: 1;
+    fill: none;
+}
+
+.fig-dash {
+    stroke-dasharray: 3 4;
+}
+
+.fig-line {
+    stroke: var(--accent);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.fig-line-alt {
+    stroke: var(--text-faint);
+    stroke-width: 1.6;
+    fill: none;
+    opacity: 0.6;
+    stroke-linejoin: round;
+}
+
+.fig-thin {
+    stroke-width: 1;
+    opacity: 0.3;
+    stroke-dasharray: 2 3;
+}
+
+.fig-fill {
+    fill: var(--accent);
+    opacity: 0.1;
+}
+
+.fig-dot {
+    fill: var(--accent);
+}
+
+.fig-dot-alt {
+    fill: var(--text-faint);
+}
+
+.fig-bar {
+    fill: var(--accent);
+    opacity: 0.75;
+}
+
+.fig-bar-alt {
+    fill: var(--text-faint);
+    opacity: 0.3;
+}
+
+.fig-band-1 {
+    fill: var(--accent);
+    opacity: 0.13;
+}
+
+.fig-band-2 {
+    fill: var(--accent-3);
+    opacity: 0.11;
+}
+
+.fig-band-3 {
+    fill: var(--accent-2);
+    opacity: 0.1;
+}
+
+.fig-band-4 {
+    fill: var(--text-faint);
+    opacity: 0.1;
+}
+
+.fig-label {
+    fill: var(--text-faint);
+    font-family: var(--mono);
+    font-size: 7.5px;
+    letter-spacing: 0.04em;
+}
+
+.fig-label-accent {
+    fill: var(--accent);
 }
 
 .pub-meta {
@@ -1340,6 +1699,10 @@ footer {
 }
 
 @media (max-width: 900px) {
+    .pub-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     .about-grid {
         grid-template-columns: 1fr;
     }
@@ -1393,5 +1756,13 @@ footer {
 
     .ticker-track {
         animation: none;
+    }
+
+    .mkt.is-open .mkt-state::before {
+        animation: none;
+    }
+
+    .mkt-bar i {
+        transition: none;
     }
 }

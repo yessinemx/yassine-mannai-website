@@ -36,6 +36,8 @@
 
   <canvas id="net-bg"></canvas>
 
+  <ul class="mkt-clocks" id="mkt-clocks" aria-hidden="true"></ul>
+
   <div class="grain"></div>
 
   <aside class="sidebar" id="sidebar">
@@ -501,16 +503,32 @@
         <h2>Academic projects</h2>
       </div>
       <div class="thesis-callout reveal">
-        <span class="thesis-tag">Master's Thesis</span>
-        <h3>Regime-Conditional Total Portfolio Approach</h3>
-        <p>
-          Developed a four-state Hidden Markov Model to support dynamic
-          strategic asset allocation and quantify regime-dependent
-          opportunity costs.
-        </p>
+        <div class="thesis-body">
+          <span class="thesis-tag">Master's Thesis</span>
+          <h3>Regime-Conditional Total Portfolio Approach</h3>
+          <p>
+            Developed a four-state Hidden Markov Model to support dynamic
+            strategic asset allocation and quantify regime-dependent
+            opportunity costs.
+          </p>
+          <p class="pub-metric"><b>SR 0.66</b> <span>regime-conditional vs</span> <b>0.25</b> <span>static, out-of-sample</span></p>
+          <div class="pub-meta thesis-meta">
+            <a class="pub-repo pub-doc" href="assets/projects/Master-Thesis-Yassine-Mannai.pdf" target="_blank"
+              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg> Read the thesis</a>
+          </div>
+        </div>
       </div>
-      <div class="pub-list">
-        <article class="pub reveal">
+      <div class="pub-filters reveal" id="pub-filters">
+        <button type="button" class="pub-filter is-active" data-filter="all" aria-pressed="true">All <i>17</i></button>
+        <button type="button" class="pub-filter" data-filter="pricing" aria-pressed="false">Pricing <i>4</i></button>
+        <button type="button" class="pub-filter" data-filter="vol" aria-pressed="false">Volatility <i>3</i></button>
+        <button type="button" class="pub-filter" data-filter="systematic" aria-pressed="false">Systematic <i>4</i></button>
+        <button type="button" class="pub-filter" data-filter="allocation" aria-pressed="false">Allocation <i>2</i></button>
+        <button type="button" class="pub-filter" data-filter="stats" aria-pressed="false">Stats &amp; ML <i>2</i></button>
+        <button type="button" class="pub-filter" data-filter="credit" aria-pressed="false">Credit &amp; Rates <i>2</i></button>
+      </div>
+      <div class="pub-list" id="pub-list">
+        <article class="pub reveal" data-topic="pricing">
           <div class="pub-meta">
             <span class="pub-date">Jan 2026 &ndash; Present</span>
             <a class="pub-repo" href="https://github.com/yessinemx/MC-Longstaff-Schwartz-Pricing" target="_blank"
@@ -518,14 +536,30 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
+            <a class="pub-repo pub-doc" href="assets/projects/LSM.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
           </div>
           <h3>Longstaff&ndash;Schwartz American Options Pricer</h3>
           <p>
             Priced American options with least-squares Monte Carlo, regressing
             continuation values to recover the optimal early-exercise boundary.
           </p>
+          <figure class="pub-fig">
+            <svg viewBox="0 0 240 132" role="img" aria-label="Early-exercise boundary rising toward the strike as maturity approaches, with the exercise region shaded below.">
+              <path class="fig-fill" d="M30 100 C 82 94, 142 74, 214 44 L214 112 L30 112 Z" />
+              <line class="fig-axis" x1="30" y1="12" x2="30" y2="112" />
+              <line class="fig-axis" x1="30" y1="112" x2="222" y2="112" />
+              <line class="fig-axis fig-dash" x1="30" y1="38" x2="222" y2="38" />
+              <path class="fig-line-alt fig-thin" d="M30 78 L60 64 L90 82 L120 58 L150 70 L180 46 L214 56" />
+              <path class="fig-line" d="M30 100 C 82 94, 142 74, 214 44" />
+              <circle class="fig-dot" cx="214" cy="44" r="2.6" />
+              <text class="fig-label" x="34" y="34">K</text>
+              <text class="fig-label" x="36" y="106">exercise</text>
+              <text class="fig-label" x="206" y="126">t &rarr; T</text>
+            </svg>
+            <figcaption>Early-exercise boundary &middot; exercise region shaded</figcaption>
+          </figure>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="vol">
           <div class="pub-meta">
             <span class="pub-date">Jun 2026</span>
             <a class="pub-repo" href="https://github.com/yessinemx/Trading-vol" target="_blank"
@@ -533,14 +567,16 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
+            <a class="pub-repo pub-doc" href="assets/projects/fxbacktester.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
           </div>
           <h3>Volatility Strategies on FX Options</h3>
           <p>
             Backtesting framework and volatility strategies on FX options,
             built in Python.
           </p>
+          <p class="pub-metric"><b>EUR/NOK</b> <span>&middot; Garman&ndash;Kohlhagen &middot; daily delta-hedged</span></p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="systematic">
           <div class="pub-meta">
             <span class="pub-date">Jun 2026</span>
             <a class="pub-repo" href="https://github.com/yessinemx/Backtesting_Framework" target="_blank"
@@ -554,20 +590,36 @@
             Backtesting framework for systematic strategies, pulling market
             data through the Bloomberg API.
           </p>
+          <p class="pub-metric"><b>1,900</b> <span>tickers &middot;</span> <b>26 yrs</b> <span>of point-in-time history</span></p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="systematic">
           <div class="pub-meta">
             <span class="pub-date">May 2026</span>
+            <a class="pub-repo pub-doc" href="assets/projects/wavelets.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
           </div>
           <h3>Pairs Trading with Wavelet Denoising</h3>
           <p>
             Replicated Eroglu et al. (2023), applying MODWT sym22 denoising
             before cointegration-based pair selection on S&amp;P 500
-            constituents; the backtested strategy returned ~10% annualized
-            versus &minus;1.8% unfiltered.
+            constituents.
           </p>
+          <p class="pub-metric"><b>+10%</b> annualized <span>vs</span> <b class="neg">&minus;1.8%</b> unfiltered</p>
+          <figure class="pub-fig">
+            <svg viewBox="0 0 240 132" role="img" aria-label="Two cumulative return curves: the wavelet-denoised strategy climbing steadily, the unfiltered one drifting flat to slightly negative.">
+              <line class="fig-axis" x1="30" y1="12" x2="30" y2="112" />
+              <line class="fig-axis" x1="30" y1="112" x2="222" y2="112" />
+              <line class="fig-axis fig-dash" x1="30" y1="86" x2="222" y2="86" />
+              <path class="fig-line-alt" d="M30 86 L58 80 L86 92 L114 84 L142 95 L170 87 L198 93 L214 90" />
+              <path class="fig-line" d="M30 86 L58 74 L86 78 L114 62 L142 58 L170 44 L198 40 L214 30" />
+              <circle class="fig-dot" cx="214" cy="30" r="2.6" />
+              <circle class="fig-dot-alt" cx="214" cy="90" r="2.6" />
+              <text class="fig-label fig-label-accent" x="150" y="24">+10% ann.</text>
+              <text class="fig-label" x="168" y="106">&minus;1.8%</text>
+            </svg>
+            <figcaption>Cumulative P&amp;L &middot; denoised vs unfiltered pairs</figcaption>
+          </figure>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="systematic">
           <div class="pub-meta">
             <span class="pub-date">May 2026</span>
             <a class="pub-repo" href="https://github.com/yessinemx/Trading_Commo" target="_blank"
@@ -575,6 +627,7 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
+            <a class="pub-repo pub-doc" href="assets/projects/tradingcommo.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
           </div>
           <h3>Commodity Trading on the S&amp;P GSCI</h3>
           <p>
@@ -582,7 +635,7 @@
             commodity index.
           </p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="vol">
           <div class="pub-meta">
             <span class="pub-date">Apr 2026</span>
             <a class="pub-repo" href="https://github.com/yessinemx/Mfbm_realized_vol" target="_blank"
@@ -590,16 +643,31 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
+            <a class="pub-repo pub-doc" href="assets/projects/mfbm.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/mfbmslides.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Slides</a>
           </div>
           <h3>Multivariate Rough-Volatility Forecasting</h3>
           <p>
             Replicated Bibinger et al. (2025), estimating component-wise Hurst
             exponents and forecasting realized volatility across DJIA
-            constituents with mfBm, achieving lower out-of-sample RMSFE than
-            HAR benchmarks.
+            constituents with mfBm.
           </p>
+          <p class="pub-metric"><b>Lower RMSFE</b> <span>than</span> <b>HAR</b> out-of-sample</p>
+          <figure class="pub-fig">
+            <svg viewBox="0 0 240 132" role="img" aria-label="Bar comparison: out-of-sample forecast error is lower for the multivariate fractional Brownian motion model than for the HAR benchmark.">
+              <line class="fig-axis" x1="40" y1="12" x2="40" y2="104" />
+              <line class="fig-axis" x1="40" y1="104" x2="222" y2="104" />
+              <rect class="fig-bar" x="72" y="52" width="42" height="52" />
+              <rect class="fig-bar-alt" x="146" y="28" width="42" height="76" />
+              <text class="fig-label fig-label-accent" x="76" y="46">mfBm</text>
+              <text class="fig-label" x="152" y="22">HAR</text>
+              <text class="fig-label" x="44" y="20">RMSFE</text>
+              <text class="fig-label" x="72" y="118">lower is better</text>
+            </svg>
+            <figcaption>Out-of-sample RMSFE &middot; mfBm vs HAR benchmark</figcaption>
+          </figure>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="pricing">
           <div class="pub-meta">
             <span class="pub-date">Apr 2026</span>
             <a class="pub-repo" href="https://github.com/yessinemx/Structured-Products-Pricer" target="_blank"
@@ -613,8 +681,9 @@
             Pricer for multi-asset, cross-asset structured products across
             several payoff types.
           </p>
+          <p class="pub-metric"><b>Barrier, digital, path-dependent</b> <span>&middot; full Greeks</span></p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="stats">
           <div class="pub-meta">
             <span class="pub-date">Mar 2026</span>
             <a class="pub-repo" href="https://github.com/yessinemx/HF_CFM_Challenge" target="_blank"
@@ -627,10 +696,24 @@
           <p>
             Classified underlying assets from tick-by-tick order-flow data
             through microstructure feature engineering and irregular
-            time-series modeling, achieving 56% out-of-sample accuracy.
+            time-series modeling.
           </p>
+          <p class="pub-metric"><b>56%</b> <span>out-of-sample accuracy</span></p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="pricing">
+          <div class="pub-meta">
+            <span class="pub-date">Feb 2026</span>
+            <a class="pub-repo pub-doc" href="assets/projects/trinomialtree.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+          </div>
+          <h3>Trinomial Tree &amp; Black&ndash;Scholes Pricer</h3>
+          <p>
+            Lattice pricer for European and American options with discrete
+            dividends and pruning, benchmarked against the closed-form
+            Black&ndash;Scholes price and its Greeks.
+          </p>
+          <p class="pub-metric"><b>6.0816</b> <span>tree vs</span> <b>6.0755</b> <span>Black&ndash;Scholes, 100 steps</span></p>
+        </article>
+        <article class="pub reveal" data-topic="stats">
           <div class="pub-meta">
             <span class="pub-date">Jan 2026 &ndash; Feb 2026</span>
           </div>
@@ -640,9 +723,10 @@
             Area Financial Market Developments?&rdquo;
           </p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="allocation">
           <div class="pub-meta">
             <span class="pub-date">Dec 2025 &ndash; Jan 2026</span>
+            <a class="pub-repo pub-doc" href="assets/projects/regimebasedSAA.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
           </div>
           <h3>Regime-Based Strategic Asset Allocation</h3>
           <p>
@@ -650,9 +734,10 @@
             HMM extension for regime detection.
           </p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="allocation">
           <div class="pub-meta">
             <span class="pub-date">Nov 2025 &ndash; Dec 2025</span>
+            <a class="pub-repo pub-doc" href="assets/projects/RF-BL.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
           </div>
           <h3>RF-BL Macro Asset Allocation</h3>
           <p>
@@ -660,7 +745,7 @@
             model to build a macro-driven asset allocation.
           </p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="systematic">
           <div class="pub-meta">
             <span class="pub-date">Oct 2025 &ndash; Nov 2025</span>
             <a class="pub-repo" href="https://github.com/yessinemx/StratlabX-Game" target="_blank"
@@ -668,13 +753,14 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
+            <a class="pub-repo pub-doc" href="assets/projects/stratlab.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
           </div>
           <h3>StratLab X</h3>
           <p>
             Algo-trading strategies backtesting game, built in C#.
           </p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="pricing">
           <div class="pub-meta">
             <span class="pub-date">Jul 2024 &ndash; Aug 2024</span>
           </div>
@@ -683,8 +769,9 @@
             Option-pricing engine for commodity derivatives, calibrated to
             market quotes across several payoff structures.
           </p>
+          <p class="pub-metric"><b>Merton jump-diffusion</b> <span>&middot; WTI crude &middot; premium settled in TND</span></p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="vol">
           <div class="pub-meta">
             <span class="pub-date">Oct 2023 &ndash; Nov 2023</span>
           </div>
@@ -694,7 +781,7 @@
             to predict equity volatility from oil-price moves.
           </p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="credit">
           <div class="pub-meta">
             <span class="pub-date">Mar 2023 &ndash; Apr 2023</span>
           </div>
@@ -703,8 +790,9 @@
             Implemented the CreditMetrics framework to estimate portfolio
             credit VaR from rating-migration and default probabilities.
           </p>
+          <p class="pub-metric"><b>99% credit VaR</b> <span>&asymp;</span> <b>69.7</b> <span>on the three-bond portfolio</span></p>
         </article>
-        <article class="pub reveal">
+        <article class="pub reveal" data-topic="credit">
           <div class="pub-meta">
             <span class="pub-date">Feb 2022 &ndash; Apr 2022</span>
           </div>
