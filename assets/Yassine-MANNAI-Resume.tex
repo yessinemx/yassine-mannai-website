@@ -1,0 +1,196 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins slightly adjusted to fit one page comfortably
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-0.75in}
+\addtolength{\textheight}{1.5in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections — original style
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Original commands
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-3pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{1pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADER----------
+\begin{center}
+    {\Huge \scshape Yassine Mannai} \\ \vspace{5pt}
+    \small
+    \faMapMarker*~Paris, France \quad
+    \faPhone\ +33 (0)6 23 64 31 80 \quad
+    \href{mailto:yassine.mannai@dauphine.eu}
+    {\faEnvelope\ yassine.mannai@dauphine.eu}
+    \quad
+    \href{https://linkedin.com/in/yassine-mannai}
+    {\faLinkedin\ yassine-mannai}
+    \quad
+    \href{https://github.com/yessinemx}
+    {\faGithub\ yessinemx}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {University of Paris Dauphine -- PSL}{Sep 2023 -- Jan 2027}
+      {Master's in Financial Engineering - Quant Track}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{\textbf{Coursework:} Stochastic Calculus, Bayesian/Non-linear Econometrics, Machine Learning, Deep Learning, FX \& Commodity Trading, Volatility Strategies, Structured Products, Statistical Arbitrage}
+     \resumeItem{\textbf{Master's thesis:} \textit{Regime-Conditional Total Portfolio Approach}. Developed a four-state Hidden Markov Model to support dynamic strategic asset allocation and quantify regime-dependent opportunity costs.}
+    \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROFESSIONAL EXPERIENCE-----------
+\section{Professional Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Generali France}{Sep 2025 -- Present}
+      {Quantitative Strategist -- Apprentice}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Replicated the \textbf{GSRAI stress index} using four principal components extracted from Bloomberg credit-spread, rates, equity-volatility, and FX data, achieving a \textbf{98\% correlation} with the benchmark.}
+    
+      \resumeItem{Developed and backtested a \textbf{portable-alpha framework} across eight liquid diversifiers, deriving correlation-based overlay capacities under a volatility-preserving risk budget.}
+    
+      \resumeItem{Built an \textbf{LLM-powered research pipeline} combining document parsing, semantic analysis, and structured macro-signal extraction from broker research for portfolio-monitoring dashboards.}
+    \resumeItemListEnd
+    \vspace{-2pt}
+
+    \resumeSubheading
+      {BNP Paribas CIB}{Mar 2025 -- Aug 2025}
+      {Cross-Asset Structured Products Sales -- Intern}{Paris, France}
+    \resumeItemListStart
+        \resumeItem{Priced cross-asset structured products, including Autocalls, CLNs, Sharkfins, and Steepeners, coordinating with Trading and Structuring on tailored investment and hedging solutions.}
+
+        \resumeItem{Analyzed payoff profiles, pricing levels, barrier events, market scenarios, and key risk exposures across equity, credit, rates, and commodity-linked underlyings.}
+    \resumeItemListEnd
+    \vspace{-2pt}
+
+    \resumeSubheading
+      {Credit Agricole CIB}{Sep 2024 -- Feb 2025}
+      {Quantitative Risk Analyst -- Intern}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Developed a Python-based historical simulation framework to model stressed liquidity gaps and assess tail risk across market and funding scenarios over multiple time horizons.}
+      \resumeItem{Performed sensitivity and stress-scenario analyses on \textbf{LCR, NSFR, and ALMM} indicators, automating calculations, reconciliation checks, and validation controls in \textbf{VBA}.}
+    \resumeItemListEnd
+    \vspace{-2pt}
+
+    \resumeSubheading
+      {BIAT CIB}{Jun 2024 -- Aug 2024}
+      {FX \& Commodity Derivatives Trading -- Intern}{Tunis, Tunisia}
+    \resumeItemListStart
+      \resumeItem{Built a \textbf{commodity-option pricing engine} combining Black--Scholes and Schwartz--Smith models to value derivative strategies and analyze market risk.}
+      \resumeItem{Implemented and calibrated a \textbf{Kalman filter} in Python to estimate latent commodity-price factors within the Schwartz--Smith model.}
+    \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS & RESEARCH-----------
+\section{Projects \& Research}
+\resumeSubHeadingListStart
+
+    \resumeProjectHeading
+      {\textbf{Pairs Trading with Wavelet Denoising} $|$ \emph{Python, PyWavelets}}{May 2026}
+    \resumeItemListStart
+      \resumeItem{Replicated Eroglu et al. (2023), applying \textbf{MODWT} \textit{sym}22 denoising before cointegration-based pair selection on S\&P~500 constituents; the backtested strategy returned approximately 10\% annualized versus $-1.8\%$ unfiltered.}
+    \resumeItemListEnd
+    \vspace{-15pt}
+
+    \resumeProjectHeading
+      {\textbf{Multivariate Rough-Volatility Forecasting} $|$ \emph{Python}}{Apr 2026}
+    \resumeItemListStart
+      \resumeItem{Replicated Bibinger et al. (2025), estimating component-wise Hurst exponents and forecasting realized volatility across DJIA constituents with mfBm, achieving lower out-of-sample RMSFE than HAR benchmarks.}
+    \resumeItemListEnd
+    \vspace{-15pt}
+    
+    \resumeProjectHeading
+      {\textbf{CFM Data Challenge -- HFT Microstructure Classification} $|$ \emph{Python, scikit-learn, PyTorch}}{Mar 2026}
+    \resumeItemListStart
+      \resumeItem{Classified underlying assets from tick-by-tick order-flow data through microstructure feature engineering and irregular time-series modeling, achieving \textbf{56\% out-of-sample accuracy.}}
+    \resumeItemListEnd
+   \vspace{-2pt}
+    
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+
+
+\textbf{Programming:} Python, R, SQL, VBA, C\#, MATLAB
+\vspace{1pt}
+
+\textbf{Python Stack:} NumPy, Pandas, SciPy, statsmodels, scikit-learn, PyTorch
+\vspace{1pt}
+
+\textbf{AI \& Development:} LLM APIs, NLP, Git/GitHub
+\vspace{1pt}
+
+\textbf{Platforms:} Bloomberg, Refinitiv, Power Automate, Power BI, LaTeX
+\vspace{1pt}
+
+\textbf{Languages:} Arabic (native), English (fluent), French (fluent), Spanish (beginner)
+\vspace{1pt}
+
+\end{document}

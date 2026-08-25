@@ -702,6 +702,64 @@ footer {
     color: var(--text);
 }
 
+/* ---------------- experience trajectory ---------------- */
+.trajectory {
+    margin: 4px 0 60px;
+}
+
+.trajectory-chart {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.traj-line {
+    stroke: var(--accent);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+
+.traj-axis {
+    stroke: var(--border);
+    stroke-width: 1;
+    stroke-dasharray: 4 6;
+}
+
+.traj-tile {
+    fill: #fff;
+    stroke: var(--border);
+    stroke-width: 1;
+}
+
+.traj-tile-current {
+    stroke: var(--accent);
+    stroke-width: 2;
+}
+
+.traj-org {
+    fill: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    text-anchor: middle;
+}
+
+.traj-year {
+    fill: var(--text-faint);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-anchor: middle;
+}
+
+.traj-axis-label {
+    fill: var(--text-faint);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-anchor: middle;
+}
+
 /* ---------------- about photo frames ---------------- */
 .about-frames {
     position: sticky;
