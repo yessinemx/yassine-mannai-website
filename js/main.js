@@ -1,72 +1,88 @@
 /* ================================================================
-   Network graph background — nodes drift and connect when close,
-   echoing the dynamic dependence graphs used in the research.
+   Market line background — a slow scrolling price path over a faint
+   grid, echoing the markets rather than a starfield.
    ================================================================ */
-(function networkBackground() {
+(function marketBackground() {
     const canvas = document.getElementById('net-bg');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    let width, height, nodes;
-    const LINK_DIST = 150;
-    const NODE_COUNT_DENSITY = 14000; // px^2 per node
-
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const STEP = 46;   // px between price points
+    const SPEED = 0.35; // px per frame
+    let width, height, pts, offset = 0, running = false;
+
+    const clampY = (y) => Math.max(height * 0.22, Math.min(height * 0.82, y));
+    const nextY = (prev) => clampY(prev + (Math.random() - 0.5) * height * 0.14);
 
     function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
-        const count = Math.max(24, Math.min(90, Math.floor((width * height) / NODE_COUNT_DENSITY)));
-        nodes = Array.from({ length: count }, () => ({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 0.25,
-            vy: (Math.random() - 0.5) * 0.25,
-            r: Math.random() * 1.6 + 0.8,
-        }));
+        const need = Math.ceil(width / STEP) + 4;
+        if (!pts) {
+            pts = [];
+            let y = height * 0.55;
+            for (let i = 0; i < need; i++) { pts.push(y); y = nextY(y); }
+        } else {
+            while (pts.length < need) pts.push(nextY(pts[pts.length - 1]));
+        }
+    }
+
+    function tracePath() {
+        ctx.beginPath();
+        for (let i = 0; i < pts.length; i++) {
+            const x = i * STEP - offset;
+            if (i === 0) ctx.moveTo(x, pts[i]);
+            else ctx.lineTo(x, pts[i]);
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.lineJoin = 'round';
+
+        // faint horizontal grid
+        ctx.strokeStyle = 'rgba(27, 35, 51, 0.06)';
+        ctx.lineWidth = 1;
+        const rows = 6;
+        for (let i = 1; i < rows; i++) {
+            const y = (height / rows) * i;
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(width, y);
+            ctx.stroke();
+        }
+
+        // area under the line
+        tracePath();
+        ctx.lineTo((pts.length - 1) * STEP - offset, height);
+        ctx.lineTo(-offset, height);
+        ctx.closePath();
+        const grad = ctx.createLinearGradient(0, 0, 0, height);
+        grad.addColorStop(0, 'rgba(15, 118, 110, 0.12)');
+        grad.addColorStop(1, 'rgba(15, 118, 110, 0)');
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // the price line
+        tracePath();
+        ctx.strokeStyle = 'rgba(15, 118, 110, 0.55)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
     }
 
     function step() {
-        ctx.clearRect(0, 0, width, height);
-
-        for (const n of nodes) {
-            n.x += n.vx;
-            n.y += n.vy;
-            if (n.x < 0 || n.x > width) n.vx *= -1;
-            if (n.y < 0 || n.y > height) n.vy *= -1;
+        offset += SPEED;
+        if (offset >= STEP) {
+            offset -= STEP;
+            pts.shift();
+            pts.push(nextY(pts[pts.length - 1]));
         }
-
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-                const a = nodes[i], b = nodes[j];
-                const dx = a.x - b.x, dy = a.y - b.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < LINK_DIST) {
-                    const alpha = (1 - dist / LINK_DIST) * 0.35;
-                    ctx.strokeStyle = `rgba(94, 234, 212, ${alpha})`;
-                    ctx.lineWidth = 0.6;
-                    ctx.beginPath();
-                    ctx.moveTo(a.x, a.y);
-                    ctx.lineTo(b.x, b.y);
-                    ctx.stroke();
-                }
-            }
-        }
-
-        for (const n of nodes) {
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(167, 139, 250, 0.55)';
-            ctx.fill();
-        }
-
-        if (!prefersReducedMotion && !document.hidden) {
-            requestAnimationFrame(step);
-        } else {
-            running = false;
-        }
+        draw();
+        if (!prefersReducedMotion && !document.hidden) requestAnimationFrame(step);
+        else running = false;
     }
 
-    let running = false;
     function start() {
         if (!running && !prefersReducedMotion && !document.hidden) {
             running = true;
@@ -79,7 +95,7 @@
     document.addEventListener('visibilitychange', start);
     resize();
     start();
-    if (prefersReducedMotion) step();
+    if (prefersReducedMotion) draw();
 })();
 
 /* ================================================================
