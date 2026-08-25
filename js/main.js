@@ -108,10 +108,10 @@
 
     // Cash-session hours in each exchange's own local time, in minutes.
     const MARKETS = [
-        { city: 'New York', tz: 'America/New_York', open: 9 * 60 + 30, close: 16 * 60 },
-        { city: 'London', tz: 'Europe/London', open: 8 * 60, close: 16 * 60 + 30 },
-        { city: 'Paris', tz: 'Europe/Paris', open: 9 * 60, close: 17 * 60 + 30 },
-        { city: 'Hong Kong', tz: 'Asia/Hong_Kong', open: 9 * 60 + 30, close: 16 * 60, break: [12 * 60, 13 * 60] },
+        { code: 'NYC', city: 'New York', tz: 'America/New_York', open: 9 * 60 + 30, close: 16 * 60 },
+        { code: 'LDN', city: 'London', tz: 'Europe/London', open: 8 * 60, close: 16 * 60 + 30 },
+        { code: 'PAR', city: 'Paris', tz: 'Europe/Paris', open: 9 * 60, close: 17 * 60 + 30 },
+        { code: 'HKG', city: 'Hong Kong', tz: 'Asia/Hong_Kong', open: 9 * 60 + 30, close: 16 * 60, break: [12 * 60, 13 * 60] },
     ];
 
     const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -173,12 +173,13 @@
         const li = document.createElement('li');
         li.className = 'mkt';
         li.innerHTML =
-            '<span class="mkt-city"></span>' +
+            '<span class="mkt-city"><span class="full"></span><span class="code"></span></span>' +
             '<span class="mkt-zone"></span>' +
             '<span class="mkt-time"><span class="hm"></span><span class="sec"></span></span>' +
             '<span class="mkt-bar"><i></i></span>' +
             '<span class="mkt-state"></span>';
-        li.querySelector('.mkt-city').textContent = mkt.city;
+        li.querySelector('.full').textContent = mkt.city;
+        li.querySelector('.code').textContent = mkt.code;
         host.appendChild(li);
         return {
             mkt, li,
@@ -197,8 +198,11 @@
             const st = status(row.mkt, t);
             row.hm.textContent = `${pad(t.h)}:${pad(t.m)}`;
             row.sec.textContent = `:${pad(t.s)}`;
-            row.zone.textContent = offsetLabel(row.mkt.tz, now);
+            const zone = offsetLabel(row.mkt.tz, now);
+            row.zone.textContent = zone;
             row.state.textContent = st.label;
+            // Also a tooltip, for the compact bottom-bar layout that hides the status.
+            row.li.title = `${row.mkt.city} (${zone}) — ${st.label}`;
             row.bar.style.width = (st.progress * 100).toFixed(1) + '%';
             row.li.classList.toggle('is-open', st.cls === 'is-open');
             row.li.classList.toggle('is-break', st.cls === 'is-break');
@@ -356,6 +360,10 @@
     if (!app) return;
     const questions = Array.from(app.querySelectorAll('.quiz-q'));
     const result = document.getElementById('quiz-result');
+    const cta = document.getElementById('quiz-cta');
+    const ctaLine = document.getElementById('quiz-cta-line');
+    const mailLink = document.getElementById('quiz-mail');
+    const coffeeLink = document.getElementById('quiz-coffee');
     let answered = 0;
     let score = 0;
 
@@ -363,7 +371,30 @@
         if (s === total) return 'you basically know me.';
         if (s >= Math.ceil(total * 0.6)) return 'pretty good!';
         if (s >= 1) return 'we should talk more.';
-        return 'ouch — let\u2019s grab a coffee.';
+        return 'ouch — not a single one.';
+    };
+
+    // Every score, brilliant or catastrophic, ends at the same coffee.
+    const invitation = (s, total) => {
+        if (s === total) {
+            return 'Flawless. Either we have already met, or you have read this page far too closely '
+                + '— both are grounds for a coffee, and I am buying.';
+        }
+        if (s >= Math.ceil(total * 0.6)) {
+            const missed = total - s;
+            if (missed === 1) {
+                return 'So close. The one you missed is exactly the one that needs context, '
+                    + 'and context is best delivered over an espresso.';
+            }
+            return `Solid. The ${missed} you missed are exactly the ones that need context, `
+                + 'and context is best delivered over an espresso.';
+        }
+        if (s >= 1) {
+            return 'A respectable start. The rest of my personality does not fit into multiple choice, '
+                + 'so let us do this properly — coffee, or a call.';
+        }
+        return `Zero out of ${total}. Statistically, that takes real commitment, and commitment `
+            + 'deserves a coffee. First round on me.';
     };
 
     questions.forEach((q) => {
@@ -382,8 +413,23 @@
                 });
                 answered++;
                 if (answered === questions.length && result) {
+                    const total = questions.length;
                     result.hidden = false;
-                    result.textContent = `You scored ${score}/${questions.length} — ${verdict(score, questions.length)}`;
+                    result.textContent = `You scored ${score}/${total} — ${verdict(score, total)}`;
+                    if (cta && ctaLine) {
+                        ctaLine.textContent = invitation(score, total);
+                        // Carry the score into the message so the opening line writes itself.
+                        const opener = `Hi Yassine — I scored ${score}/${total} on your quiz.`;
+                        if (mailLink) {
+                            mailLink.href = 'mailto:yassine.mannai@dauphine.eu?subject='
+                                + encodeURIComponent(`I scored ${score}/${total} on your quiz`);
+                        }
+                        if (coffeeLink) {
+                            coffeeLink.href = 'https://wa.me/33623643180?text='
+                                + encodeURIComponent(`${opener} Coffee?`);
+                        }
+                        cta.hidden = false;
+                    }
                 }
             });
         });

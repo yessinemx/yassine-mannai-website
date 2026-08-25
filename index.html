@@ -36,7 +36,7 @@
 
   <canvas id="net-bg"></canvas>
 
-  <ul class="mkt-clocks" id="mkt-clocks" aria-hidden="true"></ul>
+  <ul class="mkt-clocks" id="mkt-clocks" aria-label="Market hours"></ul>
 
   <div class="grain"></div>
 
@@ -61,11 +61,20 @@
       </nav>
 
       <div class="sidebar-social">
-        <a href="mailto:yassine.mannai@dauphine.eu">Email</a>
-        <a href="https://www.linkedin.com/in/yassine-mannai" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://github.com/yessinemx" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="tel:+33623643180">Phone</a>
+        <a href="mailto:yassine.mannai@dauphine.eu" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" /></svg>
+        </a>
+        <a href="https://wa.me/33623643180" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.5 9.5 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.44 9.44 0 0 1-1.45-5.05c0-5.23 4.27-9.49 9.51-9.49 2.54 0 4.92.99 6.72 2.78a9.42 9.42 0 0 1 2.78 6.72c0 5.23-4.27 9.49-9.51 9.49zM20.5 3.49A11.87 11.87 0 0 0 12.04 0C5.46 0 .11 5.34.1 11.91c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.65a11.93 11.93 0 0 0 5.73 1.46h.01c6.58 0 11.93-5.34 11.94-11.91a11.84 11.84 0 0 0-3.48-8.41z" /></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/yassine-mannai" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.853.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" /></svg>
+        </a>
+        <a href="https://github.com/yessinemx" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+        </a>
       </div>
+
     </div>
   </aside>
 
@@ -543,21 +552,6 @@
             Priced American options with least-squares Monte Carlo, regressing
             continuation values to recover the optimal early-exercise boundary.
           </p>
-          <figure class="pub-fig">
-            <svg viewBox="0 0 240 132" role="img" aria-label="Early-exercise boundary rising toward the strike as maturity approaches, with the exercise region shaded below.">
-              <path class="fig-fill" d="M30 100 C 82 94, 142 74, 214 44 L214 112 L30 112 Z" />
-              <line class="fig-axis" x1="30" y1="12" x2="30" y2="112" />
-              <line class="fig-axis" x1="30" y1="112" x2="222" y2="112" />
-              <line class="fig-axis fig-dash" x1="30" y1="38" x2="222" y2="38" />
-              <path class="fig-line-alt fig-thin" d="M30 78 L60 64 L90 82 L120 58 L150 70 L180 46 L214 56" />
-              <path class="fig-line" d="M30 100 C 82 94, 142 74, 214 44" />
-              <circle class="fig-dot" cx="214" cy="44" r="2.6" />
-              <text class="fig-label" x="34" y="34">K</text>
-              <text class="fig-label" x="36" y="106">exercise</text>
-              <text class="fig-label" x="206" y="126">t &rarr; T</text>
-            </svg>
-            <figcaption>Early-exercise boundary &middot; exercise region shaded</figcaption>
-          </figure>
         </article>
         <article class="pub reveal" data-topic="vol">
           <div class="pub-meta">
@@ -604,20 +598,6 @@
             constituents.
           </p>
           <p class="pub-metric"><b>+10%</b> annualized <span>vs</span> <b class="neg">&minus;1.8%</b> unfiltered</p>
-          <figure class="pub-fig">
-            <svg viewBox="0 0 240 132" role="img" aria-label="Two cumulative return curves: the wavelet-denoised strategy climbing steadily, the unfiltered one drifting flat to slightly negative.">
-              <line class="fig-axis" x1="30" y1="12" x2="30" y2="112" />
-              <line class="fig-axis" x1="30" y1="112" x2="222" y2="112" />
-              <line class="fig-axis fig-dash" x1="30" y1="86" x2="222" y2="86" />
-              <path class="fig-line-alt" d="M30 86 L58 80 L86 92 L114 84 L142 95 L170 87 L198 93 L214 90" />
-              <path class="fig-line" d="M30 86 L58 74 L86 78 L114 62 L142 58 L170 44 L198 40 L214 30" />
-              <circle class="fig-dot" cx="214" cy="30" r="2.6" />
-              <circle class="fig-dot-alt" cx="214" cy="90" r="2.6" />
-              <text class="fig-label fig-label-accent" x="150" y="24">+10% ann.</text>
-              <text class="fig-label" x="168" y="106">&minus;1.8%</text>
-            </svg>
-            <figcaption>Cumulative P&amp;L &middot; denoised vs unfiltered pairs</figcaption>
-          </figure>
         </article>
         <article class="pub reveal" data-topic="systematic">
           <div class="pub-meta">
@@ -653,19 +633,6 @@
             constituents with mfBm.
           </p>
           <p class="pub-metric"><b>Lower RMSFE</b> <span>than</span> <b>HAR</b> out-of-sample</p>
-          <figure class="pub-fig">
-            <svg viewBox="0 0 240 132" role="img" aria-label="Bar comparison: out-of-sample forecast error is lower for the multivariate fractional Brownian motion model than for the HAR benchmark.">
-              <line class="fig-axis" x1="40" y1="12" x2="40" y2="104" />
-              <line class="fig-axis" x1="40" y1="104" x2="222" y2="104" />
-              <rect class="fig-bar" x="72" y="52" width="42" height="52" />
-              <rect class="fig-bar-alt" x="146" y="28" width="42" height="76" />
-              <text class="fig-label fig-label-accent" x="76" y="46">mfBm</text>
-              <text class="fig-label" x="152" y="22">HAR</text>
-              <text class="fig-label" x="44" y="20">RMSFE</text>
-              <text class="fig-label" x="72" y="118">lower is better</text>
-            </svg>
-            <figcaption>Out-of-sample RMSFE &middot; mfBm vs HAR benchmark</figcaption>
-          </figure>
         </article>
         <article class="pub reveal" data-topic="pricing">
           <div class="pub-meta">
@@ -1102,6 +1069,15 @@
           </div>
         </div>
         <p class="quiz-result" id="quiz-result" hidden></p>
+        <div class="quiz-cta" id="quiz-cta" hidden>
+          <p class="quiz-cta-line" id="quiz-cta-line"></p>
+          <div class="cta-row">
+            <a class="btn btn-primary" id="quiz-mail" href="mailto:yassine.mannai@dauphine.eu">Email me</a>
+            <a class="btn btn-ghost" id="quiz-coffee" href="https://wa.me/33623643180" target="_blank"
+              rel="noopener noreferrer">Coffee in Paris</a>
+            <a class="btn btn-ghost" href="tel:+33623643180">Call me</a>
+          </div>
+        </div>
       </div>
     </section>
 
