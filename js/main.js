@@ -1,4 +1,14 @@
 /* ================================================================
+   Vercel Speed Insights initialization
+   ================================================================ */
+import { injectSpeedInsights } from './vendor/speed-insights.js';
+
+// Initialize Speed Insights when the page loads
+if (typeof injectSpeedInsights === 'function') {
+    injectSpeedInsights();
+}
+
+/* ================================================================
    Market line background — a slow scrolling price path over a faint
    grid, echoing the markets rather than a starfield.
    ================================================================ */

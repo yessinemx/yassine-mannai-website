@@ -1,0 +1,17 @@
+{
+  "name": "yessinemx-portfolio",
+  "version": "1.0.0",
+  "description": "Yassine Mannai's portfolio website with Vercel Speed Insights",
+  "scripts": {
+    "postinstall": "mkdir -p js/vendor && cp node_modules/@vercel/speed-insights/dist/index.mjs js/vendor/speed-insights.js"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  },
+  "keywords": [
+    "portfolio",
+    "speed-insights"
+  ],
+  "author": "Yassine Mannai",
+  "license": "ISC"
+}
