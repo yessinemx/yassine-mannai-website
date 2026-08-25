@@ -1,3 +1,4 @@
 tools/
 get-gh.ps1
 *.ps1
+node_modules/
