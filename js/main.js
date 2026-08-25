@@ -182,6 +182,48 @@
 })();
 
 /* ================================================================
+   Quiz — "How well do you know me?"
+   ================================================================ */
+(function quiz() {
+    const app = document.getElementById('quiz-app');
+    if (!app) return;
+    const questions = Array.from(app.querySelectorAll('.quiz-q'));
+    const result = document.getElementById('quiz-result');
+    let answered = 0;
+    let score = 0;
+
+    const verdict = (s, total) => {
+        if (s === total) return 'you basically know me.';
+        if (s >= Math.ceil(total * 0.6)) return 'pretty good!';
+        if (s >= 1) return 'we should talk more.';
+        return 'ouch — let\u2019s grab a coffee.';
+    };
+
+    questions.forEach((q) => {
+        const answer = q.dataset.answer;
+        const opts = Array.from(q.querySelectorAll('.quiz-opt'));
+        opts.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                if (q.classList.contains('done')) return;
+                q.classList.add('done');
+                const picked = btn.textContent.trim();
+                if (picked === answer) score++;
+                else btn.classList.add('wrong');
+                opts.forEach((b) => {
+                    if (b.textContent.trim() === answer) b.classList.add('correct');
+                    b.disabled = true;
+                });
+                answered++;
+                if (answered === questions.length && result) {
+                    result.hidden = false;
+                    result.textContent = `You scored ${score}/${questions.length} — ${verdict(score, questions.length)}`;
+                }
+            });
+        });
+    });
+})();
+
+/* ================================================================
    Footer year
    ================================================================ */
 document.getElementById('year').textContent = new Date().getFullYear();

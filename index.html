@@ -44,7 +44,7 @@
         <span class="sidebar-photo"><img src="media/ym.jpg" alt="Yassine Mannai"></span>
       </a>
       <h1 class="sidebar-name">Yassine <span class="accent">Mannai</span></h1>
-      <p class="sidebar-role">Quantitative Finance</p>
+      <p class="sidebar-role">MSc 272 - Dauphine PSL</p>
       <p class="sidebar-loc">Based in Paris, France</p>
 
       <nav class="sidebar-nav" id="nav-links">
@@ -216,6 +216,32 @@
             <figcaption>Paris</figcaption>
           </figure>
         </aside>
+      </div>
+      <div class="journey-map reveal">
+        <svg viewBox="0 0 900 210" class="journey-svg" role="img" aria-label="Journey from Tunis to Lyon to Paris">
+          <path d="M180 150 Q320 90 460 100 T740 55" class="journey-path" fill="none" />
+          <g>
+            <circle cx="180" cy="150" r="7" class="journey-pin" />
+            <text x="180" y="180" class="journey-city">Tunis</text>
+            <text x="180" y="198" class="journey-note">home</text>
+          </g>
+          <g>
+            <circle cx="460" cy="100" r="7" class="journey-pin" />
+            <text x="460" y="130" class="journey-city">Lyon</text>
+            <text x="460" y="148" class="journey-note">2020</text>
+          </g>
+          <g>
+            <circle cx="740" cy="55" r="7" class="journey-pin journey-pin-current" />
+            <text x="740" y="85" class="journey-city">Paris</text>
+            <text x="740" y="103" class="journey-note">2022</text>
+          </g>
+        </svg>
+      </div>
+      <div class="stats-strip reveal">
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">cities lived</span></div>
+        <div class="stat"><span class="stat-num">5</span><span class="stat-label">finance experiences</span></div>
+        <div class="stat"><span class="stat-num">4</span><span class="stat-label">languages</span></div>
+        <div class="stat"><span class="stat-num">2010</span><span class="stat-label">Nerazzurro since</span></div>
       </div>
     </section>
 
@@ -694,7 +720,9 @@
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12\" />
-          </svg>\n Browse the code on GitHub\n </a>\n
+          </svg>
+          Browse the code on GitHub
+        </a>
       </div>
     </section>
 
@@ -934,6 +962,58 @@
             good DJ or artist.
           </p>
         </article>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="section quiz-section" id="quiz">
+      <div class="section-head reveal">
+        <span class="tag">Bonus</span>
+        <h2>How well do you know me?</h2>
+        <p class="section-sub">Five quick guesses. No pressure.</p>
+      </div>
+      <div class="quiz reveal" id="quiz-app">
+        <div class="quiz-q" data-answer="Inter Milan">
+          <p class="quiz-prompt">1 / Which football club do I support?</p>
+          <div class="quiz-opts">
+            <button type="button" class="quiz-opt">Inter Milan</button>
+            <button type="button" class="quiz-opt">AC Milan</button>
+            <button type="button" class="quiz-opt">Juventus</button>
+          </div>
+        </div>
+        <div class="quiz-q" data-answer="Ferrari">
+          <p class="quiz-prompt">2 / My Formula 1 team?</p>
+          <div class="quiz-opts">
+            <button type="button" class="quiz-opt">Ferrari</button>
+            <button type="button" class="quiz-opt">Red Bull</button>
+            <button type="button" class="quiz-opt">Mercedes</button>
+          </div>
+        </div>
+        <div class="quiz-q" data-answer="Rafael Nadal">
+          <p class="quiz-prompt">3 / My tennis GOAT?</p>
+          <div class="quiz-opts">
+            <button type="button" class="quiz-opt">Rafael Nadal</button>
+            <button type="button" class="quiz-opt">Roger Federer</button>
+            <button type="button" class="quiz-opt">Novak Djokovic</button>
+          </div>
+        </div>
+        <div class="quiz-q" data-answer="The Witcher 3">
+          <p class="quiz-prompt">4 / My all-time favourite game?</p>
+          <div class="quiz-opts">
+            <button type="button" class="quiz-opt">The Witcher 3</button>
+            <button type="button" class="quiz-opt">EA FC</button>
+            <button type="button" class="quiz-opt">Zelda</button>
+          </div>
+        </div>
+        <div class="quiz-q" data-answer="Fred again..">
+          <p class="quiz-prompt">5 / An artist on repeat?</p>
+          <div class="quiz-opts">
+            <button type="button" class="quiz-opt">Fred again..</button>
+            <button type="button" class="quiz-opt">Drake</button>
+            <button type="button" class="quiz-opt">David Guetta</button>
+          </div>
+        </div>
+        <p class="quiz-result" id="quiz-result" hidden></p>
       </div>
     </section>
 
