@@ -501,7 +501,6 @@
         { id: 'solana', sym: 'SOL' },
         { id: 'ripple', sym: 'XRP' },
         { id: 'binancecoin', sym: 'BNB' },
-        { id: 'dogecoin', sym: 'DOGE' },
     ];
     const cryptoUrl = 'https://api.coingecko.com/api/v3/simple/price?ids='
         + COINS.map((c) => c.id).join(',') + '&vs_currencies=usd&include_24hr_change=true';
@@ -522,7 +521,7 @@
             const up = chg >= 0;
             return `<span class="tick ${up ? 'up' : 'down'}">${c.sym} ${fmt(d.usd)} `
                 + `${up ? '\u25B2' : '\u25BC'} ${Math.abs(chg).toFixed(2)}%</span>` + sep;
-        }).join('');
+        }).filter(Boolean);
     }
 
     function fxPairs(last, prev) {
@@ -544,7 +543,7 @@
         push('GBP/USD', cross(last), cross(prev), 4);
         push('EUR/JPY', last.JPY, prev && prev.JPY, 2);
         push('EUR/TND', last.TND, prev && prev.TND, 4);
-        return out.join('');
+        return out;
     }
 
     function ratesFrom(j) {
@@ -564,9 +563,16 @@
             .catch(() => null);
     }
 
-    const state = { crypto: '', fx: '' };
+    const state = { crypto: [], fx: [] };
     function paint() {
-        const one = state.crypto + state.fx;
+        const c = state.crypto, f = state.fx;
+        const n = Math.max(c.length, f.length);
+        const items = [];
+        for (let i = 0; i < n; i++) {
+            if (c[i]) items.push(c[i]);
+            if (f[i]) items.push(f[i]);
+        }
+        const one = items.join('');
         if (one.replace(/\s/g, '')) track.innerHTML = one + one;
     }
     function loadFx() {
