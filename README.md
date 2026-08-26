@@ -36,6 +36,6 @@ python -m http.server 8000
 - The animated network background and scroll effects are in `js/main.js`.
 - Contact links (email, LinkedIn, GitHub, phone) live in the sidebar and
   Contact section of `index.html`.
-- The Tunis / Lyon / Paris route illustrations are in `assets/*.svg`; swap
+- The Tunis / Lyon / Paris route illustrations are in `assets/img/*.svg`; swap
   them for photos by replacing the files (keep a ~4:3 ratio).
-- Swap `assets/favicon.svg` for your own mark/photo if desired.
+- Swap `assets/img/favicon.svg` for your own mark/photo if desired.
