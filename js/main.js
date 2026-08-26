@@ -543,13 +543,14 @@
         push('EUR/GBP', last.GBP, prev && prev.GBP, 4);
         push('GBP/USD', cross(last), cross(prev), 4);
         push('EUR/JPY', last.JPY, prev && prev.JPY, 2);
+        push('EUR/TND', last.TND, prev && prev.TND, 4);
         return out.join('');
     }
 
     function ratesFrom(j) {
         const e = j && j.eur;
         if (!e) return null;
-        return { USD: e.usd, GBP: e.gbp, JPY: e.jpy };
+        return { USD: e.usd, GBP: e.gbp, JPY: e.jpy, TND: e.tnd };
     }
     function prevDate(dstr) {
         const d = new Date(dstr + 'T00:00:00Z');
