@@ -505,11 +505,9 @@
     ];
     const cryptoUrl = 'https://api.coingecko.com/api/v3/simple/price?ids='
         + COINS.map((c) => c.id).join(',') + '&vs_currencies=usd&include_24hr_change=true';
-    const fxSeriesUrl = () => {
-        const d = new Date();
-        d.setDate(d.getDate() - 10);
-        return `https://api.frankfurter.app/${d.toISOString().slice(0, 10)}..?base=EUR&symbols=USD,GBP,JPY`;
-    };
+    // currency-api (fawazahmed0) via jsDelivr CDN — CORS-safe, daily history
+    const fxLatestUrl = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json';
+    const fxDatedUrl = (d) => `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@${d}/v1/currencies/eur.json`;
     const fxFallbackUrl = 'https://open.er-api.com/v6/latest/EUR';
 
     const sep = '<span class="tick-sep">\u00b7</span>';
@@ -548,6 +546,17 @@
         return out.join('');
     }
 
+    function ratesFrom(j) {
+        const e = j && j.eur;
+        if (!e) return null;
+        return { USD: e.usd, GBP: e.gbp, JPY: e.jpy };
+    }
+    function prevDate(dstr) {
+        const d = new Date(dstr + 'T00:00:00Z');
+        d.setUTCDate(d.getUTCDate() - 1);
+        return d.toISOString().slice(0, 10);
+    }
+
     function jsonOr(url) {
         return fetch(url, { cache: 'no-store' })
             .then((r) => (r.ok ? r.json() : null))
@@ -560,12 +569,15 @@
         if (one.replace(/\s/g, '')) track.innerHTML = one + one;
     }
     function loadFx() {
-        jsonOr(fxSeriesUrl()).then((d) => {
-            if (d && d.rates) {
-                const dates = Object.keys(d.rates).sort();
-                const last = d.rates[dates[dates.length - 1]];
-                const prev = dates.length > 1 ? d.rates[dates[dates.length - 2]] : null;
-                state.fx = fxPairs(last, prev);
+        jsonOr(fxLatestUrl).then((j) => {
+            const last = ratesFrom(j);
+            if (last && j.date) {
+                jsonOr(fxDatedUrl(prevDate(j.date))).then((p) => {
+                    state.fx = fxPairs(last, ratesFrom(p));
+                    paint();
+                });
+            } else if (last) {
+                state.fx = fxPairs(last, null);
                 paint();
             } else {
                 jsonOr(fxFallbackUrl).then((f) => {
