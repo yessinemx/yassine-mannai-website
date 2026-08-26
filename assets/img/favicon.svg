@@ -5,15 +5,14 @@
       <stop offset="0.5" stop-color="#60a5fa"/>
       <stop offset="1" stop-color="#a78bfa"/>
     </linearGradient>
-    <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#60a5fa" stop-opacity="0.35"/>
-      <stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
-    </linearGradient>
   </defs>
   <rect width="64" height="64" rx="15" fill="#0d1220"/>
   <rect x="1.5" y="1.5" width="61" height="61" rx="13.5" fill="none" stroke="#232c42"/>
-  <path d="M13 44 C20 43 23 39 29 37 C36 34 39 23 50 17 L50 47 L13 47 Z" fill="url(#fill)"/>
-  <path d="M13 47 H51" stroke="#232c42" stroke-width="1.6" stroke-linecap="round"/>
-  <path d="M13 44 C20 43 23 39 29 37 C36 34 39 23 50 17" fill="none" stroke="url(#g)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="50" cy="17" r="3.6" fill="#0d1220" stroke="url(#g)" stroke-width="2.6"/>
+  <g fill="url(#g)">
+    <circle cx="32" cy="15" r="3.3"/>
+    <path d="M32 17.6 L30.2 21 L33.8 21 Z"/>
+    <path d="M29.5 21 h5 l1.4 8 -1.6 11 -2.3 5 -2.3 -5 -1.6 -11 z"/>
+    <path d="M30.5 24 C24 22 18 21 12 15 C13 20 11 21 15 23 C11 24 12 27 17 27 C13 29 15 32 20 31 C25 30 28 28 30.5 27 Z"/>
+    <path d="M33.5 24 C40 22 46 21 52 15 C51 20 53 21 49 23 C53 24 52 27 47 27 C51 29 49 32 44 31 C39 30 36 28 33.5 27 Z"/>
+  </g>
 </svg>
