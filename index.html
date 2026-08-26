@@ -48,6 +48,7 @@
       <h1 class="sidebar-name">Yassine <span class="accent">Mannai</span></h1>
       <p class="sidebar-role">MSc 272 - Dauphine PSL</p>
       <p class="sidebar-loc">Based in Paris, France</p>
+      <p class="sidebar-weather" id="sidebar-weather" aria-live="polite"></p>
 
       <nav class="sidebar-nav" id="nav-links">
         <a href="#about"><span class="idx">01</span> <span class="lbl">About</span></a>
@@ -62,16 +63,31 @@
 
       <div class="sidebar-social">
         <a href="mailto:yassine.mannai@dauphine.eu" aria-label="Email" title="Email">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" /></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
+          </svg>
         </a>
-        <a href="https://wa.me/33623643180" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.5 9.5 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.44 9.44 0 0 1-1.45-5.05c0-5.23 4.27-9.49 9.51-9.49 2.54 0 4.92.99 6.72 2.78a9.42 9.42 0 0 1 2.78 6.72c0 5.23-4.27 9.49-9.51 9.49zM20.5 3.49A11.87 11.87 0 0 0 12.04 0C5.46 0 .11 5.34.1 11.91c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.65a11.93 11.93 0 0 0 5.73 1.46h.01c6.58 0 11.93-5.34 11.94-11.91a11.84 11.84 0 0 0-3.48-8.41z" /></svg>
+        <a href="https://wa.me/33623643180" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+          title="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.5 9.5 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.44 9.44 0 0 1-1.45-5.05c0-5.23 4.27-9.49 9.51-9.49 2.54 0 4.92.99 6.72 2.78a9.42 9.42 0 0 1 2.78 6.72c0 5.23-4.27 9.49-9.51 9.49zM20.5 3.49A11.87 11.87 0 0 0 12.04 0C5.46 0 .11 5.34.1 11.91c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.65a11.93 11.93 0 0 0 5.73 1.46h.01c6.58 0 11.93-5.34 11.94-11.91a11.84 11.84 0 0 0-3.48-8.41z" />
+          </svg>
         </a>
-        <a href="https://www.linkedin.com/in/yassine-mannai" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.853.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" /></svg>
+        <a href="https://www.linkedin.com/in/yassine-mannai" target="_blank" rel="noopener noreferrer"
+          aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.853.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+          </svg>
         </a>
-        <a href="https://github.com/yessinemx" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+        <a href="https://github.com/yessinemx" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+          title="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+          </svg>
         </a>
       </div>
 
@@ -87,9 +103,9 @@
     <!-- INTRO -->
     <section class="intro" id="intro">
       <div class="intro-inner reveal">
-        <p class="intro-kicker">// Trading &middot; Structuring &middot; Quant Research</p>
+        <p class="intro-kicker">// Still long gold. Still long ambition.</p>
         <h2 class="intro-head">Quantitative finance,<br><span class="accent">from Tunis to Paris.</span></h2>
-        <p class="intro-availability"><span class="dot"></span> Open to full-time quant roles from November 2026</p>
+        <p class="intro-availability"><span class="dot"></span> Open to hear your offer.</p>
         <div class="cta-row">
           <a href="#projects" class="btn btn-primary">View Projects</a>
           <a href="#contact" class="btn btn-ghost">Get in Touch</a>
@@ -101,23 +117,13 @@
 
     <!-- TICKER -->
     <div class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <span>TRADING</span><span>·</span>
-        <span>STRUCTURING</span><span>·</span>
-        <span>QUANTITATIVE RESEARCH</span><span>·</span>
-        <span>QUANTITATIVE STRATEGY</span><span>·</span>
-        <span>QIS</span><span>·</span>
-        <span>INVESTMENT STRATEGY</span><span>·</span>
-        <span>PORTFOLIO MANAGEMENT</span><span>·</span>
-        <span>IT QUANT</span><span>·</span>
-        <span>TRADING</span><span>·</span>
-        <span>STRUCTURING</span><span>·</span>
-        <span>QUANTITATIVE RESEARCH</span><span>·</span>
-        <span>QUANTITATIVE STRATEGY</span><span>·</span>
-        <span>QIS</span><span>·</span>
-        <span>INVESTMENT STRATEGY</span><span>·</span>
-        <span>PORTFOLIO MANAGEMENT</span><span>·</span>
-        <span>IT QUANT</span><span>·</span>
+      <div class="ticker-track" id="ticker-track">
+        <span class="tick-item">BTC</span><span class="tick-sep">·</span>
+        <span class="tick-item alt">ETH</span><span class="tick-sep">·</span>
+        <span class="tick-item">SOL</span><span class="tick-sep">·</span>
+        <span class="tick-item alt">XRP</span><span class="tick-sep">·</span>
+        <span class="tick-item">BNB</span><span class="tick-sep">·</span>
+        <span class="tick-item alt">PAXG (Gold)</span><span class="tick-sep">·</span>
       </div>
     </div>
 
@@ -261,65 +267,12 @@
       <div class="section-head reveal">
         <span class="tag">02 / Experience</span>
         <h2>Path so far</h2>
-        <p class="section-sub">Career progression over time, each role a step up in scope, from equity research
-          to quantitative strategy.</p>
+        <p class="section-sub">My path plotted against the price of gold since 2020. Turns out we've both
+          been climbing.</p>
       </div>
 
-      <div class="trajectory reveal">
-        <svg class="trajectory-chart" viewBox="0 0 900 268" role="img"
-          aria-label="Career trajectory: ODDO BHF 2023, BIAT CIB 2024, Credit Agricole CIB 2024, BNP Paribas 2025, Generali 2025">
-          <defs>
-            <linearGradient id="trajFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#5eead4" stop-opacity="0.22" />
-              <stop offset="1" stop-color="#5eead4" stop-opacity="0" />
-            </linearGradient>
-          </defs>
-          <path class="traj-area"
-            d="M100 205 C185 185 185 175 270 168 C355 152 355 144 440 132 C525 112 525 106 610 92 C700 74 700 66 790 52 L790 232 L100 232 Z"
-            fill="url(#trajFill)" />
-          <line x1="80" y1="232" x2="820" y2="232" class="traj-axis" />
-          <line x1="80" y1="44" x2="80" y2="232" class="traj-axis" />
-          <text x="42" y="138" class="traj-axis-label" transform="rotate(-90 42 138)">Scope &amp; seniority</text>
-          <path class="traj-line"
-            d="M100 205 C185 185 185 175 270 168 C355 152 355 144 440 132 C525 112 525 106 610 92 C700 74 700 66 790 52"
-            fill="none" />
-          <g>
-            <text x="100" y="180" class="traj-org">ODDO BHF</text>
-            <rect x="83" y="188" width="34" height="34" rx="8" class="traj-tile" />
-            <image href="assets/logos/oddo.jpg" x="87" y="192" width="26" height="26"
-              preserveAspectRatio="xMidYMid meet" />
-            <text x="100" y="252" class="traj-year">2023</text>
-          </g>
-          <g>
-            <text x="270" y="143" class="traj-org">BIAT CIB</text>
-            <rect x="253" y="151" width="34" height="34" rx="8" class="traj-tile" />
-            <image href="assets/logos/biat.jpg" x="257" y="155" width="26" height="26"
-              preserveAspectRatio="xMidYMid meet" />
-            <text x="270" y="252" class="traj-year">2024</text>
-          </g>
-          <g>
-            <text x="440" y="107" class="traj-org">CA CIB</text>
-            <rect x="423" y="115" width="34" height="34" rx="8" class="traj-tile" />
-            <image href="assets/logos/cacib.png" x="427" y="119" width="26" height="26"
-              preserveAspectRatio="xMidYMid meet" />
-            <text x="440" y="252" class="traj-year">2024</text>
-          </g>
-          <g>
-            <text x="610" y="67" class="traj-org">BNP Paribas</text>
-            <rect x="593" y="75" width="34" height="34" rx="8" class="traj-tile" />
-            <image href="assets/logos/bnpparibas.png" x="597" y="79" width="26" height="26"
-              preserveAspectRatio="xMidYMid meet" />
-            <text x="610" y="252" class="traj-year">2025</text>
-          </g>
-          <g>
-            <text x="790" y="27" class="traj-org">Generali</text>
-            <rect x="773" y="35" width="34" height="34" rx="8" class="traj-tile traj-tile-current" />
-            <image href="assets/logos/generali.png" x="777" y="39" width="26" height="26"
-              preserveAspectRatio="xMidYMid meet" />
-            <text x="790" y="252" class="traj-year">2025</text>
-          </g>
-        </svg>
-      </div>
+      <div class="gold-chart reveal" id="gold-chart"
+        aria-label="Career milestones plotted on the gold price, June 2023 to now"></div>
 
       <div class="experience-group reveal">
         <h3 class="experience-group-title">Professional Experience</h3>
@@ -391,7 +344,7 @@
               <span class="timeline-date">Jun 2023 &ndash; Jul 2023</span>
               <h3>Equity Research Analyst &mdash; Intern</h3>
               <p class="timeline-org"><span class="org-logo"><img src="assets/logos/oddo.jpg" alt="ODDO BHF"
-                    loading="lazy"></span>ODDO BHF</p>
+                    loading="lazy"></span>ODDO BHF, Tunis</p>
               <p>
                 Rotated across three coverage teams &mdash; Automobile, Oil &amp; Gas
                 and Small Caps. Researched key ratios and figures from quarterly
@@ -482,7 +435,7 @@
               <h3>Customer Service Representative</h3>
               <p class="timeline-org"><span class="org-logo"><img src="assets/logos/bnpparibas.png" alt="BNP Paribas"
                     loading="lazy"></span>BNP Paribas, Bosquet
-                &amp; Gambetta agencies</p>
+                &amp; Gambetta agencies, Paris</p>
               <p>
                 Part-time alongside the first year of my Master's at Dauphine.
               </p>
@@ -520,10 +473,14 @@
             strategic asset allocation and quantify regime-dependent
             opportunity costs.
           </p>
-          <p class="pub-metric"><b>SR 0.66</b> <span>regime-conditional vs</span> <b>0.25</b> <span>static, out-of-sample</span></p>
+          <p class="pub-metric"><b>SR 0.66</b> <span>regime-conditional vs</span> <b>0.25</b> <span>static,
+              out-of-sample</span></p>
           <div class="pub-meta thesis-meta">
             <a class="pub-repo pub-doc" href="assets/projects/Master-Thesis-Yassine-Mannai.pdf" target="_blank"
-              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg> Read the thesis</a>
+              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z" />
+              </svg> Read the thesis</a>
           </div>
         </div>
       </div>
@@ -531,10 +488,14 @@
         <button type="button" class="pub-filter is-active" data-filter="all" aria-pressed="true">All <i>17</i></button>
         <button type="button" class="pub-filter" data-filter="pricing" aria-pressed="false">Pricing <i>4</i></button>
         <button type="button" class="pub-filter" data-filter="vol" aria-pressed="false">Volatility <i>3</i></button>
-        <button type="button" class="pub-filter" data-filter="systematic" aria-pressed="false">Systematic <i>4</i></button>
-        <button type="button" class="pub-filter" data-filter="allocation" aria-pressed="false">Allocation <i>2</i></button>
-        <button type="button" class="pub-filter" data-filter="stats" aria-pressed="false">Stats &amp; ML <i>2</i></button>
-        <button type="button" class="pub-filter" data-filter="credit" aria-pressed="false">Credit &amp; Rates <i>2</i></button>
+        <button type="button" class="pub-filter" data-filter="systematic" aria-pressed="false">Systematic
+          <i>4</i></button>
+        <button type="button" class="pub-filter" data-filter="allocation" aria-pressed="false">Allocation
+          <i>2</i></button>
+        <button type="button" class="pub-filter" data-filter="stats" aria-pressed="false">Stats &amp; ML
+          <i>2</i></button>
+        <button type="button" class="pub-filter" data-filter="credit" aria-pressed="false">Credit &amp; Rates
+          <i>2</i></button>
       </div>
       <div class="pub-list" id="pub-list">
         <article class="pub reveal" data-topic="pricing">
@@ -545,7 +506,11 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
-            <a class="pub-repo pub-doc" href="assets/projects/LSM.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/LSM.pdf" target="_blank" rel="noopener noreferrer"><svg
+                viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z" />
+              </svg>Report</a>
           </div>
           <h3>Longstaff&ndash;Schwartz American Options Pricer</h3>
           <p>
@@ -561,14 +526,19 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
-            <a class="pub-repo pub-doc" href="assets/projects/fxbacktester.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/fxbacktester.pdf" target="_blank"
+              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z" />
+              </svg>Report</a>
           </div>
           <h3>Volatility Strategies on FX Options</h3>
           <p>
             Backtesting framework and volatility strategies on FX options,
             built in Python.
           </p>
-          <p class="pub-metric"><b>EUR/NOK</b> <span>&middot; Garman&ndash;Kohlhagen &middot; daily delta-hedged</span></p>
+          <p class="pub-metric"><b>EUR/NOK</b> <span>&middot; Garman&ndash;Kohlhagen &middot; daily delta-hedged</span>
+          </p>
         </article>
         <article class="pub reveal" data-topic="systematic">
           <div class="pub-meta">
@@ -584,12 +554,16 @@
             Backtesting framework for systematic strategies, pulling market
             data through the Bloomberg API.
           </p>
-          <p class="pub-metric"><b>1,900</b> <span>tickers &middot;</span> <b>26 yrs</b> <span>of point-in-time history</span></p>
+          <p class="pub-metric"><b>1,900</b> <span>tickers &middot;</span> <b>26 yrs</b> <span>of point-in-time
+              history</span></p>
         </article>
         <article class="pub reveal" data-topic="systematic">
           <div class="pub-meta">
             <span class="pub-date">May 2026</span>
-            <a class="pub-repo pub-doc" href="assets/projects/wavelets.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/wavelets.pdf" target="_blank"
+              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zm7 12h4l2 5H8l2-5z" />
+              </svg>Slides</a>
           </div>
           <h3>Pairs Trading with Wavelet Denoising</h3>
           <p>
@@ -607,7 +581,11 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
-            <a class="pub-repo pub-doc" href="assets/projects/tradingcommo.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/tradingcommo.pdf" target="_blank"
+              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z" />
+              </svg>Report</a>
           </div>
           <h3>Commodity Trading on the S&amp;P GSCI</h3>
           <p>
@@ -623,8 +601,15 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
-            <a class="pub-repo pub-doc" href="assets/projects/mfbm.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
-            <a class="pub-repo pub-doc" href="assets/projects/mfbmslides.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Slides</a>
+            <a class="pub-repo pub-doc" href="assets/projects/mfbm.pdf" target="_blank" rel="noopener noreferrer"><svg
+                viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z" />
+              </svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/mfbmslides.pdf" target="_blank"
+              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zm7 12h4l2 5H8l2-5z" />
+              </svg>Slides</a>
           </div>
           <h3>Multivariate Rough-Volatility Forecasting</h3>
           <p>
@@ -670,7 +655,11 @@
         <article class="pub reveal" data-topic="pricing">
           <div class="pub-meta">
             <span class="pub-date">Feb 2026</span>
-            <a class="pub-repo pub-doc" href="assets/projects/trinomialtree.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/trinomialtree.pdf" target="_blank"
+              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z" />
+              </svg>Report</a>
           </div>
           <h3>Trinomial Tree &amp; Black&ndash;Scholes Pricer</h3>
           <p>
@@ -678,7 +667,8 @@
             dividends and pruning, benchmarked against the closed-form
             Black&ndash;Scholes price and its Greeks.
           </p>
-          <p class="pub-metric"><b>6.0816</b> <span>tree vs</span> <b>6.0755</b> <span>Black&ndash;Scholes, 100 steps</span></p>
+          <p class="pub-metric"><b>6.0816</b> <span>tree vs</span> <b>6.0755</b> <span>Black&ndash;Scholes, 100
+              steps</span></p>
         </article>
         <article class="pub reveal" data-topic="stats">
           <div class="pub-meta">
@@ -693,7 +683,11 @@
         <article class="pub reveal" data-topic="allocation">
           <div class="pub-meta">
             <span class="pub-date">Dec 2025 &ndash; Jan 2026</span>
-            <a class="pub-repo pub-doc" href="assets/projects/regimebasedSAA.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/regimebasedSAA.pdf" target="_blank"
+              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z" />
+              </svg>Report</a>
           </div>
           <h3>Regime-Based Strategic Asset Allocation</h3>
           <p>
@@ -704,7 +698,11 @@
         <article class="pub reveal" data-topic="allocation">
           <div class="pub-meta">
             <span class="pub-date">Nov 2025 &ndash; Dec 2025</span>
-            <a class="pub-repo pub-doc" href="assets/projects/RF-BL.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/RF-BL.pdf" target="_blank" rel="noopener noreferrer"><svg
+                viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z" />
+              </svg>Report</a>
           </div>
           <h3>RF-BL Macro Asset Allocation</h3>
           <p>
@@ -720,7 +718,11 @@
                 <path
                   d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
               </svg>Code</a>
-            <a class="pub-repo pub-doc" href="assets/projects/stratlab.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z"/></svg>Report</a>
+            <a class="pub-repo pub-doc" href="assets/projects/stratlab.pdf" target="_blank"
+              rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L17.5 8H14V4.5zM8 13h8v1.8H8V13zm0 3.6h8v1.8H8v-1.8z" />
+              </svg>Report</a>
           </div>
           <h3>StratLab X</h3>
           <p>
@@ -736,7 +738,8 @@
             Option-pricing engine for commodity derivatives, calibrated to
             market quotes across several payoff structures.
           </p>
-          <p class="pub-metric"><b>Merton jump-diffusion</b> <span>&middot; WTI crude &middot; premium settled in TND</span></p>
+          <p class="pub-metric"><b>Merton jump-diffusion</b> <span>&middot; WTI crude &middot; premium settled in
+              TND</span></p>
         </article>
         <article class="pub reveal" data-topic="vol">
           <div class="pub-meta">
@@ -757,7 +760,8 @@
             Implemented the CreditMetrics framework to estimate portfolio
             credit VaR from rating-migration and default probabilities.
           </p>
-          <p class="pub-metric"><b>99% credit VaR</b> <span>&asymp;</span> <b>69.7</b> <span>on the three-bond portfolio</span></p>
+          <p class="pub-metric"><b>99% credit VaR</b> <span>&asymp;</span> <b>69.7</b> <span>on the three-bond
+              portfolio</span></p>
         </article>
         <article class="pub reveal" data-topic="credit">
           <div class="pub-meta">
@@ -825,8 +829,6 @@
             <li>Refinitiv</li>
             <li>Power BI</li>
             <li>Power Automate</li>
-            <li>LLM APIs</li>
-            <li>NLP</li>
             <li>LaTeX</li>
             <li>Git/GitHub</li>
           </ul>
@@ -1010,10 +1012,10 @@
           <h3>A Week in My Life</h3>
           <p>
             A solo walk or bike ride, bowling with friends, a movie at the
-            cinema, coffee at a good coffeeshop, wine and quality food around
+            cinema, coffee at a good coffeeshop, quality food around
             a football match or a round of FC26 / Mario Kart, 5-a-side
             football with friends or the occasional game of American pool,
-            rooftops and hotel bars, a nice dinner out, or a club to catch a
+            rooftops and hotel bars, a nice dinner out, or a set from a
             good DJ or artist.
           </p>
         </article>

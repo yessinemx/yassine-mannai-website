@@ -457,6 +457,14 @@ footer {
     margin: 0;
 }
 
+.sidebar-weather {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    margin: 4px 0 0;
+    min-height: 1em;
+}
+
 .sidebar-nav {
     margin-top: 38px;
     display: flex;
@@ -740,8 +748,30 @@ footer {
     animation: ticker 32s linear infinite;
 }
 
-.ticker-track span:nth-child(odd) {
+.tick-item {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.tick-item.alt {
     color: var(--accent-2);
+}
+
+.tick {
+    font-weight: 600;
+    color: var(--text-dim);
+}
+
+.tick.up {
+    color: #15803d;
+}
+
+.tick.down {
+    color: #dc2626;
+}
+
+.tick-sep {
+    color: var(--text-faint);
 }
 
 @keyframes ticker {
@@ -931,6 +961,75 @@ footer {
     font-size: 10px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    text-anchor: middle;
+}
+
+/* ---------------- gold chart ---------------- */
+.gold-chart {
+    margin: 6px 0 60px;
+}
+
+.gold-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.gold-line {
+    stroke: #bd8b1c;
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.gold-grid {
+    stroke: var(--border);
+    stroke-width: 1;
+    stroke-dasharray: 3 6;
+}
+
+.gold-price,
+.gold-year {
+    fill: var(--text-faint);
+    font-family: var(--mono);
+    font-size: 11px;
+}
+
+.gold-axis-title {
+    fill: var(--text-faint);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.gold-stem {
+    stroke: var(--border);
+    stroke-width: 1;
+}
+
+.gold-dot {
+    fill: #bd8b1c;
+    stroke: #fff;
+    stroke-width: 1.5;
+}
+
+.gold-tile {
+    fill: #fff;
+    stroke: var(--border);
+    stroke-width: 1;
+}
+
+.gold-tile-current {
+    stroke: #bd8b1c;
+    stroke-width: 2;
+}
+
+.gold-ms-label {
+    fill: var(--text);
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
     text-anchor: middle;
 }
 
@@ -1190,7 +1289,7 @@ footer {
 }
 
 .card-photo--bottom img {
-    object-position: center bottom;
+    object-position: 32% 82%;
 }
 
 .card:hover .card-photo img {
