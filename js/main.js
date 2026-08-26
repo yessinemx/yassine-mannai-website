@@ -473,7 +473,7 @@
                         // Carry the score into the message so the opening line writes itself.
                         const opener = `Hi Yassine — I scored ${score}/${total} on your quiz.`;
                         if (mailLink) {
-                            mailLink.href = 'mailto:yassine.mannai@dauphine.eu?subject='
+                            mailLink.href = 'mailto:contact@yassinemannai.com?subject='
                                 + encodeURIComponent(`I scored ${score}/${total} on your quiz`);
                         }
                         if (coffeeLink) {
