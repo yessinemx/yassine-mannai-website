@@ -1,11 +1,46 @@
-# Personal website — Yassine Mannai
+# Yassine Mannai — Personal Website
 
-Static, no-build site (plain HTML/CSS/JS) — works with any static host.
+Personal quantitative-finance portfolio. Static site (plain HTML/CSS/JS, no
+build step, no framework), deployed on GitHub Pages.
 
-## Preview locally
+**Live:** [yassinemannai.com](https://yassinemannai.com)
 
-Just open `index.html` in a browser, or serve it (recommended, so relative
-paths behave like production):
+## Features
+
+- **Live market ticker** — popular crypto (CoinGecko) interleaved with FX
+  rates carrying daily-change arrows (ECB data via the jsDelivr currency-api,
+  `open.er-api.com` fallback). Includes EUR/TND.
+- **Gold-price career chart** — real monthly XAU/USD since 2020 with career
+  milestones plotted on the line.
+- **Trading-floor clocks** — NYC / London / Paris / Hong Kong with open/closed
+  status, DST and exchange holidays.
+- **Paris weather** — current conditions via Open-Meteo.
+- **Filterable projects** — quant projects with links to code and reports/slides.
+- **Privacy-friendly analytics** — Cloudflare Web Analytics (no cookies).
+
+All data sources are keyless and CORS-safe, fetched client-side.
+
+## Tech
+
+Vanilla HTML, CSS (custom properties, no framework) and JavaScript. Fonts:
+Fraunces, Space Grotesk, JetBrains Mono. No bundler or dependencies.
+
+## Structure
+
+```
+index.html          # single page
+css/style.css        # all styling (:root variables at the top)
+js/main.js           # ticker, clocks, gold chart, weather, interactions
+assets/docs/         # PDFs (project reports, slides, thesis, resume)
+assets/img/          # svgs (favicon, city skylines)
+assets/logos/        # organisation / school logos
+media/               # photos
+CNAME                # custom domain
+```
+
+## Run locally
+
+Serve from the repo root (so relative paths behave like production):
 
 ```powershell
 python -m http.server 8000
@@ -14,28 +49,12 @@ python -m http.server 8000
 
 ## Deploy
 
-**Netlify**
-1. Push this repo to GitHub (or drag-and-drop the project folder onto
-   [app.netlify.com/drop](https://app.netlify.com/drop)).
-2. If using Git: New site from Git → no *Base directory* and no build
-   command needed (the site is served from the repo root).
+Hosted on **GitHub Pages** (branch `master`, root) with the custom domain
+`yassinemannai.com` (see `CNAME`). Any push to `master` redeploys. CSS/JS are
+cache-busted with a `?v=` query — bump it after changes to force a refresh.
 
-**Vercel**
-1. Import the repo at [vercel.com/new](https://vercel.com/new).
-2. Framework preset "Other" (no build command, output directory `.`).
+## License
 
-**GitHub Pages**
-1. Settings → Pages → Deploy from branch → root (or move the files to a
-   `docs/` folder as required by Pages).
-
-## Customize
-
-- Update copy directly in `index.html`.
-- Colors, fonts and spacing live in `css/style.css` (`:root` variables at
-  the top).
-- The animated network background and scroll effects are in `js/main.js`.
-- Contact links (email, LinkedIn, GitHub, phone) live in the sidebar and
-  Contact section of `index.html`.
-- The Tunis / Lyon / Paris route illustrations are in `assets/img/*.svg`; swap
-  them for photos by replacing the files (keep a ~4:3 ratio).
-- Swap `assets/img/favicon.svg` for your own mark/photo if desired.
+Code is released under the [MIT License](LICENSE). Personal content — text,
+photos, logos, CV and the "Yassine Mannai" branding — is **not** covered and
+may not be reused.
