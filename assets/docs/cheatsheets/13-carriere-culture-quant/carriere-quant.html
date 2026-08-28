@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Décrocher un poste de quant — Yassine Mannai</title>
+    <title>Landing a quant job: what you need to know — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,18 +59,23 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
@@ -219,6 +224,41 @@
             font-size: 0.7em;
         }
 
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,7 +287,10 @@
         }
 
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -336,46 +379,23 @@
             margin-bottom: 14px;
         }
 
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
+            font-size: 8px;
+            color: var(--text-dim);
         }
 
-        .cs-usage-item span {
-            color: var(--text-dim);
-            line-height: 1.3;
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="sheet pole-carriere-quant">
+    <div class="sheet pole-quant-careers">
 
         <header class="cs-header">
             <div class="cs-brand">
@@ -386,87 +406,87 @@
                 </div>
             </div>
             <div class="cs-meta">
-                <span class="cs-tag">Carrière &amp; Culture quant</span><br>
-                Cheatsheet #13 · Août 2026
+                <span class="cs-tag">Quant Careers &amp; Culture</span><br>
+                Cheatsheet #13 · August 2026
             </div>
         </header>
 
         <div class="cs-title">
-            <h1>Décrocher un poste de quant : ce qu'il faut savoir</h1>
-            <p>Parcours, entretiens, culture de desk, certifications : la carte pour se repérer dans le recrutement
-                quant.</p>
+            <h1>Landing a quant job: what you need to know</h1>
+            <p>Career paths, interviews, desk culture, certifications: a map to navigate quant recruiting.</p>
         </div>
 
         <div class="cs-formula">
-            <span class="cs-formula-label">Réflexe d'entretien classique</span>
-            <span>Pricer un call sans formule fermée ? &nbsp;→&nbsp; arbre binomial ou simulation Monte Carlo</span>
+            <span class="cs-formula-label">Classic interview reflex</span>
+            <span>Pricing a call with no closed-form formula? &nbsp;→&nbsp; binomial tree or Monte Carlo
+                simulation</span>
         </div>
 
         <div class="cs-grid">
             <div class="cs-card">
-                <h3>Les parcours typiques</h3>
+                <h3>Typical career paths</h3>
                 <ul>
-                    <li>Master 2 ou PhD en finance quantitative, mathématiques appliquées ou ingénierie.</li>
-                    <li>Passerelles fréquentes depuis la physique, l'informatique ou l'actuariat.</li>
-                    <li>Les stages/alternances comptent souvent plus que le seul diplôme.</li>
+                    <li>Master's or PhD in quantitative finance, applied mathematics or engineering.</li>
+                    <li>Common transitions from physics, computer science or actuarial science.</li>
+                    <li>Internships/apprenticeships often matter more than the degree alone.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Les entretiens quant</h3>
+                <h3>Quant interviews</h3>
                 <ul>
-                    <li>Brainteasers probabilistes, calcul stochastique, coding (souvent Python).</li>
-                    <li>Questions de pricing "à la main" sans accès à une formule toute faite.</li>
-                    <li>Le raisonnement à voix haute compte souvent plus que la bonne réponse finale.</li>
+                    <li>Probability brainteasers, stochastic calculus, coding (often Python).</li>
+                    <li>"By hand" pricing questions with no access to a ready-made formula.</li>
+                    <li>Reasoning out loud often matters more than the final correct answer.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>La culture desk</h3>
+                <h3>Desk culture</h3>
                 <ul>
-                    <li>Rythme rapide, communication directe et concise, forte pression en période de marché agité.</li>
-                    <li>Hiérarchie souvent plus horizontale qu'ailleurs, mais méritocratie très marquée.</li>
-                    <li>Le réseau (networking) pèse énormément dans l'accès aux opportunités.</li>
+                    <li>Fast pace, direct and concise communication, high pressure during volatile markets.</li>
+                    <li>Often flatter hierarchy than elsewhere, but a strongly meritocratic environment.</li>
+                    <li>Networking weighs heavily on access to opportunities.</li>
                 </ul>
             </div>
             <div class="cs-card">
-                <h3>Certifications utiles</h3>
+                <h3>Useful certifications</h3>
                 <ul>
-                    <li>CFA : référence généraliste en gestion d'actifs et analyse financière.</li>
-                    <li>FRM : centrée sur la gestion des risques financiers.</li>
-                    <li>CQF : plus technique, orientée pricing et modélisation quantitative.</li>
+                    <li>CFA: the generalist reference in asset management and financial analysis.</li>
+                    <li>FRM: focused on financial risk management.</li>
+                    <li>CQF: more technical, geared toward pricing and quantitative modeling.</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">Who uses what?</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
-                <strong>Junior candidat</strong>
-                <span>Prépare brainteasers, calcul stochastique et coding pour les entretiens techniques.</span>
+                <strong>Junior candidate</strong>
+                <span>Prepares brainteasers, stochastic calculus and coding for technical interviews.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Career switcher</strong>
-                <span>S'appuie souvent sur le CQF ou le FRM pour valider sa reconversion vers la finance quant.</span>
+                <span>Often relies on the CQF or FRM to validate a move into quant finance.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Étudiant M1/M2</strong>
-                <span>Multiplie stages et networking en plus des cours pour se démarquer.</span>
+                <strong>M1/M2 student</strong>
+                <span>Stacks internships and networking on top of coursework to stand out.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Recruteur</strong>
-                <span>Évalue autant la rigueur du raisonnement que les compétences techniques pures.</span>
+                <strong>Recruiter</strong>
+                <span>Evaluates rigor of reasoning as much as pure technical skills.</span>
             </div>
         </div>
 
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>En entretien quant, expliciter son raisonnement compte souvent plus que trouver la bonne réponse
-                    immédiatement.</li>
-                <li>Le networking n'est pas accessoire : une grande partie des opportunités quant se jouent avant même
-                    la
-                    candidature formelle.</li>
-                <li>Les certifications (CFA/FRM/CQF) sont des accélérateurs de crédibilité, pas des substituts à une
-                    expérience pratique solide.</li>
+                <li>In a quant interview, explaining your reasoning often matters more than finding the right answer
+                    instantly.</li>
+                <li>Networking isn't optional: a large share of quant opportunities are decided before a formal
+                    application
+                    is even submitted.</li>
+                <li>Certifications (CFA/FRM/CQF) are credibility accelerators, not substitutes for solid hands-on
+                    experience.</li>
             </ol>
         </div>
 
@@ -477,106 +497,106 @@
 
     </div>
 
-    <div class="sheet pole-carriere-quant page-break">
+    <div class="sheet pole-quant-careers page-break">
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — Décrocher un poste de quant</span>
+            <span>Yassine Mannai · Quant Finance Notes — Landing a quant job</span>
         </div>
 
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
                     <th>Certification</th>
-                    <th>Durée typique</th>
+                    <th>Typical duration</th>
                     <th>Focus</th>
-                    <th>Utilité pour un poste quant</th>
+                    <th>Usefulness for a quant role</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>CFA</td>
-                    <td>2-4 ans (3 niveaux)</td>
-                    <td>Analyse financière, gestion d'actifs</td>
-                    <td>Utile en gestion de portefeuille, moins en pricing pur</td>
+                    <td>2-4 years (3 levels)</td>
+                    <td>Financial analysis, asset management</td>
+                    <td>Useful in portfolio management, less so for pure pricing</td>
                 </tr>
                 <tr>
                     <td>FRM</td>
-                    <td>1-2 ans (2 niveaux)</td>
-                    <td>Gestion des risques</td>
-                    <td>Très pertinent pour les postes de risk management</td>
+                    <td>1-2 years (2 levels)</td>
+                    <td>Risk management</td>
+                    <td>Highly relevant for risk management roles</td>
                 </tr>
                 <tr>
                     <td>CQF</td>
-                    <td>6 mois à 1 an</td>
-                    <td>Pricing et modélisation quantitative</td>
-                    <td>Le plus directement aligné avec un poste de quant pricing</td>
+                    <td>6 months to 1 year</td>
+                    <td>Pricing and quantitative modeling</td>
+                    <td>The most directly aligned with a quant pricing role</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
-                <h3>Brainteaser probabiliste</h3>
-                <p>"Combien de fois faut-il lancer une pièce en moyenne pour obtenir deux piles consécutifs ?" — teste
-                    la
-                    rigueur de raisonnement plus que la formule.</p>
+                <h3>Probability brainteaser</h3>
+                <p>"On average, how many coin flips does it take to get two heads in a row?" — tests rigor of reasoning
+                    more
+                    than knowledge of a formula.</p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Case interview de pricing</h3>
-                <p>On demande de structurer, à l'oral et sans notes, comment pricer une option exotique simple à partir
-                    des
-                    principes de base.</p>
+                <h3>Pricing case interview</h3>
+                <p>You're asked to structure, verbally and without notes, how to price a simple exotic option from first
+                    principles.</p>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Question de calcul stochastique</h3>
-                <p>"Appliquer le lemme d'Itô à une fonction du mouvement brownien" — teste la maîtrise des fondamentaux
-                    mathématiques du pricing.</p>
+                <h3>Stochastic calculus question</h3>
+                <p>"Apply Itô's lemma to a function of Brownian motion" — tests command of the mathematical fundamentals
+                    of
+                    pricing.</p>
             </div>
             <div class="cs-card">
                 <h3>Take-home test</h3>
-                <p>Un exercice à réaliser chez soi (souvent en Python) pour évaluer la capacité à structurer un vrai
-                    projet
-                    de bout en bout, pas juste répondre à l'oral.</p>
+                <p>An exercise to complete at home (often in Python) to assess the ability to structure a real
+                    end-to-end
+                    project, not just answer verbally.</p>
             </div>
         </div>
 
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
                 <strong>Brainteaser</strong>
-                <span>Question logique ou probabiliste utilisée pour tester le raisonnement en entretien.</span>
+                <span>Logic or probability question used to test reasoning during an interview.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Fit interview</strong>
-                <span>Entretien centré sur la motivation et l'adéquation avec la culture de l'équipe.</span>
+                <span>Interview focused on motivation and cultural fit with the team.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Take-home test</strong>
-                <span>Exercice technique à réaliser en autonomie avant un entretien final.</span>
+                <span>Technical exercise completed independently before a final interview.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Networking</strong>
-                <span>Construction active d'un réseau professionnel, souvent décisif pour accéder aux opportunités
-                    quant.</span>
+                <span>Actively building a professional network, often decisive for accessing quant opportunities.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Desk</strong>
-                <span>Équipe de trading ou de gestion organisée autour d'une classe d'actifs ou d'une stratégie.</span>
+                <span>Trading or management team organized around an asset class or strategy.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Buy-side vs sell-side</strong>
-                <span>Investisseurs (buy-side : asset managers, hedge funds) vs intermédiaires (sell-side :
-                    banques).</span>
+                <span>Investors (buy-side: asset managers, hedge funds) vs intermediaries (sell-side: banks).</span>
             </div>
         </div>
 
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 

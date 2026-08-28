@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quel langage pour quel usage en finance quantitative — Yassine Mannai</title>
+    <title>Which language for which use in quant finance? — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,18 +59,23 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
@@ -219,6 +224,41 @@
             font-size: 0.7em;
         }
 
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,7 +287,10 @@
         }
 
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -336,46 +379,23 @@
             margin-bottom: 14px;
         }
 
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
+            font-size: 8px;
+            color: var(--text-dim);
         }
 
-        .cs-usage-item span {
-            color: var(--text-dim);
-            line-height: 1.3;
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="sheet pole-langages-programmation">
+    <div class="sheet pole-programming-languages">
 
         <header class="cs-header">
             <div class="cs-brand">
@@ -386,87 +406,86 @@
                 </div>
             </div>
             <div class="cs-meta">
-                <span class="cs-tag">Langages de programmation</span><br>
-                Cheatsheet #10 · Août 2026
+                <span class="cs-tag">Programming Languages</span><br>
+                Cheatsheet #10 · August 2026
             </div>
         </header>
 
         <div class="cs-title">
-            <h1>Quel langage pour quel usage en finance quantitative ?</h1>
-            <p>Python, VBA, C++, C#, R, Matlab : chacun a son terrain de jeu naturel.</p>
+            <h1>Which language for which use in quant finance?</h1>
+            <p>Python, VBA, C++, C#, R, Matlab: each one has its own natural playing field.</p>
         </div>
 
         <div class="cs-formula">
-            <span class="cs-formula-label">Compilé vs interprété</span>
-            <span>Compilé (C++/C#) : plus rapide à l'exécution &nbsp;|&nbsp; Interprété (Python/R) : plus rapide à
-                écrire et
-                tester</span>
+            <span class="cs-formula-label">Compiled vs interpreted</span>
+            <span>Compiled (C++/C#): faster at runtime &nbsp;|&nbsp; Interpreted (Python/R): faster to write and
+                test</span>
         </div>
 
         <div class="cs-grid">
             <div class="cs-card">
                 <h3>Python</h3>
                 <ul>
-                    <li>Langage dominant en recherche quant : pandas, NumPy, scikit-learn.</li>
-                    <li>Rapide à écrire, immense écosystème de librairies financières et data.</li>
-                    <li>Moins rapide en exécution pure que C++, mais suffisant pour la majorité des usages.</li>
+                    <li>The dominant language in quant research: pandas, NumPy, scikit-learn.</li>
+                    <li>Fast to write, with a huge ecosystem of finance and data libraries.</li>
+                    <li>Slower at pure execution than C++, but good enough for most use cases.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
                 <h3>VBA</h3>
                 <ul>
-                    <li>Automatise Excel, encore très présent en front-office et reporting.</li>
-                    <li>Facile d'accès, mais peu adapté aux gros volumes de données ou au calcul intensif.</li>
-                    <li>Souvent la première brique de programmation apprise en finance.</li>
+                    <li>Automates Excel, still very common in front-office and reporting.</li>
+                    <li>Easy to pick up, but poorly suited to large data volumes or heavy computation.</li>
+                    <li>Often the first programming language learned in finance.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
                 <h3>C++</h3>
                 <ul>
-                    <li>Référence pour le pricing haute performance et le trading basse latence.</li>
-                    <li>Contrôle fin de la mémoire, exécution très rapide.</li>
-                    <li>Développement plus long et plus exigeant que Python.</li>
+                    <li>The reference for high-performance pricing and low-latency trading.</li>
+                    <li>Fine-grained memory control, very fast execution.</li>
+                    <li>Longer and more demanding to develop than Python.</li>
                 </ul>
             </div>
             <div class="cs-card">
                 <h3>R &amp; Matlab</h3>
                 <ul>
-                    <li>Historiquement forts en statistiques et en milieu académique/recherche.</li>
-                    <li>R excelle en économétrie, Matlab en calcul matriciel et prototypage rapide.</li>
-                    <li>De plus en plus concurrencés par Python dans l'industrie, encore présents en recherche.</li>
+                    <li>Historically strong in statistics and academic/research settings.</li>
+                    <li>R excels at econometrics, Matlab at matrix computation and rapid prototyping.</li>
+                    <li>Increasingly challenged by Python in industry, still present in research.</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">Who uses what?</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
                 <strong>Quant researcher</strong>
-                <span>Python pour prototyper des signaux, backtester et analyser des données.</span>
+                <span>Python to prototype signals, backtest and analyze data.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Analyste front-office</strong>
-                <span>VBA pour automatiser des modèles Excel de reporting ou de valorisation simple.</span>
+                <strong>Front-office analyst</strong>
+                <span>VBA to automate Excel models for reporting or simple valuation.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Développeur pricing</strong>
-                <span>C++ ou C# pour construire des moteurs de calcul performants en production.</span>
+                <strong>Pricing developer</strong>
+                <span>C++ or C# to build performant calculation engines in production.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Chercheur / académique</strong>
-                <span>R ou Matlab pour la modélisation statistique et économétrique.</span>
+                <strong>Researcher / academic</strong>
+                <span>R or Matlab for statistical and econometric modeling.</span>
             </div>
         </div>
 
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>Python est devenu le langage par défaut pour la recherche quant, mais pas nécessairement pour la
-                    production basse latence.</li>
-                <li>VBA reste sous-estimé : encore massivement utilisé en pratique malgré ses limites techniques.</li>
-                <li>Le choix du langage dépend surtout de la contrainte dominante : vitesse de développement
-                    (Python/VBA) vs
-                    vitesse d'exécution (C++/C#).</li>
+                <li>Python has become the default language for quant research, though not necessarily for low-latency
+                    production systems.</li>
+                <li>VBA is underrated: still massively used in practice despite its technical limits.</li>
+                <li>The choice of language mostly depends on which constraint dominates: development speed (Python/VBA)
+                    vs
+                    execution speed (C++/C#).</li>
             </ol>
         </div>
 
@@ -477,119 +496,116 @@
 
     </div>
 
-    <div class="sheet pole-langages-programmation page-break">
+    <div class="sheet pole-programming-languages page-break">
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — Quel langage pour quel usage en finance quantitative ?</span>
+            <span>Yassine Mannai · Quant Finance Notes — Which language for which use in quant finance?</span>
         </div>
 
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
-                    <th>Langage</th>
-                    <th>Vitesse d'exécution</th>
-                    <th>Courbe d'apprentissage</th>
-                    <th>Cas d'usage typique</th>
+                    <th>Language</th>
+                    <th>Execution speed</th>
+                    <th>Learning curve</th>
+                    <th>Typical use case</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Python</td>
-                    <td>Modérée</td>
-                    <td>Faible</td>
-                    <td>Recherche quant, data, ML</td>
+                    <td>Moderate</td>
+                    <td>Low</td>
+                    <td>Quant research, data, ML</td>
                 </tr>
                 <tr>
                     <td>VBA</td>
-                    <td>Faible</td>
-                    <td>Très faible</td>
-                    <td>Automatisation Excel</td>
+                    <td>Low</td>
+                    <td>Very low</td>
+                    <td>Excel automation</td>
                 </tr>
                 <tr>
                     <td>C++</td>
-                    <td>Très élevée</td>
-                    <td>Élevée</td>
-                    <td>Pricing haute performance, trading</td>
+                    <td>Very high</td>
+                    <td>High</td>
+                    <td>High-performance pricing, trading</td>
                 </tr>
                 <tr>
                     <td>C#</td>
-                    <td>Élevée</td>
-                    <td>Modérée</td>
-                    <td>Applications front-office/desktop</td>
+                    <td>High</td>
+                    <td>Moderate</td>
+                    <td>Front-office/desktop applications</td>
                 </tr>
                 <tr>
                     <td>R / Matlab</td>
-                    <td>Modérée</td>
-                    <td>Modérée</td>
-                    <td>Statistiques, économétrie, recherche</td>
+                    <td>Moderate</td>
+                    <td>Moderate</td>
+                    <td>Statistics, econometrics, research</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
-                <h3>pandas pour le backtesting</h3>
-                <p>Un quant researcher utilise pandas pour manipuler des séries de prix et tester une stratégie sur 10
-                    ans
-                    de données en quelques lignes de code.</p>
+                <h3>pandas for backtesting</h3>
+                <p>A quant researcher uses pandas to manipulate price series and test a strategy on 10 years of data in
+                    a
+                    few lines of code.</p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Macro VBA de reporting</h3>
-                <p>Une macro automatise la mise à jour quotidienne d'un reporting de risque directement dans un fichier
-                    Excel partagé.</p>
+                <h3>VBA reporting macro</h3>
+                <p>A macro automates the daily update of a risk report directly in a shared Excel file.</p>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Moteur de pricing en C++</h3>
-                <p>Un moteur de pricing d'options écrit en C++ calcule des milliers de prix par seconde pour alimenter
-                    un
-                    système de trading en temps réel.</p>
+                <h3>C++ pricing engine</h3>
+                <p>An options pricing engine written in C++ computes thousands of prices per second to feed a real-time
+                    trading system.</p>
             </div>
             <div class="cs-card">
-                <h3>Modèle économétrique sous R</h3>
-                <p>Un chercheur estime un modèle GARCH sous R pour publier une étude sur la volatilité d'un marché
-                    émergent.</p>
+                <h3>Econometric model in R</h3>
+                <p>A researcher estimates a GARCH model in R to publish a study on emerging market volatility.</p>
             </div>
         </div>
 
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
-                <strong>Vectorisation</strong>
-                <span>Application d'une opération sur un tableau entier plutôt qu'élément par élément, plus rapide en
-                    Python.</span>
+                <strong>Vectorization</strong>
+                <span>Applying an operation to an entire array rather than element by element, faster in Python.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Compilé vs interprété</strong>
-                <span>Un langage compilé est traduit en code machine avant exécution ; un langage interprété l'est à la
-                    volée.</span>
+                <strong>Compiled vs interpreted</strong>
+                <span>A compiled language is translated to machine code before running; an interpreted one runs on the
+                    fly.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Librairie</strong>
-                <span>Ensemble de fonctions réutilisables (ex : pandas, NumPy) qui évite de tout recoder
-                    soi-même.</span>
+                <strong>Library</strong>
+                <span>Set of reusable functions (e.g. pandas, NumPy) that saves you from reinventing the wheel.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>IDE</strong>
-                <span>Environnement de développement intégré, facilite l'écriture et le débogage du code.</span>
+                <span>Integrated development environment, makes writing and debugging code easier.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Notebook</strong>
-                <span>Document interactif mêlant code, résultats et texte, très utilisé en recherche quant
+                <span>Interactive document mixing code, results and text, widely used in quant research
                     (Jupyter).</span>
             </div>
             <div class="cs-usage-item">
                 <strong>API</strong>
-                <span>Interface permettant à un programme d'interagir avec un autre logiciel ou service.</span>
+                <span>Interface that lets a program interact with another piece of software or service.</span>
             </div>
         </div>
 
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 

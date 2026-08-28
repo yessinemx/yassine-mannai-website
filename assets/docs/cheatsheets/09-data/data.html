@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data pour la finance — Yassine Mannai</title>
+    <title>Data for finance — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,18 +59,23 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
@@ -219,6 +224,41 @@
             font-size: 0.7em;
         }
 
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,7 +287,10 @@
         }
 
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -336,39 +379,16 @@
             margin-bottom: 14px;
         }
 
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
+            font-size: 8px;
+            color: var(--text-dim);
         }
 
-        .cs-usage-item span {
-            color: var(--text-dim);
-            line-height: 1.3;
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
@@ -387,86 +407,86 @@
             </div>
             <div class="cs-meta">
                 <span class="cs-tag">Data</span><br>
-                Cheatsheet #09 · Août 2026
+                Cheatsheet #09 · August 2026
             </div>
         </header>
 
         <div class="cs-title">
-            <h1>Data pour la finance : bases de données, SQL, DSA, KDB+/Q</h1>
-            <p>Comment stocker, interroger et structurer efficacement des données financières, y compris à haute
-                fréquence.</p>
+            <h1>Data for finance: databases, SQL, DSA, KDB+/Q</h1>
+            <p>How to efficiently store, query and structure financial data, including at high frequency.</p>
         </div>
 
         <div class="cs-formula">
-            <span class="cs-formula-label">Complexité algorithmique</span>
-            <span>O(1) accès direct &nbsp;&lt;&nbsp; O(log n) recherche triée &nbsp;&lt;&nbsp; O(n) parcours simple
-                &nbsp;&lt;&nbsp; O(n²) comparaison par paires</span>
+            <span class="cs-formula-label">Algorithmic complexity</span>
+            <span>O(1) direct access &nbsp;&lt;&nbsp; O(log n) sorted search &nbsp;&lt;&nbsp; O(n) simple scan
+                &nbsp;&lt;&nbsp; O(n²) pairwise comparison</span>
         </div>
 
         <div class="cs-grid">
             <div class="cs-card">
-                <h3>Bases de données relationnelles</h3>
+                <h3>Relational databases</h3>
                 <ul>
-                    <li>Organisent la donnée en tables reliées par des clés (primary/foreign key).</li>
-                    <li>Garantissent l'intégrité des données via des contraintes.</li>
-                    <li>Standard pour les données transactionnelles (positions, ordres, contreparties).</li>
+                    <li>Organize data into tables linked by keys (primary/foreign key).</li>
+                    <li>Guarantee data integrity through constraints.</li>
+                    <li>The standard for transactional data (positions, orders, counterparties).</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
                 <h3>SQL</h3>
                 <ul>
-                    <li>Langage universel pour interroger et manipuler les bases relationnelles.</li>
-                    <li>SELECT / JOIN / GROUP BY : les 3 briques à maîtriser en priorité.</li>
-                    <li>Compétence attendue quasi partout en finance quantitative.</li>
+                    <li>Universal language for querying and manipulating relational databases.</li>
+                    <li>SELECT / JOIN / GROUP BY: the 3 building blocks to master first.</li>
+                    <li>A skill expected almost everywhere in quantitative finance.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>DSA (structures de données)</h3>
+                <h3>DSA (data structures)</h3>
                 <ul>
-                    <li>Listes, arbres, hashmaps, files : le choix de structure impacte directement la performance.</li>
-                    <li>Un carnet d'ordres est souvent modélisé avec des arbres ou des files triées.</li>
-                    <li>Essentiel pour tout système de trading à faible latence.</li>
+                    <li>Lists, trees, hashmaps, queues: the choice of structure directly impacts performance.</li>
+                    <li>An order book is often modeled with trees or sorted queues.</li>
+                    <li>Essential for any low-latency trading system.</li>
                 </ul>
             </div>
             <div class="cs-card">
                 <h3>KDB+/Q</h3>
                 <ul>
-                    <li>Base de données colonne spécialisée dans les séries temporelles à très haute fréquence.</li>
-                    <li>Utilisée par les desks de trading haute fréquence pour stocker et interroger le tick data.</li>
-                    <li>Le langage Q est réputé difficile mais extrêmement performant sur ce cas d'usage.</li>
+                    <li>Columnar database specialized in very high-frequency time series.</li>
+                    <li>Used by high-frequency trading desks to store and query tick data.</li>
+                    <li>The Q language is notoriously hard but extremely fast for this use case.</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">Who uses what?</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
                 <strong>Data engineer</strong>
-                <span>Conçoit et maintient les pipelines et bases de données de l'organisation.</span>
+                <span>Designs and maintains the organization's pipelines and databases.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Quant developer</strong>
-                <span>Utilise DSA pour optimiser la performance des moteurs de pricing/risque.</span>
+                <span>Uses DSA to optimize the performance of pricing/risk engines.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Analyste</strong>
-                <span>Interroge les données via SQL pour produire des analyses et reportings.</span>
+                <strong>Analyst</strong>
+                <span>Queries data via SQL to produce analysis and reporting.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Trader haute fréquence</strong>
-                <span>S'appuie sur KDB+/Q pour analyser le tick data en temps quasi réel.</span>
+                <strong>High-frequency trader</strong>
+                <span>Relies on KDB+/Q to analyze tick data in near real time.</span>
             </div>
         </div>
 
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>SQL reste la compétence data la plus universellement utile en finance, avant tout langage de
-                    programmation spécifique.</li>
-                <li>Le choix de structure de données (DSA) devient critique dès que la latence ou le volume de données
-                    augmente fortement.</li>
-                <li>KDB+/Q n'a de sens que pour des volumes de données tick-by-tick très importants — inutile pour un
-                    reporting mensuel classique.</li>
+                <li>SQL remains the single most universally useful data skill in finance, ahead of any specific
+                    programming
+                    language.</li>
+                <li>The choice of data structure (DSA) becomes critical as soon as latency or data volume grows
+                    significantly.</li>
+                <li>KDB+/Q only makes sense for very large volumes of tick-by-tick data — overkill for a monthly report.
+                </li>
             </ol>
         </div>
 
@@ -481,99 +501,96 @@
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — Data pour la finance</span>
+            <span>Yassine Mannai · Quant Finance Notes — Data for finance</span>
         </div>
 
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
-                    <th>Critère</th>
-                    <th>SQL (relationnel)</th>
+                    <th>Criterion</th>
+                    <th>SQL (relational)</th>
                     <th>KDB+/Q</th>
                     <th>NoSQL</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Structure des données</td>
-                    <td>Tables reliées</td>
-                    <td>Colonnes, séries temporelles</td>
-                    <td>Documents/clé-valeur flexibles</td>
+                    <td>Data structure</td>
+                    <td>Linked tables</td>
+                    <td>Columns, time series</td>
+                    <td>Flexible documents/key-value</td>
                 </tr>
                 <tr>
-                    <td>Cas d'usage type</td>
+                    <td>Typical use case</td>
                     <td>Positions, transactions</td>
-                    <td>Tick data haute fréquence</td>
-                    <td>Données non structurées, logs</td>
+                    <td>High-frequency tick data</td>
+                    <td>Unstructured data, logs</td>
                 </tr>
                 <tr>
-                    <td>Performance sur séries temporelles</td>
-                    <td>Correcte</td>
-                    <td>Excellente</td>
+                    <td>Time-series performance</td>
+                    <td>Decent</td>
+                    <td>Excellent</td>
                     <td>Variable</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
-                <h3>Requête SQL</h3>
-                <p>Extraire l'historique de prix d'un titre sur 5 ans avec un simple SELECT ... WHERE ... ORDER BY date.
-                </p>
+                <h3>SQL query</h3>
+                <p>Extract a security's 5-year price history with a simple SELECT ... WHERE ... ORDER BY date.</p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Table KDB pour tick data</h3>
-                <p>Stocker des millions de trades par jour et calculer un VWAP en quelques millisecondes grâce au
-                    stockage
-                    colonne de KDB+.</p>
+                <h3>KDB table for tick data</h3>
+                <p>Store millions of trades a day and compute a VWAP in milliseconds thanks to KDB+'s columnar storage.
+                </p>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Hashmap pour lookup</h3>
-                <p>Associer un identifiant d'instrument à ses caractéristiques en accès instantané O(1) plutôt qu'en
-                    parcourant une liste.</p>
+                <h3>Hashmap for lookups</h3>
+                <p>Map an instrument ID to its attributes with instant O(1) access instead of scanning a list.</p>
             </div>
             <div class="cs-card">
-                <h3>Arbre pour un carnet d'ordres</h3>
-                <p>Un carnet d'ordres est souvent implémenté avec un arbre équilibré pour retrouver rapidement le
-                    meilleur
-                    prix d'achat/vente.</p>
+                <h3>Tree for an order book</h3>
+                <p>An order book is often implemented with a balanced tree to quickly find the best bid/ask price.</p>
             </div>
         </div>
 
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
-                <strong>Clé primaire</strong>
-                <span>Identifiant unique d'une ligne dans une table de base de données.</span>
+                <strong>Primary key</strong>
+                <span>Unique identifier of a row in a database table.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Index</strong>
-                <span>Structure qui accélère la recherche dans une base de données.</span>
+                <span>Structure that speeds up search within a database.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Langage Q</strong>
-                <span>Langage de requête associé à KDB+, orienté traitement de séries temporelles.</span>
+                <strong>Q language</strong>
+                <span>Query language associated with KDB+, geared toward time-series processing.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Base de séries temporelles</strong>
-                <span>Base de données optimisée pour stocker et interroger des données horodatées.</span>
+                <strong>Time-series database</strong>
+                <span>Database optimized for storing and querying time-stamped data.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Big-O</strong>
-                <span>Notation qui mesure la complexité/performance d'un algorithme selon la taille des données.</span>
+                <span>Notation that measures an algorithm's complexity/performance as data size grows.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Order book</strong>
-                <span>Carnet d'ordres recensant en temps réel les offres d'achat et de vente sur un instrument.</span>
+                <span>Real-time record of buy and sell orders for an instrument.</span>
             </div>
         </div>
 
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 

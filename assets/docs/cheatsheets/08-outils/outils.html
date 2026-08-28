@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La boîte à outils du quant — Yassine Mannai</title>
+    <title>The quant's toolbox — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,18 +59,23 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
@@ -219,6 +224,41 @@
             font-size: 0.7em;
         }
 
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,7 +287,10 @@
         }
 
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -336,46 +379,23 @@
             margin-bottom: 14px;
         }
 
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
+            font-size: 8px;
+            color: var(--text-dim);
         }
 
-        .cs-usage-item span {
-            color: var(--text-dim);
-            line-height: 1.3;
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="sheet pole-outils">
+    <div class="sheet pole-tools">
 
         <header class="cs-header">
             <div class="cs-brand">
@@ -386,90 +406,88 @@
                 </div>
             </div>
             <div class="cs-meta">
-                <span class="cs-tag">Outils</span><br>
-                Cheatsheet #08 · Août 2026
+                <span class="cs-tag">Tools</span><br>
+                Cheatsheet #08 · August 2026
             </div>
         </header>
 
         <div class="cs-title">
-            <h1>La boîte à outils du quant</h1>
-            <p>Bloomberg Terminal, Power BI, Git, Power Automate : à quoi ça sert vraiment au quotidien.</p>
+            <h1>The quant's toolbox</h1>
+            <p>Bloomberg Terminal, Power BI, Git, Power Automate: what they're actually used for day to day.</p>
         </div>
 
         <div class="cs-formula">
-            <span class="cs-formula-label">Réflexes de base</span>
-            <span>Bloomberg : la touche &lt;GO&gt; valide toute commande &nbsp;|&nbsp; Git : un commit est une photo de
-                ton
-                code à un instant T</span>
+            <span class="cs-formula-label">Basic reflexes</span>
+            <span>Bloomberg: the &lt;GO&gt; key confirms any command &nbsp;|&nbsp; Git: a commit is a snapshot of your
+                code
+                at a point in time</span>
         </div>
 
         <div class="cs-grid">
             <div class="cs-card">
                 <h3>Bloomberg Terminal</h3>
                 <ul>
-                    <li>Référence du secteur pour les données de marché, l'analytique et la messagerie professionnelle.
-                    </li>
-                    <li>Fonctions clés : PORT (portefeuille), WEI (indices), FX, HP (historique de prix).</li>
-                    <li>Excel add-in (BQL/API) pour extraire des données directement dans ses modèles.</li>
+                    <li>Industry reference for market data, analytics and professional messaging.</li>
+                    <li>Key functions: PORT (portfolio), WEI (indices), FX, HP (price history).</li>
+                    <li>Excel add-in (BQL/API) to pull data directly into your models.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
                 <h3>Power BI</h3>
                 <ul>
-                    <li>Construit des tableaux de bord interactifs à partir de multiples sources de données.</li>
-                    <li>Le langage DAX permet des calculs et mesures personnalisés.</li>
-                    <li>Standard en reporting risque, performance et suivi d'activité.</li>
+                    <li>Builds interactive dashboards from multiple data sources.</li>
+                    <li>The DAX language enables custom calculations and measures.</li>
+                    <li>The standard for risk, performance and activity reporting.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
                 <h3>Git</h3>
                 <ul>
-                    <li>Système de versioning du code : historique, branches, retours en arrière possibles.</li>
-                    <li>Un commit = un instantané, une branche = une ligne de travail parallèle.</li>
-                    <li>Indispensable dès qu'un pricer ou un modèle est partagé entre plusieurs personnes.</li>
+                    <li>Version control system for code: history, branches, and the ability to roll back.</li>
+                    <li>A commit is a snapshot, a branch is a parallel line of work.</li>
+                    <li>Essential as soon as a pricer or model is shared between multiple people.</li>
                 </ul>
             </div>
             <div class="cs-card">
                 <h3>Power Automate</h3>
                 <ul>
-                    <li>Automatise des tâches répétitives entre applications (email, Excel, SharePoint...).</li>
-                    <li>Fonctionne par déclencheurs (trigger) et actions, sans coder.</li>
-                    <li>Utile pour automatiser des reportings récurrents ou des relances.</li>
+                    <li>Automates repetitive tasks across applications (email, Excel, SharePoint...).</li>
+                    <li>Works through triggers and actions, with no coding required.</li>
+                    <li>Useful for automating recurring reports or follow-ups.</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">Who uses what?</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
                 <strong>Trader / Sales</strong>
-                <span>Bloomberg Terminal pour le pricing, l'exécution et la communication marché.</span>
+                <span>Bloomberg Terminal for pricing, execution and market communication.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Analyste reporting</strong>
-                <span>Power BI pour transformer des données brutes en tableaux de bord lisibles.</span>
+                <strong>Reporting analyst</strong>
+                <span>Power BI to turn raw data into readable dashboards.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Développeur quant</strong>
-                <span>Git pour versionner et collaborer sur le code d'un pricer ou d'un modèle de risque.</span>
+                <strong>Quant developer</strong>
+                <span>Git to version and collaborate on pricing or risk model code.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Automatisation de process</strong>
-                <span>Power Automate pour fiabiliser des tâches manuelles répétitives sans développement lourd.</span>
+                <strong>Process automation</strong>
+                <span>Power Automate to make repetitive manual tasks reliable without heavy development.</span>
             </div>
         </div>
 
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>Bloomberg reste incontournable pour la donnée de marché en temps réel, mais Power BI prend le relais
-                    dès
-                    qu'il s'agit de reporting personnalisé.</li>
-                <li>Git n'est pas réservé aux développeurs : dès qu'un modèle Excel/Python est partagé en équipe, le
-                    versioning évite les "final_v2_vraiment_final.xlsx".</li>
-                <li>Power Automate rentabilise vite son coût d'apprentissage sur toute tâche répétitive de plus de
-                    quelques
-                    minutes par semaine.</li>
+                <li>Bloomberg remains unmatched for real-time market data, but Power BI takes over as soon as custom
+                    reporting is needed.</li>
+                <li>Git isn't just for developers: as soon as an Excel/Python model is shared across a team, versioning
+                    avoids the "final_v2_really_final.xlsx" problem.</li>
+                <li>Power Automate quickly pays back its learning curve on any repetitive task taking more than a few
+                    minutes
+                    a week.</li>
             </ol>
         </div>
 
@@ -480,103 +498,103 @@
 
     </div>
 
-    <div class="sheet pole-outils page-break">
+    <div class="sheet pole-tools page-break">
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — La boîte à outils du quant</span>
+            <span>Yassine Mannai · Quant Finance Notes — The quant's toolbox</span>
         </div>
 
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
-                    <th>Outil</th>
-                    <th>Usage principal</th>
-                    <th>Courbe d'apprentissage</th>
+                    <th>Tool</th>
+                    <th>Main use</th>
+                    <th>Learning curve</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Bloomberg Terminal</td>
-                    <td>Données marché, exécution, messagerie</td>
-                    <td>Élevée (très riche fonctionnellement)</td>
+                    <td>Market data, execution, messaging</td>
+                    <td>High (very feature-rich)</td>
                 </tr>
                 <tr>
                     <td>Power BI</td>
-                    <td>Reporting et dashboards interactifs</td>
-                    <td>Modérée</td>
+                    <td>Reporting and interactive dashboards</td>
+                    <td>Moderate</td>
                 </tr>
                 <tr>
                     <td>Git</td>
-                    <td>Versioning et collaboration sur le code</td>
-                    <td>Modérée au départ, puis rapide</td>
+                    <td>Versioning and collaboration on code</td>
+                    <td>Steep at first, then quick</td>
                 </tr>
                 <tr>
                     <td>Power Automate</td>
-                    <td>Automatisation de tâches sans code</td>
-                    <td>Faible</td>
+                    <td>No-code task automation</td>
+                    <td>Low</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
-                <h3>PORT sur Bloomberg</h3>
-                <p>Un gérant utilise la fonction PORT pour analyser l'exposition sectorielle et le risque d'un
-                    portefeuille
-                    en un coup d'œil.</p>
+                <h3>PORT on Bloomberg</h3>
+                <p>A portfolio manager uses the PORT function to analyze a portfolio's sector exposure and risk at a
+                    glance.</p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Dashboard PnL</h3>
-                <p>Un dashboard Power BI agrège les données de trading quotidiennes pour suivre le PnL par desk en temps
-                    quasi réel.</p>
+                <h3>PnL dashboard</h3>
+                <p>A Power BI dashboard aggregates daily trading data to track PnL by desk in near real time.</p>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Versionner un pricer</h3>
-                <p>Une équipe quant utilise des branches Git pour développer une nouvelle fonctionnalité de pricing sans
-                    casser la version en production.</p>
+                <h3>Versioning a pricer</h3>
+                <p>A quant team uses Git branches to develop a new pricing feature without breaking the version in
+                    production.</p>
             </div>
             <div class="cs-card">
-                <h3>Reporting hebdo automatisé</h3>
-                <p>Un flow Power Automate envoie chaque lundi un résumé Excel généré automatiquement à partir d'un
-                    SharePoint partagé.</p>
+                <h3>Automated weekly report</h3>
+                <p>A Power Automate flow sends an auto-generated Excel summary every Monday from a shared SharePoint
+                    site.</p>
             </div>
         </div>
 
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
                 <strong>API</strong>
-                <span>Interface permettant à deux logiciels d'échanger des données automatiquement.</span>
+                <span>Interface that lets two pieces of software exchange data automatically.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Excel add-in</strong>
-                <span>Extension permettant d'extraire des données Bloomberg directement dans Excel.</span>
+                <span>Extension that pulls Bloomberg data directly into Excel.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>DAX</strong>
-                <span>Langage de formules utilisé dans Power BI pour créer des mesures et calculs.</span>
+                <span>Formula language used in Power BI to create measures and calculations.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Repository / branche</strong>
-                <span>Dépôt de code et ligne de développement parallèle dans Git.</span>
+                <strong>Repository / branch</strong>
+                <span>Code storage and a parallel line of development in Git.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Workflow</strong>
-                <span>Enchaînement automatisé d'actions déclenché par un événement dans Power Automate.</span>
+                <span>Automated chain of actions triggered by an event in Power Automate.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Commit</strong>
-                <span>Enregistrement d'un ensemble de modifications de code dans l'historique Git.</span>
+                <span>Recording a set of code changes in Git's history.</span>
             </div>
         </div>
 
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Learning appliqué à la finance — Yassine Mannai</title>
+    <title>Machine learning applied to finance — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,18 +59,23 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
@@ -219,6 +224,41 @@
             font-size: 0.7em;
         }
 
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,7 +287,10 @@
         }
 
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -336,39 +379,16 @@
             margin-bottom: 14px;
         }
 
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
+            font-size: 8px;
+            color: var(--text-dim);
         }
 
-        .cs-usage-item span {
-            color: var(--text-dim);
-            line-height: 1.3;
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
@@ -387,89 +407,86 @@
             </div>
             <div class="cs-meta">
                 <span class="cs-tag">ML &amp; AI</span><br>
-                Cheatsheet #07 · Août 2026
+                Cheatsheet #07 · August 2026
             </div>
         </header>
 
         <div class="cs-title">
-            <h1>Machine Learning appliqué à la finance : panorama</h1>
-            <p>Supervisé, deep learning, IA générative, reinforcement learning : quatre familles, quatre usages
-                différents.</p>
+            <h1>Machine learning applied to finance: an overview</h1>
+            <p>Supervised, deep learning, generative AI, reinforcement learning: four families, four different uses.</p>
         </div>
 
         <div class="cs-formula">
-            <span class="cs-formula-label">Le piège n°1 : l'overfitting</span>
-            <span>Faible erreur sur les données d'entraînement + forte erreur sur les données de test = modèle qui a
-                mémorisé au lieu d'apprendre</span>
+            <span class="cs-formula-label">Pitfall #1: overfitting</span>
+            <span>Low error on training data + high error on test data = a model that memorized instead of
+                learning</span>
         </div>
 
         <div class="cs-grid">
             <div class="cs-card">
-                <h3>ML supervisé</h3>
+                <h3>Supervised ML</h3>
                 <ul>
-                    <li>Régression (prévoir une valeur) ou classification (prévoir une catégorie).</li>
-                    <li>Nécessite des données labellisées (on connaît la bonne réponse historique).</li>
-                    <li>Base de la plupart des modèles de scoring et de prévision en finance.</li>
+                    <li>Regression (predict a value) or classification (predict a category).</li>
+                    <li>Requires labeled data (we already know the historical right answer).</li>
+                    <li>The backbone of most scoring and forecasting models in finance.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
                 <h3>Deep Learning &amp; NLP</h3>
                 <ul>
-                    <li>Réseaux de neurones profonds pour des données complexes (texte, image, séries longues).</li>
-                    <li>NLP (traitement du langage) : analyse de sentiment sur news, transcriptions d'earnings calls.
-                    </li>
-                    <li>Demande beaucoup de données et de puissance de calcul.</li>
+                    <li>Deep neural networks for complex data (text, images, long series).</li>
+                    <li>NLP (language processing): sentiment analysis on news, earnings call transcripts.</li>
+                    <li>Needs a lot of data and computing power.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>IA générative &amp; LLM</h3>
+                <h3>Generative AI &amp; LLMs</h3>
                 <ul>
-                    <li>Génère du texte, résume des documents, assiste la recherche et le reporting.</li>
-                    <li>Risque d'hallucination : peut produire une information fausse avec assurance.</li>
-                    <li>Usage croissant en recherche actions, compliance et service client.</li>
+                    <li>Generates text, summarizes documents, assists research and reporting.</li>
+                    <li>Hallucination risk: can produce false information with apparent confidence.</li>
+                    <li>Growing use in equity research, compliance and client service.</li>
                 </ul>
             </div>
             <div class="cs-card">
                 <h3>Reinforcement Learning</h3>
                 <ul>
-                    <li>Un agent apprend par essai-erreur en maximisant une récompense (ex : PnL).</li>
-                    <li>Utilisé en exécution d'ordres et market making algorithmique.</li>
-                    <li>Difficile à auditer et à expliquer, donc rare en production sans garde-fous.</li>
+                    <li>An agent learns by trial and error to maximize a reward (e.g. PnL).</li>
+                    <li>Used in order execution and algorithmic market making.</li>
+                    <li>Hard to audit and explain, so rare in production without strong guardrails.</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">Who uses what?</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
                 <strong>Quant researcher</strong>
-                <span>ML supervisé pour la construction de signaux et de facteurs de prédiction.</span>
+                <span>Supervised ML to build predictive signals and factors.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Trader systématique</strong>
-                <span>Reinforcement learning et deep learning pour l'exécution et la détection de patterns.</span>
+                <strong>Systematic trader</strong>
+                <span>Reinforcement learning and deep learning for execution and pattern detection.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Risk / Compliance</strong>
-                <span>NLP pour surveiller communications et détecter des signaux de risque dans les textes.</span>
+                <span>NLP to monitor communications and detect risk signals in text.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Gérant / analyste</strong>
-                <span>IA générative pour accélérer la recherche, le résumé de documents et le reporting.</span>
+                <strong>Portfolio manager / analyst</strong>
+                <span>Generative AI to speed up research, document summarization and reporting.</span>
             </div>
         </div>
 
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>Un modèle qui performe parfaitement sur les données d'entraînement est suspect, pas rassurant —
-                    toujours valider par cross-validation et test out-of-sample.</li>
-                <li>Plus un modèle est complexe (deep learning, RL), plus il est difficile à expliquer — un vrai enjeu
-                    en
-                    finance réglementée.</li>
-                <li>L'IA générative est un outil d'assistance, pas une source de vérité : toute sortie doit être
-                    vérifiée
-                    avant utilisation décisionnelle.</li>
+                <li>A model that performs perfectly on training data is suspicious, not reassuring — always validate
+                    with
+                    cross-validation and out-of-sample testing.</li>
+                <li>The more complex a model (deep learning, RL), the harder it is to explain — a real challenge in
+                    regulated finance.</li>
+                <li>Generative AI is an assistance tool, not a source of truth: any output must be verified before being
+                    used for decisions.</li>
             </ol>
         </div>
 
@@ -484,104 +501,100 @@
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — Machine Learning appliqué à la finance</span>
+            <span>Yassine Mannai · Quant Finance Notes — Machine learning applied to finance</span>
         </div>
 
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
-                    <th>Famille</th>
-                    <th>Objectif</th>
-                    <th>Exemple d'usage finance</th>
+                    <th>Family</th>
+                    <th>Goal</th>
+                    <th>Finance use case</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Supervisé</td>
-                    <td>Prédire une valeur/catégorie connue</td>
-                    <td>Credit scoring, prévision de défaut</td>
+                    <td>Supervised</td>
+                    <td>Predict a known value/category</td>
+                    <td>Credit scoring, default forecasting</td>
                 </tr>
                 <tr>
-                    <td>Non supervisé</td>
-                    <td>Trouver une structure cachée</td>
-                    <td>Clustering de régimes de marché</td>
+                    <td>Unsupervised</td>
+                    <td>Find hidden structure</td>
+                    <td>Market regime clustering</td>
                 </tr>
                 <tr>
                     <td>Reinforcement Learning</td>
-                    <td>Maximiser une récompense séquentielle</td>
-                    <td>Exécution optimale d'ordres</td>
+                    <td>Maximize a sequential reward</td>
+                    <td>Optimal order execution</td>
                 </tr>
                 <tr>
-                    <td>IA générative</td>
-                    <td>Générer du contenu / synthétiser</td>
-                    <td>Résumé de rapports, recherche assistée</td>
+                    <td>Generative AI</td>
+                    <td>Generate/summarize content</td>
+                    <td>Report summaries, assisted research</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
                 <h3>Credit scoring</h3>
-                <p>Un modèle de classification prédit la probabilité de défaut d'un emprunteur à partir de son
-                    historique
-                    financier.</p>
+                <p>A classification model predicts a borrower's default probability from their financial history.</p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Clustering de régimes</h3>
-                <p>Un algorithme non supervisé regroupe automatiquement les jours de marché en régimes (calme, stress,
-                    tendance) sans étiquette préalable.</p>
+                <h3>Regime clustering</h3>
+                <p>An unsupervised algorithm automatically groups market days into regimes (calm, stress, trend) without
+                    any
+                    predefined label.</p>
             </div>
             <div class="cs-card cs-accent-3">
                 <h3>Sentiment analysis</h3>
-                <p>Un modèle NLP note le ton (positif/négatif) des communiqués de résultats pour anticiper une réaction
-                    de
-                    marché.</p>
+                <p>An NLP model scores the tone (positive/negative) of earnings releases to anticipate a market
+                    reaction.</p>
             </div>
             <div class="cs-card">
-                <h3>Agent RL de market making</h3>
-                <p>Un agent apprend à coter des prix d'achat/vente qui maximisent le profit tout en limitant
-                    l'inventaire
-                    détenu.</p>
+                <h3>RL market-making agent</h3>
+                <p>An agent learns to quote bid/ask prices that maximize profit while keeping inventory under control.
+                </p>
             </div>
         </div>
 
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
                 <strong>Overfitting</strong>
-                <span>Modèle qui mémorise le bruit des données d'entraînement plutôt que d'apprendre un signal
-                    généralisable.</span>
+                <span>A model that memorizes training data noise rather than learning a generalizable signal.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Feature engineering</strong>
-                <span>Construction de variables explicatives pertinentes à partir des données brutes.</span>
+                <span>Building relevant explanatory variables from raw data.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Cross-validation</strong>
-                <span>Technique pour évaluer un modèle sur plusieurs découpages des données et limiter
-                    l'overfitting.</span>
+                <span>Technique to evaluate a model across several data splits and limit overfitting.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Backtesting</strong>
-                <span>Test d'un modèle ou d'une stratégie sur des données historiques avant mise en production.</span>
+                <span>Testing a model or strategy on historical data before production use.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Embeddings</strong>
-                <span>Représentation numérique dense d'un texte ou d'une donnée, utilisée par les modèles
-                    NLP/LLM.</span>
+                <span>Dense numerical representation of text or data, used by NLP/LLM models.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Hallucination</strong>
-                <span>Réponse d'un LLM qui semble crédible mais qui est factuellement incorrecte.</span>
+                <span>An LLM answer that sounds credible but is factually incorrect.</span>
             </div>
         </div>
 
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 

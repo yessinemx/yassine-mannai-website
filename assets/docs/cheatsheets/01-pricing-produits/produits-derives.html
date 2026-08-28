@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les 4 familles de produits dérivés — Yassine Mannai</title>
+    <title>The 4 families of derivative products — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,23 +59,27 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
 
-        /* ---------- Header ---------- */
         .cs-header {
             display: flex;
             align-items: center;
@@ -132,7 +136,6 @@
             font-weight: 600;
         }
 
-        /* ---------- Title block ---------- */
         .cs-title {
             margin-bottom: 16px;
         }
@@ -152,7 +155,6 @@
             max-width: 90%;
         }
 
-        /* ---------- Grid of concept cards ---------- */
         .cs-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -198,7 +200,6 @@
             color: var(--accent-3);
         }
 
-        /* ---------- Formula strip ---------- */
         .cs-formula {
             background: var(--text);
             color: #fff;
@@ -219,7 +220,45 @@
             color: #b9c2d6;
         }
 
-        /* ---------- Key takeaways ---------- */
+        .cs-formula sub {
+            font-size: 0.7em;
+        }
+
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,9 +286,11 @@
             margin-bottom: 3px;
         }
 
-        /* ---------- Footer ---------- */
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -269,7 +310,6 @@
             padding-top: 4mm;
         }
 
-        /* ---------- Comparison table ---------- */
         .cs-table {
             width: 100%;
             border-collapse: collapse;
@@ -306,7 +346,6 @@
             white-space: nowrap;
         }
 
-        /* ---------- Section heading (page 2) ---------- */
         .cs-section-h {
             margin: 0 0 8px;
             font-family: var(--serif);
@@ -340,53 +379,24 @@
             margin-bottom: 14px;
         }
 
-        .cs-formula sub {
-            font-size: 0.7em;
-        }
-
-        /* ---------- Compact usage strip ---------- */
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
-        }
-
-        .cs-usage-item span {
+            font-size: 8px;
             color: var(--text-dim);
-            line-height: 1.3;
         }
 
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="sheet pole-pricing-produits">
+    <div class="sheet pole-pricing-products">
 
-        <!-- ============ HEADER ============ -->
         <header class="cs-header">
             <div class="cs-brand">
                 <img src="../../../img/fox.png" alt="Yassine Mannai">
@@ -396,97 +406,93 @@
                 </div>
             </div>
             <div class="cs-meta">
-                <span class="cs-tag">Pricing &amp; Produits</span><br>
-                Cheatsheet #01 · Août 2026
+                <span class="cs-tag">Pricing &amp; Products</span><br>
+                Cheatsheet #01 · August 2026
             </div>
         </header>
 
-        <!-- ============ TITLE ============ -->
         <div class="cs-title">
-            <h1>Les 4 familles de produits dérivés</h1>
-            <p>Forwards, futures, options, swaps : à quoi ça sert, qui s'en sert, et ce qui les différencie vraiment.
-            </p>
+            <h1>The 4 families of derivative products</h1>
+            <p>Forwards, futures, options, swaps: what they're for, who uses them, and what really sets them apart.</p>
         </div>
 
-        <!-- ============ KEY FORMULA ============ -->
         <div class="cs-formula">
-            <span class="cs-formula-label">Payoff à maturité (position longue)</span>
-            <span>Forward / Future&nbsp;: S<sub>T</sub> − K</span>
-            <span>Call&nbsp;: max(S<sub>T</sub> − K, 0)</span>
-            <span>Put&nbsp;: max(K − S<sub>T</sub>, 0)</span>
+            <span class="cs-formula-label">Payoff at maturity (long position)</span>
+            <span>Forward / Future: S<sub>T</sub> − K</span>
+            <span>Call: max(S<sub>T</sub> − K, 0)</span>
+            <span>Put: max(K − S<sub>T</sub>, 0)</span>
         </div>
 
-        <!-- ============ CONCEPT CARDS ============ -->
         <div class="cs-grid">
             <div class="cs-card">
                 <h3>Forwards</h3>
                 <ul>
-                    <li>Contrat de gré à gré (OTC), sur-mesure entre 2 parties.</li>
-                    <li>Aucun échange de flux avant l'échéance.</li>
-                    <li>Risque de contrepartie non garanti par une chambre de compensation.</li>
+                    <li>Over-the-counter (OTC) contract, tailor-made between 2 parties.</li>
+                    <li>No exchange of cash flows before maturity.</li>
+                    <li>Counterparty risk, not guaranteed by a clearing house.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
                 <h3>Futures</h3>
                 <ul>
-                    <li>Version standardisée du forward, cotée en bourse (CME, Eurex...).</li>
-                    <li>Appel de marge quotidien (mark-to-market).</li>
-                    <li>Chambre de compensation = risque de contrepartie quasi nul.</li>
+                    <li>Standardized version of a forward, listed on an exchange (CME, Eurex...).</li>
+                    <li>Daily margin call (mark-to-market).</li>
+                    <li>Clearing house makes counterparty risk nearly zero.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
                 <h3>Options</h3>
                 <ul>
-                    <li>Droit, pas une obligation, d'acheter (call) ou vendre (put) à K.</li>
-                    <li>Prime payée à l'avance par l'acheteur.</li>
-                    <li>Payoff asymétrique : perte limitée à la prime, gain potentiellement illimité.</li>
+                    <li>A right, not an obligation, to buy (call) or sell (put) at K.</li>
+                    <li>Premium paid upfront by the buyer.</li>
+                    <li>Asymmetric payoff: loss capped at the premium, potentially unlimited gain.</li>
                 </ul>
             </div>
             <div class="cs-card">
                 <h3>Swaps</h3>
                 <ul>
-                    <li>Échange périodique de flux entre 2 contreparties.</li>
-                    <li>IRS (taux fixe ↔ variable), Cross-Currency Swap, CDS (crédit).</li>
-                    <li>OTC, maturités longues, cœur des stratégies ALM/couverture de taux.</li>
+                    <li>Periodic exchange of cash flows between 2 counterparties.</li>
+                    <li>IRS (fixed ↔ floating rate), cross-currency swap, CDS (credit).</li>
+                    <li>OTC, long maturities, core of ALM/rate-hedging strategies.</li>
                 </ul>
             </div>
         </div>
 
-        <!-- ============ QUI UTILISE QUOI ============ -->
-        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">Who uses what?</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
                 <strong>Corporates</strong>
-                <span>Forwards FX &amp; swaps de taux pour couvrir dettes et factures en devises.</span>
+                <span>FX forwards &amp; rate swaps to hedge debt and foreign-currency invoices.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Asset managers</strong>
-                <span>Futures pour ajuster une exposition sans toucher au portefeuille physique.</span>
+                <span>Futures to adjust exposure without touching the physical portfolio.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Assureurs</strong>
-                <span>Options pour protéger le bilan contre une baisse des marchés actions.</span>
+                <strong>Insurers</strong>
+                <span>Options to protect the balance sheet against equity market declines.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Banques</strong>
-                <span>Swaps pour transformer et piloter le risque de taux du bilan (ALM).</span>
+                <strong>Banks</strong>
+                <span>Swaps to transform and steer the balance sheet's interest rate risk (ALM).</span>
             </div>
         </div>
 
-        <!-- ============ KEY TAKEAWAYS ============ -->
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>Forward vs Future = même logique de payoff, mais le future ajoute standardisation + appel de marge,
-                    ce qui élimine le risque de contrepartie.</li>
-                <li>Les options sont les seuls dérivés "classiques" à payoff asymétrique : c'est ce qui justifie le
-                    paiement d'une prime.</li>
-                <li>En volume notionnel, les swaps de taux dominent largement le marché des dérivés OTC — bien plus que
-                    les options ou forwards.</li>
+                <li>Forward vs Future: same payoff logic, but the future adds standardization + margin calls, which
+                    removes
+                    counterparty risk.</li>
+                <li>Options are the only "classic" derivatives with an asymmetric payoff: that's exactly why a premium
+                    is
+                    paid.</li>
+                <li>By notional volume, interest rate swaps dominate the OTC derivatives market — far more than options
+                    or
+                    forwards.</li>
             </ol>
         </div>
 
-        <!-- ============ FOOTER (page 1) ============ -->
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
             <span>1/2</span>
@@ -494,20 +500,18 @@
 
     </div>
 
-    <!-- ============ PAGE 2 ============ -->
-    <div class="sheet pole-pricing-produits page-break">
+    <div class="sheet pole-pricing-products page-break">
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — Les 4 familles de produits dérivés</span>
+            <span>Yassine Mannai · Quant Finance Notes — The 4 families of derivative products</span>
         </div>
 
-        <!-- ============ COMPARISON TABLE ============ -->
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
-                    <th>Critère</th>
+                    <th>Criterion</th>
                     <th>Forward</th>
                     <th>Future</th>
                     <th>Option</th>
@@ -516,102 +520,103 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Marché</td>
+                    <td>Market</td>
                     <td>OTC</td>
-                    <td>Coté (bourse)</td>
-                    <td>OTC ou coté</td>
+                    <td>Listed (exchange)</td>
+                    <td>OTC or listed</td>
                     <td>OTC</td>
                 </tr>
                 <tr>
-                    <td>Standardisation</td>
-                    <td>Sur-mesure</td>
-                    <td>Standardisé</td>
-                    <td>Standardisé (coté) ou sur-mesure (OTC)</td>
-                    <td>Sur-mesure</td>
+                    <td>Standardization</td>
+                    <td>Tailor-made</td>
+                    <td>Standardized</td>
+                    <td>Standardized (listed) or tailor-made (OTC)</td>
+                    <td>Tailor-made</td>
                 </tr>
                 <tr>
-                    <td>Paiement initial</td>
-                    <td>Aucun</td>
-                    <td>Dépôt de garantie (marge)</td>
-                    <td>Prime (acheteur)</td>
-                    <td>Aucun (à l'origination)</td>
+                    <td>Upfront payment</td>
+                    <td>None</td>
+                    <td>Margin deposit</td>
+                    <td>Premium (buyer)</td>
+                    <td>None (at inception)</td>
                 </tr>
                 <tr>
-                    <td>Risque de contrepartie</td>
-                    <td>Élevé (bilatéral)</td>
-                    <td>Quasi nul (chambre de compensation)</td>
-                    <td>Selon vendeur / plateforme</td>
-                    <td>Élevé (bilatéral, sauf collatéralisation)</td>
+                    <td>Counterparty risk</td>
+                    <td>High (bilateral)</td>
+                    <td>Near zero (clearing house)</td>
+                    <td>Depends on seller/platform</td>
+                    <td>High (bilateral, unless collateralized)</td>
                 </tr>
                 <tr>
-                    <td>Cas d'usage typique</td>
-                    <td>Couverture FX d'une entreprise</td>
-                    <td>Spéculation/couverture indices, taux, commo</td>
-                    <td>Couverture asymétrique, effet de levier</td>
-                    <td>Gestion ALM, transformation de dette</td>
+                    <td>Typical use case</td>
+                    <td>FX hedging for a corporate</td>
+                    <td>Speculation/hedging on indices, rates, commo</td>
+                    <td>Asymmetric hedging, leverage</td>
+                    <td>ALM management, debt transformation</td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- ============ EXAMPLES ============ -->
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
-                <h3>Forward FX</h3>
-                <p>Un exportateur français vend un forward EUR/USD à 6 mois pour figer son taux de change sur une
-                    facture en dollars.</p>
+                <h3>FX forward</h3>
+                <p>A French exporter sells a 6-month EUR/USD forward to lock in its exchange rate on a
+                    dollar-denominated
+                    invoice.</p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Future sur indice</h3>
-                <p>Un gérant achète des futures E-mini S&amp;P 500 pour ajuster rapidement l'exposition actions d'un
-                    portefeuille sans vendre les titres sous-jacents.</p>
+                <h3>Index future</h3>
+                <p>A fund manager buys E-mini S&amp;P 500 futures to quickly adjust equity exposure without selling the
+                    underlying holdings.</p>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Option de couverture</h3>
-                <p>Un assureur achète des puts sur indice actions pour protéger son bilan contre une baisse des
-                    marchés (couverture de la garantie en cas de vie/décès).</p>
+                <h3>Hedging option</h3>
+                <p>An insurer buys equity index puts to protect its balance sheet against a market downturn (hedging
+                    life/death guarantees).</p>
             </div>
             <div class="cs-card">
-                <h3>Swap de taux (IRS)</h3>
-                <p>Une banque échange un taux variable contre un taux fixe pour stabiliser le coût de son passif à
-                    long terme — cœur de la gestion ALM.</p>
+                <h3>Interest rate swap (IRS)</h3>
+                <p>A bank exchanges a floating rate for a fixed rate to stabilize the cost of its long-term liabilities
+                    —
+                    core of ALM management.</p>
             </div>
         </div>
 
-        <!-- ============ GLOSSAIRE ============ -->
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
-                <strong>Notionnel</strong>
-                <span>Montant de référence servant à calculer les flux — rarement échangé en capital.</span>
+                <strong>Notional</strong>
+                <span>Reference amount used to compute cash flows — rarely exchanged as principal.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Strike (K)</strong>
-                <span>Prix d'exercice fixé au contrat, référence pour le calcul du payoff.</span>
+                <span>Exercise price fixed in the contract, used as the reference for the payoff.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Mark-to-market</strong>
-                <span>Réévaluation du contrat à sa valeur de marché actuelle, souvent quotidienne.</span>
+                <span>Revaluation of a contract at its current market value, often daily.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Appel de marge</strong>
-                <span>Dépôt de garantie exigé quand la valeur du contrat évolue défavorablement.</span>
+                <strong>Margin call</strong>
+                <span>Collateral payment required when a contract's value moves unfavorably.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Chambre de compensation</strong>
-                <span>Intermédiaire qui garantit l'exécution des contrats cotés (futures, certaines options).</span>
+                <strong>Clearing house</strong>
+                <span>Intermediary that guarantees execution of listed contracts (futures, some options).</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Contrat-cadre ISDA</strong>
-                <span>Contrat standard qui régit une relation de dérivés OTC entre deux contreparties.</span>
+                <strong>ISDA master agreement</strong>
+                <span>Standard contract governing an OTC derivatives relationship between two counterparties.</span>
             </div>
         </div>
 
-        <!-- ============ FOOTER (page 2) ============ -->
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 

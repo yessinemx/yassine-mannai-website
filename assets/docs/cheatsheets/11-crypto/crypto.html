@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptomonnaies & blockchain pour un quant — Yassine Mannai</title>
+    <title>Cryptocurrencies & blockchain basics for a quant — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,18 +59,23 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
@@ -219,6 +224,41 @@
             font-size: 0.7em;
         }
 
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,7 +287,10 @@
         }
 
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -336,39 +379,16 @@
             margin-bottom: 14px;
         }
 
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
+            font-size: 8px;
+            color: var(--text-dim);
         }
 
-        .cs-usage-item span {
-            color: var(--text-dim);
-            line-height: 1.3;
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
@@ -387,87 +407,87 @@
             </div>
             <div class="cs-meta">
                 <span class="cs-tag">Crypto</span><br>
-                Cheatsheet #11 · Août 2026
+                Cheatsheet #11 · August 2026
             </div>
         </header>
 
         <div class="cs-title">
-            <h1>Cryptomonnaies &amp; blockchain : les bases pour un quant</h1>
-            <p>Blockchain, cryptomonnaies, stablecoins, smart contracts : comprendre les briques avant d'y regarder le
-                risque.</p>
+            <h1>Cryptocurrencies &amp; blockchain: the basics for a quant</h1>
+            <p>Blockchain, cryptocurrencies, stablecoins, smart contracts: understanding the building blocks before
+                looking
+                at the risk.</p>
         </div>
 
         <div class="cs-formula">
-            <span class="cs-formula-label">Capitalisation d'une cryptomonnaie</span>
-            <span>Market cap = Prix unitaire × Supply en circulation</span>
+            <span class="cs-formula-label">Market cap of a cryptocurrency</span>
+            <span>Market cap = Unit price × Circulating supply</span>
         </div>
 
         <div class="cs-grid">
             <div class="cs-card">
                 <h3>Blockchain</h3>
                 <ul>
-                    <li>Registre distribué, répliqué sur de nombreux nœuds, quasi impossible à falsifier a posteriori.
-                    </li>
-                    <li>Chaque bloc contient un hash du bloc précédent, garantissant l'intégrité de l'historique.</li>
-                    <li>Public (Bitcoin, Ethereum) ou privé/permissionné selon les cas d'usage.</li>
+                    <li>Distributed ledger, replicated across many nodes, practically impossible to alter after the
+                        fact.</li>
+                    <li>Each block contains a hash of the previous one, guaranteeing the integrity of the history.</li>
+                    <li>Public (Bitcoin, Ethereum) or private/permissioned depending on the use case.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
                 <h3>Cryptocurrencies</h3>
                 <ul>
-                    <li>Bitcoin : positionné comme réserve de valeur, offre fixe et rare.</li>
-                    <li>Ethereum : plateforme programmable, base de la finance décentralisée (DeFi).</li>
-                    <li>Forte volatilité, corrélation croissante avec les actifs risqués traditionnels.</li>
+                    <li>Bitcoin: positioned as a store of value, with a fixed and scarce supply.</li>
+                    <li>Ethereum: programmable platform, the foundation of decentralized finance (DeFi).</li>
+                    <li>High volatility, growing correlation with traditional risk assets.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
                 <h3>Stablecoins</h3>
                 <ul>
-                    <li>Cryptomonnaies indexées sur un actif stable, le plus souvent le dollar.</li>
-                    <li>Servent de pont entre monde crypto et monnaies traditionnelles pour le règlement.</li>
-                    <li>Le risque clé est la qualité et la transparence des réserves qui les adossent.</li>
+                    <li>Cryptocurrencies pegged to a stable asset, most often the US dollar.</li>
+                    <li>Serve as a bridge between the crypto world and traditional currencies for settlement.</li>
+                    <li>The key risk is the quality and transparency of the reserves backing them.</li>
                 </ul>
             </div>
             <div class="cs-card">
                 <h3>Smart contracts</h3>
                 <ul>
-                    <li>Programmes auto-exécutables déployés sur une blockchain (surtout Ethereum).</li>
-                    <li>Automatisent des accords sans intermédiaire (prêt, échange, dérivé on-chain).</li>
-                    <li>Le code fait foi : une faille de sécurité peut être exploitée de façon irréversible.</li>
+                    <li>Self-executing programs deployed on a blockchain (mostly Ethereum).</li>
+                    <li>Automate agreements without an intermediary (lending, exchange, on-chain derivative).</li>
+                    <li>The code is the final word: a security flaw can be exploited irreversibly.</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">Who uses what?</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
-                <strong>Trader crypto</strong>
-                <span>Spécule ou couvre des positions sur Bitcoin, Ethereum et autres actifs numériques.</span>
+                <strong>Crypto trader</strong>
+                <span>Speculates on or hedges positions in Bitcoin, Ethereum and other digital assets.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Développeur blockchain</strong>
-                <span>Conçoit et audite des smart contracts pour des protocoles DeFi.</span>
+                <strong>Blockchain developer</strong>
+                <span>Designs and audits smart contracts for DeFi protocols.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Risk manager</strong>
-                <span>Évalue le risque de contrepartie et de garde (custody) des actifs numériques.</span>
+                <span>Assesses counterparty and custody risk for digital assets.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Régulateur</strong>
-                <span>Encadre les stablecoins et les plateformes d'échange pour la protection des investisseurs.</span>
+                <strong>Regulator</strong>
+                <span>Oversees stablecoins and exchange platforms to protect investors.</span>
             </div>
         </div>
 
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>Bitcoin et Ethereum répondent à des logiques différentes : réserve de valeur pour l'un, plateforme
-                    programmable pour l'autre.</li>
-                <li>Un stablecoin n'est stable que si ses réserves sont réellement transparentes et suffisantes — c'est
-                    le
-                    point de vigilance numéro un.</li>
-                <li>Un smart contract exécute exactement ce qui est codé, y compris ses failles : d'où l'importance
-                    critique de l'audit de sécurité avant déploiement.</li>
+                <li>Bitcoin and Ethereum follow different logics: store of value for one, programmable platform for the
+                    other.</li>
+                <li>A stablecoin is only as stable as its reserves are genuinely transparent and sufficient — that's the
+                    number one point to watch.</li>
+                <li>A smart contract executes exactly what's coded, flaws included — hence the critical importance of a
+                    security audit before deployment.</li>
             </ol>
         </div>
 
@@ -482,14 +502,14 @@
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — Cryptomonnaies &amp; blockchain pour un quant</span>
+            <span>Yassine Mannai · Quant Finance Notes — Cryptocurrencies &amp; blockchain basics for a quant</span>
         </div>
 
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
-                    <th>Critère</th>
+                    <th>Criterion</th>
                     <th>Bitcoin</th>
                     <th>Ethereum</th>
                     <th>Stablecoin</th>
@@ -497,92 +517,92 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Rôle principal</td>
-                    <td>Réserve de valeur</td>
-                    <td>Plateforme programmable</td>
-                    <td>Moyen de règlement stable</td>
+                    <td>Main role</td>
+                    <td>Store of value</td>
+                    <td>Programmable platform</td>
+                    <td>Stable means of settlement</td>
                 </tr>
                 <tr>
-                    <td>Techno sous-jacente</td>
-                    <td>Blockchain Proof of Work</td>
-                    <td>Blockchain Proof of Stake</td>
-                    <td>Adossé à une blockchain existante</td>
+                    <td>Underlying tech</td>
+                    <td>Proof of Work blockchain</td>
+                    <td>Proof of Stake blockchain</td>
+                    <td>Backed on an existing blockchain</td>
                 </tr>
                 <tr>
-                    <td>Volatilité</td>
-                    <td>Élevée</td>
-                    <td>Élevée</td>
-                    <td>Très faible (si bien géré)</td>
+                    <td>Volatility</td>
+                    <td>High</td>
+                    <td>High</td>
+                    <td>Very low (if well managed)</td>
                 </tr>
                 <tr>
-                    <td>Cas d'usage type</td>
-                    <td>Investissement long terme</td>
+                    <td>Typical use case</td>
+                    <td>Long-term investment</td>
                     <td>DeFi, smart contracts</td>
-                    <td>Règlement, trading, épargne</td>
+                    <td>Settlement, trading, savings</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
-                <h3>Bitcoin comme réserve de valeur</h3>
-                <p>Certains investisseurs institutionnels allouent une petite part de portefeuille au Bitcoin comme
-                    couverture contre la dévaluation monétaire.</p>
+                <h3>Bitcoin as a store of value</h3>
+                <p>Some institutional investors allocate a small share of their portfolio to Bitcoin as a hedge against
+                    currency debasement.</p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Ethereum et la DeFi</h3>
-                <p>Un utilisateur prête ou emprunte des cryptoactifs directement via un protocole DeFi, sans passer par
-                    une
-                    banque.</p>
+                <h3>Ethereum and DeFi</h3>
+                <p>A user lends or borrows crypto assets directly through a DeFi protocol, without going through a bank.
+                </p>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>USDC pour le règlement</h3>
-                <p>Une plateforme d'échange utilise un stablecoin comme USDC pour régler des transactions rapidement,
-                    sans
-                    conversion bancaire classique.</p>
+                <h3>USDC for settlement</h3>
+                <p>An exchange platform uses a stablecoin like USDC to settle transactions quickly, without a
+                    traditional
+                    bank conversion.</p>
             </div>
             <div class="cs-card">
-                <h3>Smart contract de swap</h3>
-                <p>Un contrat intelligent exécute automatiquement l'échange de deux tokens dès que les conditions de
-                    prix
-                    définies sont réunies, sans intermédiaire humain.</p>
+                <h3>Smart contract swap</h3>
+                <p>A smart contract automatically executes the exchange of two tokens as soon as the defined price
+                    conditions are met, with no human intermediary.</p>
             </div>
         </div>
 
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
                 <strong>Blockchain</strong>
-                <span>Registre distribué et infalsifiable de transactions, répliqué sur de nombreux nœuds.</span>
+                <span>Distributed, tamper-proof ledger of transactions, replicated across many nodes.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Consensus (PoW/PoS)</strong>
-                <span>Mécanisme qui permet aux participants de s'accorder sur l'état valide de la blockchain.</span>
+                <span>Mechanism that lets participants agree on the valid state of the blockchain.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Wallet</strong>
-                <span>Outil permettant de stocker et gérer les clés d'accès à des actifs numériques.</span>
+                <span>Tool used to store and manage the keys giving access to digital assets.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Smart contract</strong>
-                <span>Programme auto-exécutable déployé sur une blockchain.</span>
+                <span>Self-executing program deployed on a blockchain.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>DeFi</strong>
-                <span>Finance décentralisée : services financiers (prêt, échange) sans intermédiaire
-                    traditionnel.</span>
+                <span>Decentralized finance: financial services (lending, exchange) without a traditional
+                    intermediary.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Stablecoin</strong>
-                <span>Cryptomonnaie dont la valeur est indexée sur un actif stable, généralement le dollar.</span>
+                <span>Cryptocurrency whose value is pegged to a stable asset, usually the US dollar.</span>
             </div>
         </div>
 
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 

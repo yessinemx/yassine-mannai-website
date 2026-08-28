@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lire l'économie : indicateurs, cycles, régimes — Yassine Mannai</title>
+    <title>Reading the economy: indicators, cycles, regimes — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,18 +59,23 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
@@ -219,6 +224,41 @@
             font-size: 0.7em;
         }
 
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,7 +287,10 @@
         }
 
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -336,46 +379,23 @@
             margin-bottom: 14px;
         }
 
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
+            font-size: 8px;
+            color: var(--text-dim);
         }
 
-        .cs-usage-item span {
-            color: var(--text-dim);
-            line-height: 1.3;
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="sheet pole-economie">
+    <div class="sheet pole-economics">
 
         <header class="cs-header">
             <div class="cs-brand">
@@ -386,88 +406,85 @@
                 </div>
             </div>
             <div class="cs-meta">
-                <span class="cs-tag">Économie</span><br>
-                Cheatsheet #05 · Août 2026
+                <span class="cs-tag">Economics</span><br>
+                Cheatsheet #05 · August 2026
             </div>
         </header>
 
         <div class="cs-title">
-            <h1>Lire l'économie : indicateurs, cycles, régimes</h1>
-            <p>Comment un marché digère les chiffres macro, et pourquoi le cycle économique guide les grandes rotations
-                d'actifs.</p>
+            <h1>Reading the economy: indicators, cycles, regimes</h1>
+            <p>How a market digests macro data, and why the economic cycle drives major asset rotations.</p>
         </div>
 
         <div class="cs-formula">
-            <span class="cs-formula-label">PIB par la demande</span>
-            <span>PIB = C + I + G + (X − M) &nbsp;— consommation, investissement, dépenses publiques, solde
-                commercial</span>
+            <span class="cs-formula-label">GDP, expenditure approach</span>
+            <span>GDP = C + I + G + (X − M) &nbsp;— consumption, investment, government spending, net exports</span>
         </div>
 
         <div class="cs-grid">
             <div class="cs-card">
-                <h3>Indicateurs macro</h3>
+                <h3>Macro indicators</h3>
                 <ul>
-                    <li>Avancés (PMI, confiance des ménages) : anticipent le cycle.</li>
-                    <li>Coïncidents (PIB, emploi) : décrivent l'état actuel de l'économie.</li>
-                    <li>Retardés (inflation, chômage) : confirment une tendance déjà installée.</li>
+                    <li>Leading (PMI, consumer confidence): anticipate the cycle.</li>
+                    <li>Coincident (GDP, employment): describe the current state of the economy.</li>
+                    <li>Lagging (inflation, unemployment): confirm a trend already in place.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Cycle économique</h3>
+                <h3>Economic cycle</h3>
                 <ul>
-                    <li>4 phases : expansion, ralentissement, récession, reprise.</li>
-                    <li>Chaque phase favorise des classes d'actifs différentes.</li>
-                    <li>Le cycle n'est jamais parfaitement symétrique ni prévisible dans sa durée.</li>
+                    <li>4 phases: expansion, slowdown, recession, recovery.</li>
+                    <li>Each phase favors different asset classes.</li>
+                    <li>The cycle is never perfectly symmetric nor predictable in duration.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Régimes économiques</h3>
+                <h3>Economic regimes</h3>
                 <ul>
-                    <li>Se lisent sur 2 axes : croissance (haute/basse) et inflation (haute/basse).</li>
-                    <li>4 quadrants qui orientent l'allocation d'actifs (actions, obligations, commodities, cash).</li>
-                    <li>Les régimes durent des trimestres à plusieurs années.</li>
+                    <li>Read on 2 axes: growth (high/low) and inflation (high/low).</li>
+                    <li>4 quadrants that drive asset allocation (equities, bonds, commodities, cash).</li>
+                    <li>Regimes last from quarters to several years.</li>
                 </ul>
             </div>
             <div class="cs-card">
-                <h3>Politique monétaire</h3>
+                <h3>Monetary policy</h3>
                 <ul>
-                    <li>Taux directeurs : principal levier des banques centrales pour piloter l'inflation.</li>
-                    <li>Quantitative easing/tightening : ajuste la liquidité via le bilan de la banque centrale.</li>
-                    <li>Le marché réagit autant aux anticipations qu'aux décisions elles-mêmes.</li>
+                    <li>Policy rates: central banks' main lever to steer inflation.</li>
+                    <li>Quantitative easing/tightening: adjusts liquidity via the central bank's balance sheet.</li>
+                    <li>Markets react as much to expectations as to the decisions themselves.</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">Who uses what?</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
-                <strong>Banques centrales</strong>
-                <span>Pilotent les taux directeurs à partir des indicateurs coïncidents et retardés.</span>
+                <strong>Central banks</strong>
+                <span>Steer policy rates based on coincident and lagging indicators.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Stratégistes macro</strong>
-                <span>Positionnent les portefeuilles selon la phase du cycle et le régime en cours.</span>
+                <strong>Macro strategists</strong>
+                <span>Position portfolios according to the cycle phase and the current regime.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Gérants multi-actifs</strong>
-                <span>Ajustent l'allocation actions/obligations/commodities selon le régime croissance/inflation.</span>
+                <strong>Multi-asset managers</strong>
+                <span>Adjust equity/bond/commodity allocation based on the growth/inflation regime.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Économistes</strong>
-                <span>Construisent des scénarios et prévisions à partir des indicateurs avancés.</span>
+                <strong>Economists</strong>
+                <span>Build scenarios and forecasts from leading indicators.</span>
             </div>
         </div>
 
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>Les indicateurs avancés annoncent, les coïncidents confirment, les retardés valident — ne pas les
-                    confondre change complètement la lecture du cycle.</li>
-                <li>Le régime croissance/inflation compte souvent plus que le cycle seul pour choisir entre actions,
-                    obligations et commodities.</li>
-                <li>Le marché price les anticipations de politique monétaire bien avant la décision effective de la
-                    banque
-                    centrale.</li>
+                <li>Leading indicators announce, coincident ones confirm, lagging ones validate — confusing them
+                    completely
+                    changes your reading of the cycle.</li>
+                <li>The growth/inflation regime often matters more than the cycle alone when choosing between equities,
+                    bonds and commodities.</li>
+                <li>Markets price monetary policy expectations well before the central bank's actual decision.</li>
             </ol>
         </div>
 
@@ -478,108 +495,111 @@
 
     </div>
 
-    <div class="sheet pole-economie page-break">
+    <div class="sheet pole-economics page-break">
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — Lire l'économie : indicateurs, cycles, régimes</span>
+            <span>Yassine Mannai · Quant Finance Notes — Reading the economy: indicators, cycles, regimes</span>
         </div>
 
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
-                    <th>Phase du cycle</th>
-                    <th>Croissance</th>
+                    <th>Cycle phase</th>
+                    <th>Growth</th>
                     <th>Inflation</th>
-                    <th>Actifs favorisés</th>
+                    <th>Favored assets</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Expansion</td>
-                    <td>En accélération</td>
-                    <td>Modérée</td>
-                    <td>Actions, crédit</td>
+                    <td>Accelerating</td>
+                    <td>Moderate</td>
+                    <td>Equities, credit</td>
                 </tr>
                 <tr>
-                    <td>Ralentissement</td>
-                    <td>En décélération</td>
-                    <td>Élevée</td>
+                    <td>Slowdown</td>
+                    <td>Decelerating</td>
+                    <td>High</td>
                     <td>Cash, commodities</td>
                 </tr>
                 <tr>
-                    <td>Récession</td>
-                    <td>Négative</td>
-                    <td>En baisse</td>
-                    <td>Obligations d'État</td>
+                    <td>Recession</td>
+                    <td>Negative</td>
+                    <td>Falling</td>
+                    <td>Government bonds</td>
                 </tr>
                 <tr>
-                    <td>Reprise</td>
-                    <td>En accélération</td>
-                    <td>Faible</td>
-                    <td>Actions cycliques</td>
+                    <td>Recovery</td>
+                    <td>Accelerating</td>
+                    <td>Low</td>
+                    <td>Cyclical equities</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
-                <h3>Crise de 2008</h3>
-                <p>Passage brutal d'expansion à récession : effondrement du crédit, fuite vers les obligations d'État
-                    (flight to quality).</p>
+                <h3>2008 crisis</h3>
+                <p>Abrupt shift from expansion to recession: credit collapse, flight to quality into government bonds.
+                </p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Reprise post-Covid</h3>
-                <p>Reprise en V soutenue par des politiques monétaires et budgétaires massives, suivie d'un pic
-                    d'inflation inattendu.</p>
+                <h3>Post-Covid recovery</h3>
+                <p>V-shaped recovery fueled by massive monetary and fiscal policy, followed by an unexpected inflation
+                    spike.</p>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Tapering 2013</h3>
-                <p>La simple annonce d'un ralentissement du quantitative easing par la Fed a suffi à provoquer une forte
-                    remontée des taux longs ("taper tantrum").</p>
+                <h3>2013 taper tantrum</h3>
+                <p>The mere announcement of a slowdown in the Fed's quantitative easing was enough to trigger a sharp
+                    rise
+                    in long-term rates.</p>
             </div>
             <div class="cs-card">
-                <h3>Cycle de hausse 2022</h3>
-                <p>Une inflation élevée et persistante a forcé les banques centrales à un cycle de hausse de taux
-                    rapide,
-                    pénalisant simultanément actions et obligations.</p>
+                <h3>2022 hiking cycle</h3>
+                <p>High and persistent inflation forced central banks into a rapid rate-hiking cycle, hurting equities
+                    and
+                    bonds simultaneously.</p>
             </div>
         </div>
 
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
                 <strong>PMI</strong>
-                <span>Indice des directeurs d'achat, indicateur avancé clé de l'activité industrielle/services.</span>
+                <span>Purchasing Managers' Index, a key leading indicator of manufacturing/services activity.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Courbe des taux inversée</strong>
-                <span>Taux courts supérieurs aux taux longs, signal historique de récession à venir.</span>
+                <strong>Inverted yield curve</strong>
+                <span>Short-term rates above long-term rates, a historical warning signal for a coming recession.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Output gap</strong>
-                <span>Écart entre le PIB effectif et le PIB potentiel d'une économie.</span>
+                <span>Gap between actual and potential GDP of an economy.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Stagflation</strong>
-                <span>Combinaison rare de croissance faible et d'inflation élevée.</span>
+                <span>Rare combination of weak growth and high inflation.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Taux directeur</strong>
-                <span>Taux fixé par la banque centrale, référence pour tout le coût du crédit dans l'économie.</span>
+                <strong>Policy rate</strong>
+                <span>Rate set by the central bank, the reference for the entire cost of credit in the economy.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Flight to quality</strong>
-                <span>Report des investisseurs vers les actifs les plus sûrs en période de stress.</span>
+                <span>Investor shift toward the safest assets during periods of stress.</span>
             </div>
         </div>
 
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 

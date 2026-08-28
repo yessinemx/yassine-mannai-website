@@ -1795,6 +1795,20 @@ footer {
     font-family: var(--mono);
 }
 
+.footer-credit {
+    margin-top: 6px;
+    font-size: 0.72rem;
+}
+
+.footer-credit a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.footer-credit a:hover {
+    color: var(--accent);
+}
+
 .to-top {
     position: fixed;
     right: 24px;

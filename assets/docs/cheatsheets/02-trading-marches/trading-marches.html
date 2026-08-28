@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les grands marchés de trading — Yassine Mannai</title>
+    <title>The major trading markets, at a glance — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,18 +59,23 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
@@ -219,6 +224,41 @@
             font-size: 0.7em;
         }
 
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,7 +287,10 @@
         }
 
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -336,46 +379,23 @@
             margin-bottom: 14px;
         }
 
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
+            font-size: 8px;
+            color: var(--text-dim);
         }
 
-        .cs-usage-item span {
-            color: var(--text-dim);
-            line-height: 1.3;
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="sheet pole-trading-marches">
+    <div class="sheet pole-trading-markets">
 
         <header class="cs-header">
             <div class="cs-brand">
@@ -386,90 +406,86 @@
                 </div>
             </div>
             <div class="cs-meta">
-                <span class="cs-tag">Trading &amp; Marchés</span><br>
-                Cheatsheet #02 · Août 2026
+                <span class="cs-tag">Trading &amp; Markets</span><br>
+                Cheatsheet #02 · August 2026
             </div>
         </header>
 
         <div class="cs-title">
-            <h1>Les grands marchés de trading, en un coup d'œil</h1>
-            <p>FX, taux, commodities, vol : quatre marchés, quatre logiques de trading différentes.</p>
+            <h1>The major trading markets, at a glance</h1>
+            <p>FX, rates, commodities, vol: four markets, four very different trading logics.</p>
         </div>
 
         <div class="cs-formula">
-            <span class="cs-formula-label">Deux notions transversales</span>
-            <span>Carry : rendement perçu en portant une position, avant tout mouvement de prix</span>
-            <span>Contango (F &gt; S) vs Backwardation (F &lt; S) : structure de la courbe forward</span>
+            <span class="cs-formula-label">Two cross-market concepts</span>
+            <span>Carry: return earned from simply holding a position, before any price move</span>
+            <span>Contango (F &gt; S) vs Backwardation (F &lt; S): shape of the forward curve</span>
         </div>
 
         <div class="cs-grid">
             <div class="cs-card">
-                <h3>Trading FX</h3>
+                <h3>FX Trading</h3>
                 <ul>
-                    <li>Marché le plus liquide au monde, ouvert 24h/24.</li>
-                    <li>Spot, forward, carry trade (emprunter en devise faible, placer en devise à haut rendement).</li>
-                    <li>Piloté par les différentiels de taux et les flux commerciaux.</li>
+                    <li>The most liquid market in the world, open 24 hours a day.</li>
+                    <li>Spot, forward, carry trade (borrow in a low-yield currency, invest in a high-yield one).</li>
+                    <li>Driven by interest rate differentials and trade flows.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Trading Taux</h3>
+                <h3>Rates Trading</h3>
                 <ul>
-                    <li>Se joue sur la courbe des taux (pentification, aplatissement, inversion).</li>
-                    <li>Sensibilité mesurée par la duration et la convexité.</li>
-                    <li>Très réactif aux décisions des banques centrales.</li>
+                    <li>Played on the yield curve (steepening, flattening, inversion).</li>
+                    <li>Sensitivity measured by duration and convexity.</li>
+                    <li>Highly reactive to central bank decisions.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Trading Commo</h3>
+                <h3>Commodities Trading</h3>
                 <ul>
-                    <li>Contango (coût de stockage) vs backwardation (pénurie/rendement de convenance).</li>
-                    <li>Forte saisonnalité (énergie, agricole) et sensibilité géopolitique.</li>
-                    <li>Roll yield : impact du roulement des contrats futures sur la performance.</li>
+                    <li>Contango (storage cost) vs backwardation (scarcity/convenience yield).</li>
+                    <li>Strong seasonality (energy, agriculture) and geopolitical sensitivity.</li>
+                    <li>Roll yield: impact of rolling futures contracts on performance.</li>
                 </ul>
             </div>
             <div class="cs-card">
-                <h3>Trading Vol</h3>
+                <h3>Vol Trading</h3>
                 <ul>
-                    <li>Vol implicite (anticipée) vs vol réalisée (observée).</li>
-                    <li>Smile de volatilité : les options loin de la monnaie coûtent plus cher que Black-Scholes ne le
-                        prédit.</li>
-                    <li>VIX = indicateur de stress de marché, souvent anticorrélé aux actions.</li>
+                    <li>Implied vol (expected) vs realized vol (observed).</li>
+                    <li>Volatility smile: far out-of-the-money options cost more than Black-Scholes predicts.</li>
+                    <li>VIX = market stress gauge, often anti-correlated with equities.</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="cs-section-h" style="font-size:14px;">Les autres marchés en bref</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">The other markets, in brief</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
                 <strong>Repo</strong>
-                <span>Financement court terme collatéralisé par des titres — cœur de la liquidité interbancaire.</span>
+                <span>Short-term financing collateralized by securities — the backbone of interbank liquidity.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Cash Equity</strong>
-                <span>Achat/vente d'actions au comptant, brique de base de toute gestion actions.</span>
+                <span>Buying/selling shares outright — the building block of any equity management business.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Trading systématique</strong>
-                <span>Décisions pilotées par des règles/algorithmes plutôt que par la discrétion d'un trader.</span>
+                <strong>Systematic trading</strong>
+                <span>Decisions driven by rules/algorithms rather than a trader's discretion.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Microstructure</strong>
-                <span>Étude du carnet d'ordres, du bid-ask spread et de l'impact des ordres sur le prix.</span>
+                <span>Study of the order book, the bid-ask spread, and how orders impact price.</span>
             </div>
         </div>
 
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>Chaque marché a son driver dominant : taux directeurs (FX/taux), stockage/saisonnalité (commo),
-                    stress de
-                    marché (vol).</li>
-                <li>Le contango/backwardation n'est pas propre aux commodities : la même logique s'applique aux courbes
-                    FX et
-                    taux.</li>
-                <li>Le trading systématique et la microstructure ne sont pas des marchés en soi, mais des
-                    approches/lentilles
-                    qui s'appliquent à tous les marchés ci-dessus.</li>
+                <li>Each market has its own dominant driver: central bank rates (FX/rates), storage/seasonality (commo),
+                    market stress (vol).</li>
+                <li>Contango/backwardation isn't unique to commodities: the same logic applies to FX and rates curves.
+                </li>
+                <li>Systematic trading and microstructure aren't markets in themselves — they're approaches/lenses that
+                    apply across all the markets above.</li>
             </ol>
         </div>
 
@@ -480,115 +496,115 @@
 
     </div>
 
-    <div class="sheet pole-trading-marches page-break">
+    <div class="sheet pole-trading-markets page-break">
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — Les grands marchés de trading</span>
+            <span>Yassine Mannai · Quant Finance Notes — The major trading markets, at a glance</span>
         </div>
 
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
-                    <th>Critère</th>
+                    <th>Criterion</th>
                     <th>FX</th>
-                    <th>Taux</th>
+                    <th>Rates</th>
                     <th>Commo</th>
                     <th>Vol</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Driver principal</td>
-                    <td>Différentiel de taux</td>
-                    <td>Banques centrales</td>
-                    <td>Offre/demande physique</td>
-                    <td>Stress de marché</td>
+                    <td>Main driver</td>
+                    <td>Rate differential</td>
+                    <td>Central banks</td>
+                    <td>Physical supply/demand</td>
+                    <td>Market stress</td>
                 </tr>
                 <tr>
-                    <td>Horizon typique</td>
-                    <td>Intraday à quelques mois</td>
-                    <td>Semaines à années</td>
-                    <td>Semaines à saisons</td>
-                    <td>Jours à semaines</td>
+                    <td>Typical horizon</td>
+                    <td>Intraday to a few months</td>
+                    <td>Weeks to years</td>
+                    <td>Weeks to seasons</td>
+                    <td>Days to weeks</td>
                 </tr>
                 <tr>
-                    <td>Instrument dominant</td>
+                    <td>Dominant instrument</td>
                     <td>Spot &amp; forward</td>
-                    <td>Futures &amp; swaps de taux</td>
+                    <td>Futures &amp; rate swaps</td>
                     <td>Futures</td>
                     <td>Options &amp; variance swaps</td>
                 </tr>
                 <tr>
-                    <td>Risque clé</td>
-                    <td>Risque de banque centrale</td>
-                    <td>Risque de duration</td>
-                    <td>Risque de stockage/roll</td>
-                    <td>Risque de gamma/vega</td>
+                    <td>Key risk</td>
+                    <td>Central bank risk</td>
+                    <td>Duration risk</td>
+                    <td>Storage/roll risk</td>
+                    <td>Gamma/vega risk</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
-                <h3>Carry trade FX</h3>
-                <p>Emprunter en JPY (taux bas) pour placer en AUD (taux plus élevé) et capter le différentiel de taux,
-                    tant
-                    que le yen ne s'apprécie pas trop.</p>
+                <h3>FX carry trade</h3>
+                <p>Borrow in JPY (low rate) to invest in AUD (higher rate) and capture the rate differential, as long as
+                    the
+                    yen doesn't appreciate too much.</p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Steepener sur courbe US</h3>
-                <p>Parier sur une pentification de la courbe des taux américaine en étant long taux courts / short taux
-                    longs.</p>
+                <h3>US curve steepener</h3>
+                <p>Bet on a steepening of the US yield curve by going long short-term rates / short long-term rates.</p>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Contango pétrole</h3>
-                <p>Le WTI en contango pénalise les ETF qui roulent leurs futures chaque mois : ils achètent plus cher
-                    qu'ils
-                    ne vendent.</p>
+                <h3>Oil in contango</h3>
+                <p>WTI in contango penalizes ETFs that roll their futures every month: they buy higher than they sell.
+                </p>
             </div>
             <div class="cs-card">
-                <h3>Vente de volatilité</h3>
-                <p>Vendre un straddle sur indice pour encaisser la prime, en pariant sur une volatilité réalisée plus
-                    faible
-                    que la volatilité implicite.</p>
+                <h3>Selling volatility</h3>
+                <p>Sell an index straddle to collect the premium, betting that realized volatility will come in lower
+                    than
+                    implied volatility.</p>
             </div>
         </div>
 
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
                 <strong>Carry</strong>
-                <span>Rendement perçu en détenant une position, indépendamment du mouvement de prix.</span>
+                <span>Return earned from holding a position, independent of any price move.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Duration</strong>
-                <span>Sensibilité du prix d'une obligation à une variation des taux d'intérêt.</span>
+                <span>Sensitivity of a bond's price to a change in interest rates.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Roll yield</strong>
-                <span>Gain ou perte généré en roulant un contrat future vers l'échéance suivante.</span>
+                <span>Gain or loss generated by rolling a futures contract into the next expiry.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Smile de volatilité</strong>
-                <span>Courbe de vol implicite par strike, plus élevée loin de la monnaie qu'au centre.</span>
+                <strong>Volatility smile</strong>
+                <span>Implied vol curve by strike, higher away from the money than at the center.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Bid-ask spread</strong>
-                <span>Écart entre le meilleur prix d'achat et de vente affiché sur le marché.</span>
+                <span>Gap between the best buy and sell price quoted in the market.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Slippage</strong>
-                <span>Écart entre le prix attendu d'un ordre et son prix d'exécution réel.</span>
+                <span>Difference between an order's expected price and its actual execution price.</span>
             </div>
         </div>
 
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 

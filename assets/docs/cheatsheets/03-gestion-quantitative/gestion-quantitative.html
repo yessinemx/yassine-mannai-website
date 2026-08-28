@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les piliers de la gestion quantitative — Yassine Mannai</title>
+    <title>The pillars of quantitative portfolio management — Yassine Mannai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
 
         @page {
             size: A4;
-            margin: 12mm 14mm;
+            margin: 0;
         }
 
         html,
@@ -59,18 +59,23 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
             body {
-                background: none;
+                background: var(--bg);
             }
 
             .sheet {
                 width: auto;
-                min-height: 0;
+                min-height: 297mm;
                 margin: 0;
-                padding: 0;
                 box-shadow: none;
             }
         }
@@ -219,6 +224,41 @@
             font-size: 0.7em;
         }
 
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+
         .cs-takeaways {
             background: var(--surface-2);
             border: 1px dashed var(--border);
@@ -247,7 +287,10 @@
         }
 
         .cs-footer {
-            margin-top: auto;
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 10mm;
             padding-top: 10px;
             border-top: 1px solid var(--border);
             display: flex;
@@ -336,46 +379,23 @@
             margin-bottom: 14px;
         }
 
-        .cs-usage-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .cs-usage-grid.cs-usage-grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .cs-usage-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .cs-usage-item strong {
+        .cs-attribution {
+            margin-top: 4px;
+            text-align: center;
             font-family: var(--mono);
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--pole-color);
+            font-size: 8px;
+            color: var(--text-dim);
         }
 
-        .cs-usage-item span {
-            color: var(--text-dim);
-            line-height: 1.3;
+        .cs-attribution a {
+            color: inherit;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="sheet pole-gestion-quantitative">
+    <div class="sheet pole-quant-management">
 
         <header class="cs-header">
             <div class="cs-brand">
@@ -386,88 +406,86 @@
                 </div>
             </div>
             <div class="cs-meta">
-                <span class="cs-tag">Gestion Quantitative</span><br>
-                Cheatsheet #03 · Août 2026
+                <span class="cs-tag">Quantitative Management</span><br>
+                Cheatsheet #03 · August 2026
             </div>
         </header>
 
         <div class="cs-title">
-            <h1>Les piliers de la gestion quantitative</h1>
-            <p>SAA, Total Portfolio Approach, risk parity : comment un portefeuille se construit vraiment.</p>
+            <h1>The pillars of quantitative portfolio management</h1>
+            <p>SAA, Total Portfolio Approach, risk parity: how a portfolio is actually built.</p>
         </div>
 
         <div class="cs-formula">
-            <span class="cs-formula-label">Ratio de Sharpe</span>
-            <span>Sharpe = (R<sub>p</sub> − R<sub>f</sub>) / σ<sub>p</sub> &nbsp;— rendement excédentaire par unité de
-                risque</span>
+            <span class="cs-formula-label">Sharpe ratio</span>
+            <span>Sharpe = (R<sub>p</sub> − R<sub>f</sub>) / σ<sub>p</sub> &nbsp;— excess return per unit of risk</span>
         </div>
 
         <div class="cs-grid">
             <div class="cs-card">
-                <h3>Allocation Stratégique d'Actifs</h3>
+                <h3>Strategic Asset Allocation</h3>
                 <ul>
-                    <li>Répartition cible entre classes d'actifs sur un horizon long (3-10 ans).</li>
-                    <li>Basée sur les rendements/risques attendus et la corrélation entre actifs.</li>
-                    <li>Revue périodiquement, mais pas ajustée au bruit de marché court terme.</li>
+                    <li>Target split across asset classes over a long horizon (3-10 years).</li>
+                    <li>Based on expected returns/risks and cross-asset correlations.</li>
+                    <li>Reviewed periodically, but not adjusted to short-term market noise.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-2">
                 <h3>Total Portfolio Approach</h3>
                 <ul>
-                    <li>Pilotage du portefeuille dans son ensemble plutôt que par silos de classes d'actifs.</li>
-                    <li>Chaque investissement est jugé sur sa contribution marginale au portefeuille total.</li>
-                    <li>Popularisé par les grands fonds souverains et fonds de pension.</li>
+                    <li>Manages the portfolio as a whole rather than in asset-class silos.</li>
+                    <li>Every investment is judged on its marginal contribution to the total portfolio.</li>
+                    <li>Popularized by large sovereign wealth funds and pension funds.</li>
                 </ul>
             </div>
             <div class="cs-card cs-accent-3">
                 <h3>Risk Management</h3>
                 <ul>
-                    <li>Mesure et encadrement du risque : VaR, tracking error, budget de risque par poche.</li>
-                    <li>Distinction risque absolu (perte en capital) vs risque relatif (vs benchmark).</li>
-                    <li>Le risque n'est pas éliminé, il est budgété et suivi.</li>
+                    <li>Measuring and framing risk: VaR, tracking error, risk budget per sleeve.</li>
+                    <li>Distinction between absolute risk (capital loss) and relative risk (vs benchmark).</li>
+                    <li>Risk isn't eliminated — it's budgeted and monitored.</li>
                 </ul>
             </div>
             <div class="cs-card">
                 <h3>Construction &amp; rebalancing</h3>
                 <ul>
-                    <li>Passage de l'allocation cible à un portefeuille concret d'instruments.</li>
-                    <li>Rebalancing : remettre le portefeuille sur ses poids cibles après dérive des marchés.</li>
-                    <li>Arbitrage coût de transaction vs discipline de gestion.</li>
+                    <li>Turning a target allocation into an actual portfolio of instruments.</li>
+                    <li>Rebalancing: bringing the portfolio back to target weights after market drift.</li>
+                    <li>Trade-off between transaction costs and management discipline.</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <h2 class="cs-section-h" style="font-size:14px;">Who uses what?</h2>
         <div class="cs-usage-grid">
             <div class="cs-usage-item">
-                <strong>Fonds de pension</strong>
-                <span>SAA sur longue période, calée sur les engagements de retraite futurs.</span>
+                <strong>Pension funds</strong>
+                <span>SAA over a long horizon, calibrated to future retirement liabilities.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Fonds souverains</strong>
-                <span>Total Portfolio Approach pour arbitrer librement entre toutes les opportunités.</span>
+                <strong>Sovereign wealth funds</strong>
+                <span>Total Portfolio Approach to freely arbitrate across all opportunities.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Hedge funds</strong>
-                <span>Risk parity et budgets de risque fins par stratégie/facteur.</span>
+                <span>Risk parity and fine-grained risk budgets per strategy/factor.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Assureurs</strong>
-                <span>Allocation contrainte par le passif et les exigences de capital réglementaire.</span>
+                <strong>Insurers</strong>
+                <span>Allocation constrained by liabilities and regulatory capital requirements.</span>
             </div>
         </div>
 
         <div class="cs-takeaways">
-            <h3>À retenir</h3>
+            <h3>Key takeaways</h3>
             <ol>
-                <li>La SAA fixe le cadre, le rebalancing le fait vivre — sans discipline de rebalancing, l'allocation
-                    dérive
-                    avec les marchés.</li>
-                <li>Le Total Portfolio Approach rompt avec la logique en silos : un investissement se juge par sa
-                    contribution
-                    au portefeuille global, pas isolément.</li>
-                <li>Le risk management n'est pas une étape finale mais un cadre continu qui contraint chaque décision
-                    d'allocation.</li>
+                <li>SAA sets the framework, rebalancing keeps it alive — without rebalancing discipline, the allocation
+                    drifts with the markets.</li>
+                <li>The Total Portfolio Approach breaks with siloed thinking: an investment is judged by its
+                    contribution to
+                    the whole portfolio, not in isolation.</li>
+                <li>Risk management isn't a final step but a continuous framework that constrains every allocation
+                    decision.</li>
             </ol>
         </div>
 
@@ -478,111 +496,111 @@
 
     </div>
 
-    <div class="sheet pole-gestion-quantitative page-break">
+    <div class="sheet pole-quant-management page-break">
 
         <div class="cs-mini-header">
             <img src="../../../img/fox.png" alt="Yassine Mannai">
-            <span>Yassine Mannai · Quant Finance Notes — Les piliers de la gestion quantitative</span>
+            <span>Yassine Mannai · Quant Finance Notes — The pillars of quantitative portfolio management</span>
         </div>
 
-        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <h2 class="cs-section-h">Comparison table</h2>
         <table class="cs-table">
             <thead>
                 <tr>
-                    <th>Critère</th>
-                    <th>SAA classique</th>
+                    <th>Criterion</th>
+                    <th>Classic SAA</th>
                     <th>Total Portfolio Approach</th>
                     <th>Risk Parity</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Logique</td>
-                    <td>Par classe d'actifs</td>
-                    <td>Portefeuille global unifié</td>
-                    <td>Par contribution au risque</td>
+                    <td>Logic</td>
+                    <td>By asset class</td>
+                    <td>Unified whole portfolio</td>
+                    <td>By risk contribution</td>
                 </tr>
                 <tr>
                     <td>Horizon</td>
-                    <td>Long terme (3-10 ans)</td>
-                    <td>Continu, opportuniste</td>
-                    <td>Continu, rebalancé fréquemment</td>
+                    <td>Long term (3-10 years)</td>
+                    <td>Continuous, opportunistic</td>
+                    <td>Continuous, frequently rebalanced</td>
                 </tr>
                 <tr>
-                    <td>Complexité</td>
-                    <td>Modérée</td>
-                    <td>Élevée (gouvernance, données)</td>
-                    <td>Élevée (modélisation du risque)</td>
+                    <td>Complexity</td>
+                    <td>Moderate</td>
+                    <td>High (governance, data)</td>
+                    <td>High (risk modeling)</td>
                 </tr>
                 <tr>
-                    <td>Utilisateur typique</td>
-                    <td>Fonds de pension, assureur</td>
-                    <td>Fonds souverain, endowment</td>
-                    <td>Hedge fund, gérant multi-actifs</td>
+                    <td>Typical user</td>
+                    <td>Pension fund, insurer</td>
+                    <td>Sovereign fund, endowment</td>
+                    <td>Hedge fund, multi-asset manager</td>
                 </tr>
             </tbody>
         </table>
 
-        <h2 class="cs-section-h">Exemples concrets</h2>
+        <h2 class="cs-section-h">Real-world examples</h2>
         <div class="cs-examples">
             <div class="cs-card">
-                <h3>SAA 60/40</h3>
-                <p>Portefeuille classique 60% actions / 40% obligations, revu tous les 3 ans selon les hypothèses de
-                    marché
-                    long terme.</p>
+                <h3>60/40 SAA</h3>
+                <p>A classic 60% equities / 40% bonds portfolio, reviewed every 3 years based on long-term capital
+                    market
+                    assumptions.</p>
             </div>
             <div class="cs-card cs-accent-2">
-                <h3>Fonds souverain norvégien</h3>
-                <p>Arbitre librement entre actions, obligations et immobilier selon les opportunités, sans silos rigides
+                <h3>Norwegian sovereign fund</h3>
+                <p>Freely arbitrates between equities, bonds and real estate based on opportunities, without rigid silos
                     —
-                    exemple de Total Portfolio Approach.</p>
+                    a Total Portfolio Approach example.</p>
             </div>
             <div class="cs-card cs-accent-3">
-                <h3>Portefeuille risk parity</h3>
-                <p>Actions, obligations et commodities pondérées pour que chacune contribue à parts égales au risque
-                    total,
-                    pas au capital investi.</p>
+                <h3>Risk parity portfolio</h3>
+                <p>Equities, bonds and commodities weighted so each contributes equally to total risk, not to invested
+                    capital.</p>
             </div>
             <div class="cs-card">
-                <h3>Rebalancing calendaire</h3>
-                <p>Un fonds revient chaque trimestre à ses poids cibles, vendant les actifs qui ont surperformé et
-                    achetant
-                    ceux qui ont sous-performé.</p>
+                <h3>Calendar rebalancing</h3>
+                <p>A fund returns to its target weights every quarter, selling assets that outperformed and buying those
+                    that underperformed.</p>
             </div>
         </div>
 
-        <h2 class="cs-section-h">Lexique express</h2>
+        <h2 class="cs-section-h">Quick glossary</h2>
         <div class="cs-usage-grid cs-usage-grid-3">
             <div class="cs-usage-item">
-                <strong>Frontière efficiente</strong>
-                <span>Ensemble des portefeuilles offrant le meilleur rendement pour un niveau de risque donné.</span>
+                <strong>Efficient frontier</strong>
+                <span>Set of portfolios offering the best return for a given level of risk.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Tracking error</strong>
-                <span>Écart-type de la différence de performance entre un portefeuille et son benchmark.</span>
+                <span>Standard deviation of the performance difference between a portfolio and its benchmark.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>Drawdown</strong>
-                <span>Baisse maximale observée entre un sommet et un creux de la valeur du portefeuille.</span>
+                <span>Largest observed decline between a peak and a trough in portfolio value.</span>
             </div>
             <div class="cs-usage-item">
                 <strong>VaR</strong>
-                <span>Perte maximale attendue sur un horizon donné, à un niveau de confiance fixé.</span>
+                <span>Maximum expected loss over a given horizon, at a set confidence level.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Corrélation</strong>
-                <span>Mesure de la co-évolution entre deux actifs, clé de la diversification.</span>
+                <strong>Correlation</strong>
+                <span>Measure of how two assets move together — key to diversification.</span>
             </div>
             <div class="cs-usage-item">
-                <strong>Budget de risque</strong>
-                <span>Part du risque total du portefeuille allouée à chaque stratégie ou classe d'actifs.</span>
+                <strong>Risk budget</strong>
+                <span>Share of total portfolio risk allocated to each strategy or asset class.</span>
             </div>
         </div>
 
         <footer class="cs-footer">
             <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
-            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+            <span>Get the next cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
         </footer>
+        <p class="cs-attribution">Icon by <a href="https://www.flaticon.com/free-icons/fox" target="_blank"
+                rel="noopener noreferrer">Flaticon</a></p>
 
     </div>
 
