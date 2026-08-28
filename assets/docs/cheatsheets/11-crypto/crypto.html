@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptomonnaies & blockchain pour un quant — Yassine Mannai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6f4ef;
+            --surface: #ffffff;
+            --surface-2: #f0ece4;
+            --border: #ded9cd;
+            --text: #1b2333;
+            --text-dim: #59606f;
+            --accent: #0f766e;
+            --accent-2: #6d28d9;
+            --accent-3: #2563eb;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+            --sans: 'Space Grotesk', 'Segoe UI', sans-serif;
+            --serif: 'Fraunces', Georgia, serif;
+            --pole-color: #a16207;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 12mm 14mm;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #d9d5c9;
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.45;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .sheet {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            padding: 14mm 14mm 10mm;
+            background: var(--bg);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .sheet {
+                width: auto;
+                min-height: 0;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+        }
+
+        .cs-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--pole-color);
+        }
+
+        .cs-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cs-brand img {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+        }
+
+        .cs-brand-name {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .cs-brand-name span {
+            display: block;
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-meta {
+            text-align: right;
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-meta .cs-tag {
+            display: inline-block;
+            margin-bottom: 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: var(--pole-color);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .cs-title {
+            margin-bottom: 16px;
+        }
+
+        .cs-title h1 {
+            margin: 0 0 4px;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        .cs-title p {
+            margin: 0;
+            color: var(--text-dim);
+            font-size: 13px;
+            max-width: 90%;
+        }
+
+        .cs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .cs-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            break-inside: avoid;
+        }
+
+        .cs-card h3 {
+            margin: 0 0 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            font-family: var(--mono);
+            font-weight: 700;
+        }
+
+        .cs-card p,
+        .cs-card li {
+            margin: 0 0 4px;
+            font-size: 12.5px;
+            color: var(--text);
+        }
+
+        .cs-card ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+
+        .cs-card.cs-accent-2 h3 {
+            color: var(--accent-2);
+        }
+
+        .cs-card.cs-accent-3 h3 {
+            color: var(--accent-3);
+        }
+
+        .cs-formula {
+            background: var(--text);
+            color: #fff;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            font-family: var(--mono);
+            font-size: 12.5px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .cs-formula .cs-formula-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #b9c2d6;
+        }
+
+        .cs-formula sub {
+            font-size: 0.7em;
+        }
+
+        .cs-takeaways {
+            background: var(--surface-2);
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .cs-takeaways h3 {
+            margin: 0 0 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: var(--mono);
+            font-weight: 700;
+        }
+
+        .cs-takeaways ol {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 12.5px;
+        }
+
+        .cs-takeaways li {
+            margin-bottom: 3px;
+        }
+
+        .cs-footer {
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .cs-footer strong {
+            color: var(--text);
+        }
+
+        .page-break {
+            break-before: page;
+            padding-top: 4mm;
+        }
+
+        .cs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 11.5px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cs-table th,
+        .cs-table td {
+            padding: 7px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cs-table th {
+            background: var(--pole-color);
+            color: #fff;
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .cs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cs-table td:first-child {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .cs-section-h {
+            margin: 0 0 8px;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .cs-mini-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--pole-color);
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-mini-header img {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+        }
+
+        .cs-examples {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sheet pole-crypto">
+
+        <header class="cs-header">
+            <div class="cs-brand">
+                <img src="../../../img/fox.png" alt="Yassine Mannai">
+                <div class="cs-brand-name">
+                    Yassine Mannai
+                    <span>Quant Finance Notes</span>
+                </div>
+            </div>
+            <div class="cs-meta">
+                <span class="cs-tag">Crypto</span><br>
+                Cheatsheet #11 · Août 2026
+            </div>
+        </header>
+
+        <div class="cs-title">
+            <h1>Cryptomonnaies &amp; blockchain : les bases pour un quant</h1>
+            <p>Blockchain, cryptomonnaies, stablecoins, smart contracts : comprendre les briques avant d'y regarder le
+                risque.</p>
+        </div>
+
+        <div class="cs-formula">
+            <span class="cs-formula-label">Capitalisation d'une cryptomonnaie</span>
+            <span>Market cap = Prix unitaire × Supply en circulation</span>
+        </div>
+
+        <div class="cs-grid">
+            <div class="cs-card">
+                <h3>Blockchain</h3>
+                <ul>
+                    <li>Registre distribué, répliqué sur de nombreux nœuds, quasi impossible à falsifier a posteriori.
+                    </li>
+                    <li>Chaque bloc contient un hash du bloc précédent, garantissant l'intégrité de l'historique.</li>
+                    <li>Public (Bitcoin, Ethereum) ou privé/permissionné selon les cas d'usage.</li>
+                </ul>
+            </div>
+            <div class="cs-card cs-accent-2">
+                <h3>Cryptocurrencies</h3>
+                <ul>
+                    <li>Bitcoin : positionné comme réserve de valeur, offre fixe et rare.</li>
+                    <li>Ethereum : plateforme programmable, base de la finance décentralisée (DeFi).</li>
+                    <li>Forte volatilité, corrélation croissante avec les actifs risqués traditionnels.</li>
+                </ul>
+            </div>
+            <div class="cs-card cs-accent-3">
+                <h3>Stablecoins</h3>
+                <ul>
+                    <li>Cryptomonnaies indexées sur un actif stable, le plus souvent le dollar.</li>
+                    <li>Servent de pont entre monde crypto et monnaies traditionnelles pour le règlement.</li>
+                    <li>Le risque clé est la qualité et la transparence des réserves qui les adossent.</li>
+                </ul>
+            </div>
+            <div class="cs-card">
+                <h3>Smart contracts</h3>
+                <ul>
+                    <li>Programmes auto-exécutables déployés sur une blockchain (surtout Ethereum).</li>
+                    <li>Automatisent des accords sans intermédiaire (prêt, échange, dérivé on-chain).</li>
+                    <li>Le code fait foi : une faille de sécurité peut être exploitée de façon irréversible.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <div class="cs-usage-grid">
+            <div class="cs-usage-item">
+                <strong>Trader crypto</strong>
+                <span>Spécule ou couvre des positions sur Bitcoin, Ethereum et autres actifs numériques.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Développeur blockchain</strong>
+                <span>Conçoit et audite des smart contracts pour des protocoles DeFi.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Risk manager</strong>
+                <span>Évalue le risque de contrepartie et de garde (custody) des actifs numériques.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Régulateur</strong>
+                <span>Encadre les stablecoins et les plateformes d'échange pour la protection des investisseurs.</span>
+            </div>
+        </div>
+
+        <div class="cs-takeaways">
+            <h3>À retenir</h3>
+            <ol>
+                <li>Bitcoin et Ethereum répondent à des logiques différentes : réserve de valeur pour l'un, plateforme
+                    programmable pour l'autre.</li>
+                <li>Un stablecoin n'est stable que si ses réserves sont réellement transparentes et suffisantes — c'est
+                    le
+                    point de vigilance numéro un.</li>
+                <li>Un smart contract exécute exactement ce qui est codé, y compris ses failles : d'où l'importance
+                    critique de l'audit de sécurité avant déploiement.</li>
+            </ol>
+        </div>
+
+        <footer class="cs-footer">
+            <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
+            <span>1/2</span>
+        </footer>
+
+    </div>
+
+    <div class="sheet pole-crypto page-break">
+
+        <div class="cs-mini-header">
+            <img src="../../../img/fox.png" alt="Yassine Mannai">
+            <span>Yassine Mannai · Quant Finance Notes — Cryptomonnaies &amp; blockchain pour un quant</span>
+        </div>
+
+        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <table class="cs-table">
+            <thead>
+                <tr>
+                    <th>Critère</th>
+                    <th>Bitcoin</th>
+                    <th>Ethereum</th>
+                    <th>Stablecoin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rôle principal</td>
+                    <td>Réserve de valeur</td>
+                    <td>Plateforme programmable</td>
+                    <td>Moyen de règlement stable</td>
+                </tr>
+                <tr>
+                    <td>Techno sous-jacente</td>
+                    <td>Blockchain Proof of Work</td>
+                    <td>Blockchain Proof of Stake</td>
+                    <td>Adossé à une blockchain existante</td>
+                </tr>
+                <tr>
+                    <td>Volatilité</td>
+                    <td>Élevée</td>
+                    <td>Élevée</td>
+                    <td>Très faible (si bien géré)</td>
+                </tr>
+                <tr>
+                    <td>Cas d'usage type</td>
+                    <td>Investissement long terme</td>
+                    <td>DeFi, smart contracts</td>
+                    <td>Règlement, trading, épargne</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="cs-section-h">Exemples concrets</h2>
+        <div class="cs-examples">
+            <div class="cs-card">
+                <h3>Bitcoin comme réserve de valeur</h3>
+                <p>Certains investisseurs institutionnels allouent une petite part de portefeuille au Bitcoin comme
+                    couverture contre la dévaluation monétaire.</p>
+            </div>
+            <div class="cs-card cs-accent-2">
+                <h3>Ethereum et la DeFi</h3>
+                <p>Un utilisateur prête ou emprunte des cryptoactifs directement via un protocole DeFi, sans passer par
+                    une
+                    banque.</p>
+            </div>
+            <div class="cs-card cs-accent-3">
+                <h3>USDC pour le règlement</h3>
+                <p>Une plateforme d'échange utilise un stablecoin comme USDC pour régler des transactions rapidement,
+                    sans
+                    conversion bancaire classique.</p>
+            </div>
+            <div class="cs-card">
+                <h3>Smart contract de swap</h3>
+                <p>Un contrat intelligent exécute automatiquement l'échange de deux tokens dès que les conditions de
+                    prix
+                    définies sont réunies, sans intermédiaire humain.</p>
+            </div>
+        </div>
+
+        <h2 class="cs-section-h">Lexique express</h2>
+        <div class="cs-usage-grid cs-usage-grid-3">
+            <div class="cs-usage-item">
+                <strong>Blockchain</strong>
+                <span>Registre distribué et infalsifiable de transactions, répliqué sur de nombreux nœuds.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Consensus (PoW/PoS)</strong>
+                <span>Mécanisme qui permet aux participants de s'accorder sur l'état valide de la blockchain.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Wallet</strong>
+                <span>Outil permettant de stocker et gérer les clés d'accès à des actifs numériques.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Smart contract</strong>
+                <span>Programme auto-exécutable déployé sur une blockchain.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>DeFi</strong>
+                <span>Finance décentralisée : services financiers (prêt, échange) sans intermédiaire
+                    traditionnel.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Stablecoin</strong>
+                <span>Cryptomonnaie dont la valeur est indexée sur un actif stable, généralement le dollar.</span>
+            </div>
+        </div>
+
+        <footer class="cs-footer">
+            <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
+            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

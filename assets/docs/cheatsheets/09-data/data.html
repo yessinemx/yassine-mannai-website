@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data pour la finance — Yassine Mannai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6f4ef;
+            --surface: #ffffff;
+            --surface-2: #f0ece4;
+            --border: #ded9cd;
+            --text: #1b2333;
+            --text-dim: #59606f;
+            --accent: #0f766e;
+            --accent-2: #6d28d9;
+            --accent-3: #2563eb;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+            --sans: 'Space Grotesk', 'Segoe UI', sans-serif;
+            --serif: 'Fraunces', Georgia, serif;
+            --pole-color: #4338ca;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 12mm 14mm;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #d9d5c9;
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.45;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .sheet {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            padding: 14mm 14mm 10mm;
+            background: var(--bg);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .sheet {
+                width: auto;
+                min-height: 0;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+        }
+
+        .cs-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--pole-color);
+        }
+
+        .cs-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cs-brand img {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+        }
+
+        .cs-brand-name {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .cs-brand-name span {
+            display: block;
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-meta {
+            text-align: right;
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-meta .cs-tag {
+            display: inline-block;
+            margin-bottom: 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: var(--pole-color);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .cs-title {
+            margin-bottom: 16px;
+        }
+
+        .cs-title h1 {
+            margin: 0 0 4px;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        .cs-title p {
+            margin: 0;
+            color: var(--text-dim);
+            font-size: 13px;
+            max-width: 90%;
+        }
+
+        .cs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .cs-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            break-inside: avoid;
+        }
+
+        .cs-card h3 {
+            margin: 0 0 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            font-family: var(--mono);
+            font-weight: 700;
+        }
+
+        .cs-card p,
+        .cs-card li {
+            margin: 0 0 4px;
+            font-size: 12.5px;
+            color: var(--text);
+        }
+
+        .cs-card ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+
+        .cs-card.cs-accent-2 h3 {
+            color: var(--accent-2);
+        }
+
+        .cs-card.cs-accent-3 h3 {
+            color: var(--accent-3);
+        }
+
+        .cs-formula {
+            background: var(--text);
+            color: #fff;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            font-family: var(--mono);
+            font-size: 12.5px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .cs-formula .cs-formula-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #b9c2d6;
+        }
+
+        .cs-formula sub {
+            font-size: 0.7em;
+        }
+
+        .cs-takeaways {
+            background: var(--surface-2);
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .cs-takeaways h3 {
+            margin: 0 0 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: var(--mono);
+            font-weight: 700;
+        }
+
+        .cs-takeaways ol {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 12.5px;
+        }
+
+        .cs-takeaways li {
+            margin-bottom: 3px;
+        }
+
+        .cs-footer {
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .cs-footer strong {
+            color: var(--text);
+        }
+
+        .page-break {
+            break-before: page;
+            padding-top: 4mm;
+        }
+
+        .cs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 11.5px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cs-table th,
+        .cs-table td {
+            padding: 7px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cs-table th {
+            background: var(--pole-color);
+            color: #fff;
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .cs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cs-table td:first-child {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .cs-section-h {
+            margin: 0 0 8px;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .cs-mini-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--pole-color);
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-mini-header img {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+        }
+
+        .cs-examples {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sheet pole-data">
+
+        <header class="cs-header">
+            <div class="cs-brand">
+                <img src="../../../img/fox.png" alt="Yassine Mannai">
+                <div class="cs-brand-name">
+                    Yassine Mannai
+                    <span>Quant Finance Notes</span>
+                </div>
+            </div>
+            <div class="cs-meta">
+                <span class="cs-tag">Data</span><br>
+                Cheatsheet #09 · Août 2026
+            </div>
+        </header>
+
+        <div class="cs-title">
+            <h1>Data pour la finance : bases de données, SQL, DSA, KDB+/Q</h1>
+            <p>Comment stocker, interroger et structurer efficacement des données financières, y compris à haute
+                fréquence.</p>
+        </div>
+
+        <div class="cs-formula">
+            <span class="cs-formula-label">Complexité algorithmique</span>
+            <span>O(1) accès direct &nbsp;&lt;&nbsp; O(log n) recherche triée &nbsp;&lt;&nbsp; O(n) parcours simple
+                &nbsp;&lt;&nbsp; O(n²) comparaison par paires</span>
+        </div>
+
+        <div class="cs-grid">
+            <div class="cs-card">
+                <h3>Bases de données relationnelles</h3>
+                <ul>
+                    <li>Organisent la donnée en tables reliées par des clés (primary/foreign key).</li>
+                    <li>Garantissent l'intégrité des données via des contraintes.</li>
+                    <li>Standard pour les données transactionnelles (positions, ordres, contreparties).</li>
+                </ul>
+            </div>
+            <div class="cs-card cs-accent-2">
+                <h3>SQL</h3>
+                <ul>
+                    <li>Langage universel pour interroger et manipuler les bases relationnelles.</li>
+                    <li>SELECT / JOIN / GROUP BY : les 3 briques à maîtriser en priorité.</li>
+                    <li>Compétence attendue quasi partout en finance quantitative.</li>
+                </ul>
+            </div>
+            <div class="cs-card cs-accent-3">
+                <h3>DSA (structures de données)</h3>
+                <ul>
+                    <li>Listes, arbres, hashmaps, files : le choix de structure impacte directement la performance.</li>
+                    <li>Un carnet d'ordres est souvent modélisé avec des arbres ou des files triées.</li>
+                    <li>Essentiel pour tout système de trading à faible latence.</li>
+                </ul>
+            </div>
+            <div class="cs-card">
+                <h3>KDB+/Q</h3>
+                <ul>
+                    <li>Base de données colonne spécialisée dans les séries temporelles à très haute fréquence.</li>
+                    <li>Utilisée par les desks de trading haute fréquence pour stocker et interroger le tick data.</li>
+                    <li>Le langage Q est réputé difficile mais extrêmement performant sur ce cas d'usage.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <div class="cs-usage-grid">
+            <div class="cs-usage-item">
+                <strong>Data engineer</strong>
+                <span>Conçoit et maintient les pipelines et bases de données de l'organisation.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Quant developer</strong>
+                <span>Utilise DSA pour optimiser la performance des moteurs de pricing/risque.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Analyste</strong>
+                <span>Interroge les données via SQL pour produire des analyses et reportings.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Trader haute fréquence</strong>
+                <span>S'appuie sur KDB+/Q pour analyser le tick data en temps quasi réel.</span>
+            </div>
+        </div>
+
+        <div class="cs-takeaways">
+            <h3>À retenir</h3>
+            <ol>
+                <li>SQL reste la compétence data la plus universellement utile en finance, avant tout langage de
+                    programmation spécifique.</li>
+                <li>Le choix de structure de données (DSA) devient critique dès que la latence ou le volume de données
+                    augmente fortement.</li>
+                <li>KDB+/Q n'a de sens que pour des volumes de données tick-by-tick très importants — inutile pour un
+                    reporting mensuel classique.</li>
+            </ol>
+        </div>
+
+        <footer class="cs-footer">
+            <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
+            <span>1/2</span>
+        </footer>
+
+    </div>
+
+    <div class="sheet pole-data page-break">
+
+        <div class="cs-mini-header">
+            <img src="../../../img/fox.png" alt="Yassine Mannai">
+            <span>Yassine Mannai · Quant Finance Notes — Data pour la finance</span>
+        </div>
+
+        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <table class="cs-table">
+            <thead>
+                <tr>
+                    <th>Critère</th>
+                    <th>SQL (relationnel)</th>
+                    <th>KDB+/Q</th>
+                    <th>NoSQL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Structure des données</td>
+                    <td>Tables reliées</td>
+                    <td>Colonnes, séries temporelles</td>
+                    <td>Documents/clé-valeur flexibles</td>
+                </tr>
+                <tr>
+                    <td>Cas d'usage type</td>
+                    <td>Positions, transactions</td>
+                    <td>Tick data haute fréquence</td>
+                    <td>Données non structurées, logs</td>
+                </tr>
+                <tr>
+                    <td>Performance sur séries temporelles</td>
+                    <td>Correcte</td>
+                    <td>Excellente</td>
+                    <td>Variable</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="cs-section-h">Exemples concrets</h2>
+        <div class="cs-examples">
+            <div class="cs-card">
+                <h3>Requête SQL</h3>
+                <p>Extraire l'historique de prix d'un titre sur 5 ans avec un simple SELECT ... WHERE ... ORDER BY date.
+                </p>
+            </div>
+            <div class="cs-card cs-accent-2">
+                <h3>Table KDB pour tick data</h3>
+                <p>Stocker des millions de trades par jour et calculer un VWAP en quelques millisecondes grâce au
+                    stockage
+                    colonne de KDB+.</p>
+            </div>
+            <div class="cs-card cs-accent-3">
+                <h3>Hashmap pour lookup</h3>
+                <p>Associer un identifiant d'instrument à ses caractéristiques en accès instantané O(1) plutôt qu'en
+                    parcourant une liste.</p>
+            </div>
+            <div class="cs-card">
+                <h3>Arbre pour un carnet d'ordres</h3>
+                <p>Un carnet d'ordres est souvent implémenté avec un arbre équilibré pour retrouver rapidement le
+                    meilleur
+                    prix d'achat/vente.</p>
+            </div>
+        </div>
+
+        <h2 class="cs-section-h">Lexique express</h2>
+        <div class="cs-usage-grid cs-usage-grid-3">
+            <div class="cs-usage-item">
+                <strong>Clé primaire</strong>
+                <span>Identifiant unique d'une ligne dans une table de base de données.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Index</strong>
+                <span>Structure qui accélère la recherche dans une base de données.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Langage Q</strong>
+                <span>Langage de requête associé à KDB+, orienté traitement de séries temporelles.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Base de séries temporelles</strong>
+                <span>Base de données optimisée pour stocker et interroger des données horodatées.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Big-O</strong>
+                <span>Notation qui mesure la complexité/performance d'un algorithme selon la taille des données.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Order book</strong>
+                <span>Carnet d'ordres recensant en temps réel les offres d'achat et de vente sur un instrument.</span>
+            </div>
+        </div>
+
+        <footer class="cs-footer">
+            <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
+            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actifs alternatifs : hedge funds, private equity & real assets — Yassine Mannai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6f4ef;
+            --surface: #ffffff;
+            --surface-2: #f0ece4;
+            --border: #ded9cd;
+            --text: #1b2333;
+            --text-dim: #59606f;
+            --accent: #0f766e;
+            --accent-2: #6d28d9;
+            --accent-3: #2563eb;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+            --sans: 'Space Grotesk', 'Segoe UI', sans-serif;
+            --serif: 'Fraunces', Georgia, serif;
+            --pole-color: #57534e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 12mm 14mm;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #d9d5c9;
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.45;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .sheet {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            padding: 14mm 14mm 10mm;
+            background: var(--bg);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .sheet {
+                width: auto;
+                min-height: 0;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+        }
+
+        .cs-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--pole-color);
+        }
+
+        .cs-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cs-brand img {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+        }
+
+        .cs-brand-name {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .cs-brand-name span {
+            display: block;
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-meta {
+            text-align: right;
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-meta .cs-tag {
+            display: inline-block;
+            margin-bottom: 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: var(--pole-color);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .cs-title {
+            margin-bottom: 16px;
+        }
+
+        .cs-title h1 {
+            margin: 0 0 4px;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        .cs-title p {
+            margin: 0;
+            color: var(--text-dim);
+            font-size: 13px;
+            max-width: 90%;
+        }
+
+        .cs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .cs-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            break-inside: avoid;
+        }
+
+        .cs-card h3 {
+            margin: 0 0 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            font-family: var(--mono);
+            font-weight: 700;
+        }
+
+        .cs-card p,
+        .cs-card li {
+            margin: 0 0 4px;
+            font-size: 12.5px;
+            color: var(--text);
+        }
+
+        .cs-card ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+
+        .cs-card.cs-accent-2 h3 {
+            color: var(--accent-2);
+        }
+
+        .cs-card.cs-accent-3 h3 {
+            color: var(--accent-3);
+        }
+
+        .cs-formula {
+            background: var(--text);
+            color: #fff;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            font-family: var(--mono);
+            font-size: 12.5px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .cs-formula .cs-formula-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #b9c2d6;
+        }
+
+        .cs-formula sub {
+            font-size: 0.7em;
+        }
+
+        .cs-takeaways {
+            background: var(--surface-2);
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .cs-takeaways h3 {
+            margin: 0 0 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: var(--mono);
+            font-weight: 700;
+        }
+
+        .cs-takeaways ol {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 12.5px;
+        }
+
+        .cs-takeaways li {
+            margin-bottom: 3px;
+        }
+
+        .cs-footer {
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .cs-footer strong {
+            color: var(--text);
+        }
+
+        .page-break {
+            break-before: page;
+            padding-top: 4mm;
+        }
+
+        .cs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 11.5px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cs-table th,
+        .cs-table td {
+            padding: 7px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cs-table th {
+            background: var(--pole-color);
+            color: #fff;
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .cs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cs-table td:first-child {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .cs-section-h {
+            margin: 0 0 8px;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .cs-mini-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--pole-color);
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-mini-header img {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+        }
+
+        .cs-examples {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sheet pole-alternative-assets">
+
+        <header class="cs-header">
+            <div class="cs-brand">
+                <img src="../../../img/fox.png" alt="Yassine Mannai">
+                <div class="cs-brand-name">
+                    Yassine Mannai
+                    <span>Quant Finance Notes</span>
+                </div>
+            </div>
+            <div class="cs-meta">
+                <span class="cs-tag">Alternative Assets</span><br>
+                Cheatsheet #12 · Août 2026
+            </div>
+        </header>
+
+        <div class="cs-title">
+            <h1>Actifs alternatifs : hedge funds, private equity &amp; real assets</h1>
+            <p>Pourquoi ces actifs illiquides séduisent les grands investisseurs institutionnels malgré leurs
+                contraintes.</p>
+        </div>
+
+        <div class="cs-formula">
+            <span class="cs-formula-label">Frais typiques "2 &amp; 20"</span>
+            <span>2% de frais de gestion annuels + 20% de commission de performance — structure historique hedge
+                funds/PE</span>
+        </div>
+
+        <div class="cs-grid">
+            <div class="cs-card">
+                <h3>Hedge Funds</h3>
+                <ul>
+                    <li>Stratégies flexibles (long/short, macro, arbitrage) visant un rendement peu corrélé aux marchés.
+                    </li>
+                    <li>Liquidité généralement mensuelle à trimestrielle, parfois avec périodes de blocage (lock-up).
+                    </li>
+                    <li>Performance très dépendante de la qualité du gérant et de la stratégie choisie.</li>
+                </ul>
+            </div>
+            <div class="cs-card cs-accent-2">
+                <h3>Private Equity &amp; Venture Capital</h3>
+                <ul>
+                    <li>Prise de participation dans des entreprises non cotées (mature pour le PE, early-stage pour le
+                        VC).</li>
+                    <li>Horizon long (7-10 ans), forte illiquidité, appels de capital progressifs.</li>
+                    <li>Création de valeur par l'opérationnel, pas seulement par le marché.</li>
+                </ul>
+            </div>
+            <div class="cs-card cs-accent-3">
+                <h3>Private Debt</h3>
+                <ul>
+                    <li>Prêts directs à des entreprises, hors du système bancaire traditionnel.</li>
+                    <li>Rendement généralement supérieur au crédit coté, en échange d'une illiquidité assumée.</li>
+                    <li>Croissance forte depuis le durcissement des exigences bancaires post-2008.</li>
+                </ul>
+            </div>
+            <div class="cs-card">
+                <h3>Real Assets</h3>
+                <ul>
+                    <li>Immobilier, infrastructure, timberland (forêts) : actifs tangibles à rendement souvent indexé
+                        sur
+                        l'inflation.</li>
+                    <li>Horizon très long, revenus réguliers (loyers, péages, ventes de bois).</li>
+                    <li>Diversification forte car peu corrélés aux marchés financiers classiques.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <div class="cs-usage-grid">
+            <div class="cs-usage-item">
+                <strong>Fonds de pension</strong>
+                <span>Infrastructure et private debt pour des revenus longs et stables adossés aux engagements.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Family office</strong>
+                <span>Private equity et venture capital pour viser une forte croissance de capital sur le long
+                    terme.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Assureur</strong>
+                <span>Real assets pour diversifier et répondre à des engagements de très long terme.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Endowment (fonds universitaire)</strong>
+                <span>Combine hedge funds, PE et real assets pour un rendement diversifié sur des décennies.</span>
+            </div>
+        </div>
+
+        <div class="cs-takeaways">
+            <h3>À retenir</h3>
+            <ol>
+                <li>L'illiquidité n'est pas qu'une contrainte : elle est rémunérée par une prime d'illiquidité que les
+                    investisseurs patients peuvent capter.</li>
+                <li>Le private equity crée de la valeur par la transformation opérationnelle de l'entreprise, pas
+                    uniquement
+                    par la valorisation de marché.</li>
+                <li>Ces actifs demandent un horizon d'investissement long et une gouvernance solide — pas adaptés à un
+                    besoin de liquidité à court terme.</li>
+            </ol>
+        </div>
+
+        <footer class="cs-footer">
+            <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
+            <span>1/2</span>
+        </footer>
+
+    </div>
+
+    <div class="sheet pole-alternative-assets page-break">
+
+        <div class="cs-mini-header">
+            <img src="../../../img/fox.png" alt="Yassine Mannai">
+            <span>Yassine Mannai · Quant Finance Notes — Actifs alternatifs</span>
+        </div>
+
+        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <table class="cs-table">
+            <thead>
+                <tr>
+                    <th>Critère</th>
+                    <th>Hedge Funds</th>
+                    <th>Private Equity</th>
+                    <th>Private Debt</th>
+                    <th>Real Assets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Liquidité</td>
+                    <td>Mensuelle/trimestrielle</td>
+                    <td>Très faible (7-10 ans)</td>
+                    <td>Faible</td>
+                    <td>Très faible</td>
+                </tr>
+                <tr>
+                    <td>Horizon</td>
+                    <td>Court à moyen terme</td>
+                    <td>Long terme</td>
+                    <td>Moyen à long terme</td>
+                    <td>Très long terme</td>
+                </tr>
+                <tr>
+                    <td>Frais typiques</td>
+                    <td>2% + 20%</td>
+                    <td>2% + 20%</td>
+                    <td>1-2% de gestion</td>
+                    <td>1-1,5% de gestion</td>
+                </tr>
+                <tr>
+                    <td>Rendement visé</td>
+                    <td>Absolu, peu corrélé</td>
+                    <td>Élevé, avec risque</td>
+                    <td>Supérieur au crédit coté</td>
+                    <td>Régulier, indexé inflation</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="cs-section-h">Exemples concrets</h2>
+        <div class="cs-examples">
+            <div class="cs-card">
+                <h3>Fonds long/short equity</h3>
+                <p>Un hedge fund achète des actions jugées sous-évaluées et vend à découvert celles jugées surévaluées
+                    pour
+                    neutraliser une partie du risque de marché.</p>
+            </div>
+            <div class="cs-card cs-accent-2">
+                <h3>LBO en private equity</h3>
+                <p>Un fonds de PE rachète une entreprise à l'aide de dette (leverage), en améliore la performance
+                    opérationnelle, puis la revend avec plus-value.</p>
+            </div>
+            <div class="cs-card cs-accent-3">
+                <h3>Direct lending</h3>
+                <p>Un fonds de private debt prête directement à une PME qui n'a pas accès facilement au financement
+                    bancaire classique.</p>
+            </div>
+            <div class="cs-card">
+                <h3>Timberland</h3>
+                <p>Un investisseur institutionnel détient des forêts exploitées durablement pour générer un revenu
+                    régulier
+                    issu de la vente de bois, peu corrélé aux marchés financiers.</p>
+            </div>
+        </div>
+
+        <h2 class="cs-section-h">Lexique express</h2>
+        <div class="cs-usage-grid cs-usage-grid-3">
+            <div class="cs-usage-item">
+                <strong>J-curve</strong>
+                <span>Profil de performance du private equity : pertes initiales suivies d'une création de valeur
+                    progressive.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Prime d'illiquidité</strong>
+                <span>Rendement supplémentaire attendu pour compenser l'impossibilité de revendre facilement un
+                    actif.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Carried interest</strong>
+                <span>Part de la plus-value reversée à l'équipe de gestion d'un fonds, au-delà d'un seuil de
+                    rendement.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Capital call</strong>
+                <span>Appel de fonds progressif auprès des investisseurs au fur et à mesure des besoins
+                    d'investissement.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>NAV</strong>
+                <span>Net Asset Value — valeur nette d'un fonds, souvent estimée pour les actifs non cotés.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Vintage year</strong>
+                <span>Année de lancement d'un fonds, clé pour comparer sa performance à des fonds similaires.</span>
+            </div>
+        </div>
+
+        <footer class="cs-footer">
+            <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
+            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

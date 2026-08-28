@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Économétrie appliquée à la finance — Yassine Mannai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6f4ef;
+            --surface: #ffffff;
+            --surface-2: #f0ece4;
+            --border: #ded9cd;
+            --text: #1b2333;
+            --text-dim: #59606f;
+            --accent: #0f766e;
+            --accent-2: #6d28d9;
+            --accent-3: #2563eb;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+            --sans: 'Space Grotesk', 'Segoe UI', sans-serif;
+            --serif: 'Fraunces', Georgia, serif;
+            --pole-color: #0e7490;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 12mm 14mm;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #d9d5c9;
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.45;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .sheet {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            padding: 14mm 14mm 10mm;
+            background: var(--bg);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .sheet {
+                width: auto;
+                min-height: 0;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+        }
+
+        .cs-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--pole-color);
+        }
+
+        .cs-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cs-brand img {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+        }
+
+        .cs-brand-name {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .cs-brand-name span {
+            display: block;
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-meta {
+            text-align: right;
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-meta .cs-tag {
+            display: inline-block;
+            margin-bottom: 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: var(--pole-color);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .cs-title {
+            margin-bottom: 16px;
+        }
+
+        .cs-title h1 {
+            margin: 0 0 4px;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        .cs-title p {
+            margin: 0;
+            color: var(--text-dim);
+            font-size: 13px;
+            max-width: 90%;
+        }
+
+        .cs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .cs-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            break-inside: avoid;
+        }
+
+        .cs-card h3 {
+            margin: 0 0 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            font-family: var(--mono);
+            font-weight: 700;
+        }
+
+        .cs-card p,
+        .cs-card li {
+            margin: 0 0 4px;
+            font-size: 12.5px;
+            color: var(--text);
+        }
+
+        .cs-card ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+
+        .cs-card.cs-accent-2 h3 {
+            color: var(--accent-2);
+        }
+
+        .cs-card.cs-accent-3 h3 {
+            color: var(--accent-3);
+        }
+
+        .cs-formula {
+            background: var(--text);
+            color: #fff;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            font-family: var(--mono);
+            font-size: 12.5px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .cs-formula .cs-formula-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #b9c2d6;
+        }
+
+        .cs-formula sub {
+            font-size: 0.7em;
+        }
+
+        .cs-takeaways {
+            background: var(--surface-2);
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .cs-takeaways h3 {
+            margin: 0 0 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: var(--mono);
+            font-weight: 700;
+        }
+
+        .cs-takeaways ol {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 12.5px;
+        }
+
+        .cs-takeaways li {
+            margin-bottom: 3px;
+        }
+
+        .cs-footer {
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .cs-footer strong {
+            color: var(--text);
+        }
+
+        .page-break {
+            break-before: page;
+            padding-top: 4mm;
+        }
+
+        .cs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 11.5px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cs-table th,
+        .cs-table td {
+            padding: 7px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cs-table th {
+            background: var(--pole-color);
+            color: #fff;
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .cs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cs-table td:first-child {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .cs-section-h {
+            margin: 0 0 8px;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .cs-mini-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--pole-color);
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+        }
+
+        .cs-mini-header img {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+        }
+
+        .cs-examples {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .cs-usage-grid.cs-usage-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cs-usage-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cs-usage-item strong {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--pole-color);
+        }
+
+        .cs-usage-item span {
+            color: var(--text-dim);
+            line-height: 1.3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sheet pole-econometrie">
+
+        <header class="cs-header">
+            <div class="cs-brand">
+                <img src="../../../img/fox.png" alt="Yassine Mannai">
+                <div class="cs-brand-name">
+                    Yassine Mannai
+                    <span>Quant Finance Notes</span>
+                </div>
+            </div>
+            <div class="cs-meta">
+                <span class="cs-tag">Économétrie</span><br>
+                Cheatsheet #06 · Août 2026
+            </div>
+        </header>
+
+        <div class="cs-title">
+            <h1>Économétrie appliquée à la finance</h1>
+            <p>Séries temporelles, GARCH, non-linéarités : les outils pour modéliser des données financières.</p>
+        </div>
+
+        <div class="cs-formula">
+            <span class="cs-formula-label">GARCH(1,1) — modéliser la volatilité</span>
+            <span>σ<sub>t</sub><sup>2</sup> = ω + α·ε<sub>t−1</sub><sup>2</sup> + β·σ<sub>t−1</sub><sup>2</sup></span>
+        </div>
+
+        <div class="cs-grid">
+            <div class="cs-card">
+                <h3>Séries temporelles</h3>
+                <ul>
+                    <li>Stationnarité : moyenne et variance stables dans le temps, condition clé pour modéliser.</li>
+                    <li>ACF/PACF : outils pour identifier la structure d'autocorrélation d'une série.</li>
+                    <li>Une série de prix est rarement stationnaire ; ses rendements le sont souvent davantage.</li>
+                </ul>
+            </div>
+            <div class="cs-card cs-accent-2">
+                <h3>Économétrie de la volatilité</h3>
+                <ul>
+                    <li>ARCH/GARCH : modélisent le clustering de volatilité (périodes calmes et agitées qui se
+                        regroupent).</li>
+                    <li>σ dépend de son propre passé et des chocs récents.</li>
+                    <li>Base des modèles de risque et de pricing d'options en pratique.</li>
+                </ul>
+            </div>
+            <div class="cs-card cs-accent-3">
+                <h3>Modèles non-linéaires</h3>
+                <ul>
+                    <li>Modèles à changement de régime (Markov-switching) : la dynamique change selon l'état du marché.
+                    </li>
+                    <li>Modèles à seuil (threshold) : le comportement bascule au-delà d'un seuil critique.</li>
+                    <li>Captent des dynamiques que les modèles linéaires classiques ratent.</li>
+                </ul>
+            </div>
+            <div class="cs-card">
+                <h3>Tests de racine unitaire</h3>
+                <ul>
+                    <li>Test ADF (Augmented Dickey-Fuller) : vérifie si une série est stationnaire.</li>
+                    <li>Indispensable avant toute régression sur séries temporelles (sinon régression fallacieuse).</li>
+                    <li>Complété par des tests de cointégration pour les relations de long terme entre séries.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="cs-section-h" style="font-size:14px;">Qui utilise quoi ?</h2>
+        <div class="cs-usage-grid">
+            <div class="cs-usage-item">
+                <strong>Quant researcher</strong>
+                <span>Modélise la dynamique des prix et de la volatilité pour le pricing et le risque.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Risk modeler</strong>
+                <span>Utilise GARCH pour prévoir la volatilité à horizon court dans les modèles de VaR.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Économètre</strong>
+                <span>Teste la stationnarité et la cointégration avant toute modélisation macro.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Data scientist</strong>
+                <span>Combine économétrie classique et machine learning pour la prévision de séries.</span>
+            </div>
+        </div>
+
+        <div class="cs-takeaways">
+            <h3>À retenir</h3>
+            <ol>
+                <li>Ignorer la non-stationnarité est l'erreur n°1 en économétrie financière : elle mène à des
+                    régressions
+                    fallacieuses aux résultats trompeurs.</li>
+                <li>Le clustering de volatilité (périodes calmes/agitées groupées) est la raison d'être des modèles
+                    GARCH.</li>
+                <li>Les modèles non-linéaires ne remplacent pas les modèles linéaires : ils les complètent quand la
+                    relation
+                    entre variables change selon le contexte de marché.</li>
+            </ol>
+        </div>
+
+        <footer class="cs-footer">
+            <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
+            <span>1/2</span>
+        </footer>
+
+    </div>
+
+    <div class="sheet pole-econometrie page-break">
+
+        <div class="cs-mini-header">
+            <img src="../../../img/fox.png" alt="Yassine Mannai">
+            <span>Yassine Mannai · Quant Finance Notes — Économétrie appliquée à la finance</span>
+        </div>
+
+        <h2 class="cs-section-h">Tableau comparatif</h2>
+        <table class="cs-table">
+            <thead>
+                <tr>
+                    <th>Modèle</th>
+                    <th>Objet modélisé</th>
+                    <th>Usage typique</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AR / MA / ARMA</td>
+                    <td>Niveau d'une série stationnaire</td>
+                    <td>Prévision court terme de rendements</td>
+                </tr>
+                <tr>
+                    <td>ARCH / GARCH</td>
+                    <td>Variance conditionnelle</td>
+                    <td>Prévision de volatilité, VaR</td>
+                </tr>
+                <tr>
+                    <td>Markov-switching</td>
+                    <td>Changement de régime</td>
+                    <td>Identification de phases de marché</td>
+                </tr>
+                <tr>
+                    <td>VAR (vecteur autorégressif)</td>
+                    <td>Plusieurs séries interdépendantes</td>
+                    <td>Analyse macro, transmission de chocs</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="cs-section-h">Exemples concrets</h2>
+        <div class="cs-examples">
+            <div class="cs-card">
+                <h3>Prévision de vol avec GARCH</h3>
+                <p>Un desk options calibre un GARCH(1,1) sur les rendements pour anticiper la volatilité à 1 jour et
+                    ajuster
+                    son pricing.</p>
+            </div>
+            <div class="cs-card cs-accent-2">
+                <h3>Trading de paires</h3>
+                <p>Deux actions cointégrées justifient une stratégie pairs trading : parier sur le retour à l'équilibre
+                    de
+                    leur écart de prix.</p>
+            </div>
+            <div class="cs-card cs-accent-3">
+                <h3>VAR macro</h3>
+                <p>Un modèle VAR relie PIB, inflation et taux directeur pour simuler l'effet d'un choc de politique
+                    monétaire.</p>
+            </div>
+            <div class="cs-card">
+                <h3>Changement de régime</h3>
+                <p>Un modèle Markov-switching détecte automatiquement le passage d'un régime de faible à forte
+                    volatilité
+                    sur les marchés actions.</p>
+            </div>
+        </div>
+
+        <h2 class="cs-section-h">Lexique express</h2>
+        <div class="cs-usage-grid cs-usage-grid-3">
+            <div class="cs-usage-item">
+                <strong>Stationnarité</strong>
+                <span>Propriété d'une série dont les caractéristiques statistiques ne changent pas dans le temps.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Autocorrélation</strong>
+                <span>Corrélation d'une série avec ses propres valeurs passées.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Cointégration</strong>
+                <span>Relation de long terme stable entre deux séries pourtant non stationnaires
+                    individuellement.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Hétéroscédasticité</strong>
+                <span>Variance des résidus qui change dans le temps, typique des séries financières.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Racine unitaire</strong>
+                <span>Caractéristique d'une série non stationnaire, testée via ADF.</span>
+            </div>
+            <div class="cs-usage-item">
+                <strong>Backtesting</strong>
+                <span>Validation d'un modèle sur des données historiques avant utilisation en production.</span>
+            </div>
+        </div>
+
+        <footer class="cs-footer">
+            <span><strong>Yassine Mannai</strong> · yassinemannai.com</span>
+            <span>Reçois le prochain cheatsheet → yassinemannai.com/#newsletter &nbsp;·&nbsp; 2/2</span>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
