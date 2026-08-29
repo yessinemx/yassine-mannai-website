@@ -1900,9 +1900,24 @@ footer {
     font-family: var(--mono);
 }
 
+.footer-mark {
+    width: 16px;
+    height: 16px;
+    opacity: 0.55;
+    transition: opacity 0.3s ease;
+}
+
+.footer-credit:hover .footer-mark {
+    opacity: 1;
+}
+
 .footer-credit {
-    margin-top: 6px;
+    margin-top: 8px;
     font-size: 0.72rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
 }
 
 .footer-credit a {
