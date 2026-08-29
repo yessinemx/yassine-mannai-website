@@ -69,16 +69,18 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-inner">
       <a href="#top" class="sidebar-brand" aria-label="Yassine Mannai">
-        <span class="sidebar-photo"><img src="assets/media/me.jpg" alt="Yassine Mannai"></span>
+        <img src="assets/media/me.jpg" alt="Yassine Mannai">
       </a>
       <h1 class="sidebar-name">Yassine <span class="accent">Mannai</span></h1>
       <p class="sidebar-role">MSc 272 - Dauphine PSL</p>
       <p class="sidebar-loc">Based in Paris, France</p>
-      <button type="button" class="cmdk-hint" id="cmdk-hint">
-        <span>Command</span><kbd>Ctrl K</kbd>
-      </button>
 
+      <p class="sidebar-toc">Contents</p>
       <nav class="sidebar-nav" id="nav-links">
+        <span class="nav-rail" aria-hidden="true">
+          <span class="nav-rail-fill"></span>
+          <span class="nav-rail-marker"></span>
+        </span>
         <a href="#about"><span class="idx">01</span> <span class="lbl">About</span></a>
         <a href="#experience"><span class="idx">02</span> <span class="lbl">Experience</span></a>
         <a href="#projects"><span class="idx">03</span> <span class="lbl">Projects</span></a>
@@ -142,6 +144,9 @@
           <a href="assets/docs/resume/Yassine-MANNAI-Resume.pdf" class="btn btn-ghost" target="_blank"
             rel="noopener noreferrer">Resume</a>
         </div>
+        <button type="button" class="cmdk-hint" id="cmdk-hint">
+          <kbd>Ctrl</kbd><kbd>K</kbd><span>jump anywhere</span>
+        </button>
       </div>
     </section>
 
@@ -1217,10 +1222,11 @@
     <div class="cmdk-backdrop" data-cmdk-close></div>
     <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command palette">
       <div class="cmdk-bar">
-        <span class="cmdk-prompt">&gt;</span>
+        <span class="cmdk-prompt" aria-hidden="true">&gt;</span>
         <input type="text" id="cmdk-input" class="cmdk-input" placeholder="Type a command&hellip;" autocomplete="off"
-          spellcheck="false" aria-label="Command" aria-controls="cmdk-list">
-        <kbd class="cmdk-esc" data-cmdk-close>ESC</kbd>
+          spellcheck="false" aria-label="Command" role="combobox" aria-expanded="true" aria-controls="cmdk-list"
+          aria-autocomplete="list">
+        <button type="button" class="cmdk-esc" data-cmdk-close aria-label="Close command palette">ESC</button>
       </div>
       <ul class="cmdk-list" id="cmdk-list" role="listbox" aria-label="Commands"></ul>
       <div class="cmdk-foot">

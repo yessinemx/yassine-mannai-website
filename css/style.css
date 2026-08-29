@@ -410,30 +410,29 @@ footer {
 }
 
 .sidebar-brand {
-    align-self: flex-start;
-}
-
-.sidebar-photo {
     display: block;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
+    align-self: flex-start;
+    width: 132px;
+    aspect-ratio: 4 / 5;
+    border-radius: 6px;
     overflow: hidden;
     border: 1px solid var(--border);
     box-shadow: 0 10px 28px rgba(27, 35, 51, 0.12);
-    transition: transform 0.3s ease;
 }
 
-.sidebar-brand:hover .sidebar-photo {
-    transform: scale(1.04);
-}
-
-.sidebar-photo img {
+.sidebar-brand img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center 28%;
     display: block;
+    filter: grayscale(0.6) contrast(1.05);
+    transition: filter 0.45s ease, transform 0.45s ease;
+}
+
+.sidebar-brand:hover img {
+    filter: none;
+    transform: scale(1.03);
 }
 
 .sidebar-name {
@@ -457,11 +456,62 @@ footer {
     margin: 0;
 }
 
+.sidebar-toc {
+    margin: 30px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.sidebar-toc::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
 .sidebar-nav {
-    margin-top: 38px;
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1px;
+    padding-left: 16px;
+}
+
+/* the nav reads as a chart axis: numbers are ticks, the marker tracks scroll */
+.nav-rail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+}
+
+.nav-rail-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: var(--nav-progress, 0%);
+    background: var(--accent);
+}
+
+.nav-rail-marker {
+    position: absolute;
+    left: -3px;
+    top: var(--nav-progress, 0%);
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 7px solid var(--accent);
+    transform: translateY(-50%);
 }
 
 .sidebar-nav a {
@@ -471,20 +521,19 @@ footer {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 0 10px 14px;
-    border-left: 2px solid transparent;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    padding: 10px 0;
+    transition: color 0.2s ease;
 }
 
 .sidebar-nav a .idx {
     color: var(--text-faint);
     font-size: 0.72rem;
+    transition: color 0.2s ease;
 }
 
 .sidebar-nav a:hover,
 .sidebar-nav a.active {
     color: var(--accent);
-    border-color: var(--accent);
 }
 
 .sidebar-nav a.active .idx {
@@ -1976,33 +2025,38 @@ body.custom-cursor-active .cursor-ring {
    Command palette (Ctrl/Cmd + K)
    ================================================================ */
 .cmdk-hint {
-    margin-top: 16px;
+    margin-top: 24px;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 10px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: var(--surface);
-    color: var(--text-dim);
+    gap: 7px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--text-faint);
     font-family: var(--mono);
-    font-size: 0.7rem;
+    font-size: 0.74rem;
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .cmdk-hint:hover {
-    border-color: var(--accent);
     color: var(--accent);
 }
 
 .cmdk-hint kbd {
     font-family: var(--mono);
-    font-size: 0.62rem;
-    background: var(--surface-2);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 1px 5px;
+    padding: 2px 6px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.cmdk-hint:hover kbd {
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 .cmdk {
@@ -2328,6 +2382,14 @@ body.custom-cursor-active .cursor-ring {
     .sidebar.open {
         transform: translateX(0);
         box-shadow: 0 0 60px rgba(27, 35, 51, 0.15);
+    }
+
+    .sidebar-inner {
+        padding: 34px 28px;
+    }
+
+    .sidebar-brand {
+        width: 104px;
     }
 
     .content {

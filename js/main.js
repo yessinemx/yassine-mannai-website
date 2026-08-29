@@ -380,6 +380,58 @@
 })();
 
 /* ================================================================
+   Nav rail — a chart-axis marker that tracks reading position
+   ================================================================ */
+(function navRail() {
+    const nav = document.getElementById('nav-links');
+    if (!nav) return;
+
+    const links = Array.from(nav.querySelectorAll('a'));
+    const sections = links.map((a) => document.querySelector(a.getAttribute('href')));
+    if (!links.length || sections.some((s) => !s)) return;
+
+    const top = (el) => el.getBoundingClientRect().top + window.scrollY;
+    let queued = false;
+
+    function update() {
+        queued = false;
+        const probe = window.scrollY + window.innerHeight * 0.4;
+
+        let i = 0;
+        for (let k = 0; k < sections.length; k++) {
+            if (top(sections[k]) <= probe) i = k;
+        }
+
+        // how far we are through the current section, 0..1
+        const start = top(sections[i]);
+        const end = sections[i + 1] ? top(sections[i + 1]) : document.documentElement.scrollHeight;
+        const frac = Math.min(Math.max((probe - start) / Math.max(end - start, 1), 0), 1);
+
+        // interpolate between the matching nav item centres so the marker lines up with the labels
+        const navTop = nav.getBoundingClientRect().top;
+        const centre = (el) => el.getBoundingClientRect().top - navTop + el.offsetHeight / 2;
+        const from = centre(links[i]);
+        const to = links[i + 1] ? centre(links[i + 1]) : from;
+        const y = from + (to - from) * frac;
+
+        nav.style.setProperty('--nav-progress', ((y / nav.offsetHeight) * 100).toFixed(2) + '%');
+    }
+
+    window.addEventListener(
+        'scroll',
+        () => {
+            if (!queued) {
+                queued = true;
+                requestAnimationFrame(update);
+            }
+        },
+        { passive: true }
+    );
+    window.addEventListener('resize', update);
+    update();
+})();
+
+/* ================================================================
    Scroll reveal
    ================================================================ */
 (function scrollReveal() {
@@ -1156,18 +1208,23 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
     let results = COMMANDS.slice();
     let active = 0;
+    let lastFocused = null;
 
     function render() {
         if (!results.length) {
             list.innerHTML = '<li class="cmdk-empty">No matching command</li>';
+            input.removeAttribute('aria-activedescendant');
             return;
         }
         list.innerHTML = results.map((c, i) =>
-            `<li class="cmdk-item" role="option" data-i="${i}" aria-selected="${i === active}">`
+            `<li class="cmdk-item" role="option" id="cmdk-opt-${i}" data-i="${i}" aria-selected="${i === active}">`
             + `<span class="cmdk-code">${c.code}</span>`
             + `<span class="cmdk-label">${c.label}</span>`
             + `<span class="cmdk-kind">${c.kind}</span></li>`
         ).join('');
+        input.setAttribute('aria-activedescendant', 'cmdk-opt-' + active);
+        const el = list.querySelector('[aria-selected="true"]');
+        if (el) el.scrollIntoView({ block: 'nearest' });
     }
 
     function filter(q) {
@@ -1179,14 +1236,18 @@ document.getElementById('year').textContent = new Date().getFullYear();
     }
 
     function open() {
+        lastFocused = document.activeElement;
         root.hidden = false;
         input.value = '';
         filter('');
         input.focus();
     }
     function close() {
+        if (root.hidden) return;
         root.hidden = true;
-        input.blur();
+        // hand focus back to whatever opened the palette
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+        lastFocused = null;
     }
     function runActive() {
         const cmd = results[active];
@@ -1204,6 +1265,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
         }
         if (root.hidden) return;
         if (e.key === 'Escape') { e.preventDefault(); close(); }
+        // the palette is a combobox: Tab must not escape it
+        else if (e.key === 'Tab') { e.preventDefault(); input.focus(); }
         else if (e.key === 'ArrowDown') { e.preventDefault(); active = (active + 1) % results.length; render(); }
         else if (e.key === 'ArrowUp') { e.preventDefault(); active = (active - 1 + results.length) % results.length; render(); }
         else if (e.key === 'Enter') { e.preventDefault(); runActive(); }
