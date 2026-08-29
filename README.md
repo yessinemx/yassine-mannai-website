@@ -25,33 +25,12 @@ All data sources are keyless and CORS-safe, fetched client-side.
 Vanilla HTML, CSS (custom properties, no framework) and JavaScript. Fonts:
 Fraunces, Space Grotesk, JetBrains Mono. No bundler or dependencies.
 
-## Structure
-
-```
-index.html          # single page
-css/style.css        # all styling (:root variables at the top)
-js/main.js           # ticker, clocks, gold chart, weather, interactions
-assets/docs/         # PDFs (project reports, slides, thesis, resume)
-assets/img/          # svgs (favicon, city skylines)
-assets/logos/        # organisation / school logos
-media/               # photos
-CNAME                # custom domain
-```
-
 ## Run locally
-
-Serve from the repo root (so relative paths behave like production):
 
 ```powershell
 python -m http.server 8000
 # then open http://localhost:8000
 ```
-
-## Deploy
-
-Hosted on **GitHub Pages** (branch `master`, root) with the custom domain
-`yassinemannai.com` (see `CNAME`). Any push to `master` redeploys. CSS/JS are
-cache-busted with a `?v=` query — bump it after changes to force a refresh.
 
 ## License
 

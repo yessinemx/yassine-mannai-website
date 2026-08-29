@@ -19,3 +19,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+Scope clarification: this MIT License applies only to the reusable code and
+template structure of this repository (HTML/CSS/JS boilerplate, layout
+patterns, and build tooling). It does NOT extend to personal content,
+including but not limited to: written text, cheatsheet/newsletter content,
+resume/CV, biography, project write-ups, photos, logos, and the
+"Yassine Mannai" / "Quant Finance Notes" branding. All such content is
+Copyright (c) 2026 Yassine Mannai, All Rights Reserved, and may not be
+copied, redistributed, or represented as the work of another person without
+explicit written permission.
