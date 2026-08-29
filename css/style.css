@@ -1683,6 +1683,7 @@ footer {
 }
 
 .pub-metric {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -1690,7 +1691,20 @@ footer {
     font-family: var(--mono);
     font-size: 0.78rem;
     color: var(--text-faint);
-    margin: 14px 0 0;
+    margin: 18px 0 0;
+    padding-top: 18px;
+}
+
+.pub-metric::before {
+    content: 'Result';
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.61rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
 }
 
 .pub-metric b {
@@ -1748,8 +1762,41 @@ footer {
 }
 
 .pub h3 {
+    position: relative;
     font-size: 1.2rem;
-    margin-bottom: 6px;
+    margin-bottom: 9px;
+    padding-top: 19px;
+}
+
+.pub h3::before {
+    content: 'Question';
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: var(--mono);
+    font-size: 0.61rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.pub>p:not(.pub-metric) {
+    position: relative;
+    padding-top: 18px;
+}
+
+.pub>p:not(.pub-metric)::before {
+    content: 'Method';
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: var(--mono);
+    font-size: 0.61rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
 }
 
 .pub-sub {
@@ -1762,6 +1809,47 @@ footer {
 .pub p:last-child {
     margin-bottom: 0;
     font-size: 0.95rem;
+}
+
+.section-head h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.section-link {
+    width: 23px;
+    height: 23px;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-faint);
+    background: var(--surface);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.section-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.section-link svg {
+    width: 12px;
+    height: 12px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.section-link.is-copied {
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
 /* ---------------- skills ---------------- */
@@ -1795,7 +1883,324 @@ footer {
 
 /* ---------------- newsletter ---------------- */
 .newsletter-box {
+    max-width: 920px;
+}
+
+.issue-feature {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 30px;
+    align-items: center;
+    margin: 0 0 34px;
+    padding: 0 0 34px;
+    border-bottom: 1px solid var(--border);
+}
+
+.issue-cover {
+    position: relative;
+    min-height: 202px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    background: var(--text);
+    color: #f6f4ef;
+    box-shadow: 10px 10px 0 var(--surface-2);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.issue-cover::after {
+    content: '';
+    position: absolute;
+    width: 135px;
+    height: 135px;
+    right: -68px;
+    bottom: -68px;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 50%;
+}
+
+.issue-cover:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 13px 13px 0 var(--accent);
+}
+
+.issue-cover-no,
+.issue-cover-kicker,
+.issue-cover-meta,
+.issue-status,
+.notes-eyebrow {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.issue-cover-no {
+    font-size: 0.7rem;
+    color: #8bd0c4;
+}
+
+.issue-cover-kicker {
+    margin-top: auto;
+    font-size: 0.54rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.issue-cover-title {
+    position: relative;
+    z-index: 1;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    line-height: 1.05;
+    margin-top: 5px;
+}
+
+.issue-cover-rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.38);
+    margin: 13px 0 9px;
+}
+
+.issue-cover-meta {
+    font-size: 0.53rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.issue-status {
+    color: var(--accent);
+    font-size: 0.68rem;
+}
+
+.issue-feature-copy h3 {
+    margin: 5px 0 8px;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.65rem;
+}
+
+.issue-feature-copy p {
+    max-width: 510px;
+    margin-bottom: 18px;
+}
+
+.issue-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+}
+
+.issue-index-link {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: var(--text-dim);
+}
+
+.issue-index-link:hover {
+    color: var(--accent);
+}
+
+/* ---------------- notes archive ---------------- */
+.notes-page {
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.notes-main {
+    width: min(100% - 48px, 1040px);
+    margin: 0 auto;
+    padding: 42px 0 90px;
+}
+
+.notes-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+}
+
+.notes-back:hover {
+    color: var(--accent);
+}
+
+.notes-header {
+    max-width: 700px;
+    padding: 100px 0 68px;
+}
+
+.notes-eyebrow {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: 0.68rem;
+}
+
+.notes-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 6.25rem);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: 0;
+}
+
+.notes-header h1 span {
+    color: var(--accent);
+}
+
+.notes-header>p:last-child {
+    max-width: 580px;
+    margin: 30px 0 0;
+    font-size: 1.08rem;
+}
+
+.notes-list {
+    border-top: 1px solid var(--text);
+}
+
+.note-entry {
+    display: grid;
+    grid-template-columns: 70px minmax(200px, 2fr) minmax(120px, 1fr) minmax(130px, 1fr) 60px;
+    align-items: center;
+    gap: 18px;
+    min-height: 86px;
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-faint);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+}
+
+.note-entry-live {
+    color: var(--text);
+    position: relative;
+    background: transparent;
+    transition: background 0.2s ease, padding 0.2s ease;
+}
+
+.note-entry-live:hover {
+    padding-left: 20px;
+    background: var(--surface);
+}
+
+.note-no {
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+}
+
+.note-title {
+    min-width: 0;
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: inherit;
+}
+
+.note-entry:not(.note-entry-live) .note-title {
+    color: var(--text-dim);
+}
+
+.note-topic,
+.note-format {
+    color: var(--text-faint);
+}
+
+.note-state {
+    text-align: right;
+    color: var(--text-faint);
+}
+
+.note-entry-live .note-state {
+    color: var(--accent);
+}
+
+.notes-signup {
     max-width: 640px;
+    margin-top: 92px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+}
+
+.notes-signup h2 {
+    margin: 0 0 20px;
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+@media (max-width: 640px) {
+    .section-link {
+        opacity: 1;
+        transform: none;
+    }
+
+    .issue-feature {
+        grid-template-columns: 108px minmax(0, 1fr);
+        gap: 22px;
+    }
+
+    .issue-cover {
+        min-height: 158px;
+        padding: 13px;
+    }
+
+    .issue-cover-title {
+        font-size: 1rem;
+    }
+
+    .issue-feature-copy h3 {
+        font-size: 1.38rem;
+    }
+
+    .issue-feature-copy p {
+        font-size: 0.9rem;
+    }
+
+    .notes-main {
+        width: min(100% - 48px, 1040px);
+        padding-top: 28px;
+    }
+
+    .notes-header {
+        padding: 68px 0 46px;
+    }
+
+    .notes-header h1 {
+        font-size: 3.2rem;
+    }
+
+    .note-entry {
+        grid-template-columns: 42px minmax(0, 1fr) auto;
+        gap: 8px 14px;
+        min-height: 76px;
+    }
+
+    .note-topic,
+    .note-format {
+        grid-column: 2;
+        font-size: 0.65rem;
+    }
+
+    .note-topic {
+        align-self: end;
+    }
+
+    .note-format {
+        display: none;
+    }
+
+    .note-state {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        align-self: center;
+        white-space: nowrap;
+    }
+
+    .note-title {
+        font-size: 1.04rem;
+        line-height: 1.25;
+    }
+}
 }
 
 .newsletter-form {

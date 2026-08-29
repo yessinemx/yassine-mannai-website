@@ -380,6 +380,51 @@
 })();
 
 /* ================================================================
+   Section links — copy a direct, shareable URL from any heading
+   ================================================================ */
+(function sectionLinks() {
+    const icon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 13.5 13.5 10.5M7.4 16.6l-1.5 1.5a3.5 3.5 0 0 1-5-5l3-3a3.5 3.5 0 0 1 5 0M16.6 7.4l1.5-1.5a3.5 3.5 0 0 1 5 5l-3 3a3.5 3.5 0 0 1-5 0" /></svg>';
+
+    document.querySelectorAll('.section[id] .section-head h2').forEach((heading) => {
+        const section = heading.closest('.section');
+        if (!section) return;
+
+        let button = heading.querySelector('.section-link');
+        if (!button) {
+            button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'section-link';
+            button.setAttribute('aria-label', `Copy link to ${heading.textContent.trim()}`);
+            button.title = 'Copy section link';
+            button.innerHTML = icon;
+            heading.append(button);
+        }
+        if (button.dataset.bound) return;
+        button.dataset.bound = 'true';
+        const label = button.getAttribute('aria-label');
+        button.addEventListener('click', async () => {
+            const url = `${window.location.origin}${window.location.pathname}#${section.id}`;
+            try {
+                await navigator.clipboard.writeText(url);
+            } catch {
+                const input = document.createElement('input');
+                input.value = url;
+                document.body.append(input);
+                input.select();
+                document.execCommand('copy');
+                input.remove();
+            }
+            button.classList.add('is-copied');
+            button.setAttribute('aria-label', 'Link copied');
+            window.setTimeout(() => {
+                button.classList.remove('is-copied');
+                button.setAttribute('aria-label', label);
+            }, 1500);
+        });
+    });
+})();
+
+/* ================================================================
    Nav rail — a chart-axis marker that tracks reading position
    ================================================================ */
 (function navRail() {
