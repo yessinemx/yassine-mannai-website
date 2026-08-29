@@ -28,7 +28,7 @@ Fraunces, Space Grotesk, JetBrains Mono. No bundler or dependencies.
 ## Run locally
 
 ```powershell
-python -m http.server 8000
+py -m http.server 8000
 # then open http://localhost:8000
 ```
 

@@ -329,6 +329,17 @@
         els.forEach((el) => el.classList.add('is-visible'));
         return;
     }
+
+    // siblings inside a grid/list cascade instead of all appearing at once
+    const STAGGER_PARENTS = '.research-grid, .pub-list, .timeline, .skills-grid, .events-grid';
+    document.querySelectorAll(STAGGER_PARENTS).forEach((parent) => {
+        Array.from(parent.children)
+            .filter((kid) => kid.classList.contains('reveal'))
+            .forEach((kid, i) => {
+                kid.style.setProperty('--reveal-delay', Math.min(i * 80, 400) + 'ms');
+            });
+    });
+
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -513,13 +524,22 @@
     const fmt = (p) => p >= 1000 ? '$' + Math.round(p).toLocaleString('en-US')
         : p >= 1 ? '$' + p.toFixed(2) : '$' + p.toFixed(4);
 
+    // remembers the last printed value per symbol so a move can flash green/red
+    const lastValues = {};
+    function flashClass(key, value) {
+        const prev = lastValues[key];
+        lastValues[key] = value;
+        if (prev === undefined || prev === value) return '';
+        return value > prev ? ' flash-up' : ' flash-down';
+    }
+
     function cryptoItems(data) {
         return COINS.map((c) => {
             const d = data && data[c.id];
             if (!d || typeof d.usd !== 'number') return '';
             const chg = d.usd_24h_change || 0;
             const up = chg >= 0;
-            return `<span class="tick ${up ? 'up' : 'down'}">${c.sym} ${fmt(d.usd)} `
+            return `<span class="tick ${up ? 'up' : 'down'}${flashClass(c.sym, d.usd)}">${c.sym} ${fmt(d.usd)} `
                 + `${up ? '\u25B2' : '\u25BC'} ${Math.abs(chg).toFixed(2)}%</span>` + sep;
         }).filter(Boolean);
     }
@@ -531,7 +551,7 @@
             if (pv != null) {
                 const chg = ((v - pv) / pv) * 100;
                 const up = chg >= 0;
-                out.push(`<span class="tick ${up ? 'up' : 'down'}">${k} ${v.toFixed(dec)} `
+                out.push(`<span class="tick ${up ? 'up' : 'down'}${flashClass(k, v)}">${k} ${v.toFixed(dec)} `
                     + `${up ? '\u25B2' : '\u25BC'} ${Math.abs(chg).toFixed(2)}%</span>` + sep);
             } else {
                 out.push(`<span class="tick-item">${k} ${v.toFixed(dec)}</span>` + sep);
@@ -604,32 +624,6 @@
 /* ================================================================
    Paris weather (Open-Meteo, no key) — shown under the sidebar location
    ================================================================ */
-(function parisWeather() {
-    const el = document.getElementById('sidebar-weather');
-    if (!el) return;
-    const codes = {
-        0: ['Clear', '\u2600\ufe0f'], 1: ['Mainly clear', '\ud83c\udf24\ufe0f'],
-        2: ['Partly cloudy', '\u26c5'], 3: ['Overcast', '\u2601\ufe0f'],
-        45: ['Fog', '\ud83c\udf2b\ufe0f'], 48: ['Fog', '\ud83c\udf2b\ufe0f'],
-        51: ['Drizzle', '\ud83c\udf26\ufe0f'], 53: ['Drizzle', '\ud83c\udf26\ufe0f'], 55: ['Drizzle', '\ud83c\udf26\ufe0f'],
-        56: ['Freezing drizzle', '\ud83c\udf27\ufe0f'], 57: ['Freezing drizzle', '\ud83c\udf27\ufe0f'],
-        61: ['Rain', '\ud83c\udf27\ufe0f'], 63: ['Rain', '\ud83c\udf27\ufe0f'], 65: ['Rain', '\ud83c\udf27\ufe0f'],
-        66: ['Freezing rain', '\ud83c\udf27\ufe0f'], 67: ['Freezing rain', '\ud83c\udf27\ufe0f'],
-        71: ['Snow', '\ud83c\udf28\ufe0f'], 73: ['Snow', '\ud83c\udf28\ufe0f'], 75: ['Snow', '\ud83c\udf28\ufe0f'], 77: ['Snow', '\ud83c\udf28\ufe0f'],
-        80: ['Showers', '\ud83c\udf26\ufe0f'], 81: ['Showers', '\ud83c\udf26\ufe0f'], 82: ['Showers', '\ud83c\udf26\ufe0f'],
-        85: ['Snow showers', '\ud83c\udf28\ufe0f'], 86: ['Snow showers', '\ud83c\udf28\ufe0f'],
-        95: ['Thunderstorm', '\u26c8\ufe0f'], 96: ['Thunderstorm', '\u26c8\ufe0f'], 99: ['Thunderstorm', '\u26c8\ufe0f'],
-    };
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=48.8566&longitude=2.3522&current=temperature_2m,weather_code')
-        .then((r) => (r.ok ? r.json() : Promise.reject()))
-        .then((d) => {
-            const c = d.current;
-            const info = codes[c.weather_code] || ['', '\ud83c\udf21\ufe0f'];
-            el.textContent = `${info[1]} ${Math.round(c.temperature_2m)}\u00b0C \u00b7 ${info[0]}`;
-        })
-        .catch(() => { });
-})();
-
 /* ================================================================
    Gold-price career chart — real monthly XAU/USD, milestones on the line
    ================================================================ */
@@ -732,14 +726,314 @@
         + '<stop offset="0" stop-color="#d4af37" stop-opacity="0.28"/>'
         + '<stop offset="1" stop-color="#d4af37" stop-opacity="0"/></linearGradient></defs>'
         + grid
-        + `<path class="gold-area" d="${area}" fill="url(#goldFill)"/>`
+        + `<path class="gold-area gold-area-hidden" d="${area}" fill="url(#goldFill)"/>`
         + `<path class="gold-line" d="${line.trim()}" fill="none"/>`
         + ms + years
         + `<text class="gold-axis-title" x="${ml - 62}" y="${(mt + ph / 2).toFixed(1)}" transform="rotate(-90 ${ml - 62} ${(mt + ph / 2).toFixed(1)})" text-anchor="middle">Gold \u00b7 USD/oz</text>`
         + '</svg>';
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const linePath = host.querySelector('.gold-line');
+    const areaPath = host.querySelector('.gold-area');
+    if (linePath && !prefersReducedMotion) {
+        const length = linePath.getTotalLength();
+        linePath.style.strokeDasharray = length;
+        linePath.style.strokeDashoffset = length;
+
+        function drawIn() {
+            linePath.style.strokeDashoffset = '0';
+            if (areaPath) areaPath.classList.remove('gold-area-hidden');
+        }
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            drawIn();
+                            obs.disconnect();
+                        }
+                    });
+                },
+                { threshold: 0.3 }
+            );
+            observer.observe(host);
+        } else {
+            drawIn();
+        }
+    } else if (areaPath) {
+        areaPath.classList.remove('gold-area-hidden');
+    }
 })();
 
 /* ================================================================
    Footer year
    ================================================================ */
 document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ================================================================
+   Intro kicker typewriter
+   ================================================================ */
+(function introTypewriter() {
+    const el = document.getElementById('typewriter');
+    if (!el) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const phrases = [
+        'Still long gold. Still long ambition.',
+        'Short volatility, long curiosity.',
+        'Delta hedged. Dreams, not so much.',
+        'Building models, breaking assumptions.',
+    ];
+
+    if (prefersReducedMotion) {
+        el.textContent = phrases[0];
+        return;
+    }
+
+    let phraseIndex = 0, charIndex = 0, deleting = false;
+
+    function tick() {
+        const phrase = phrases[phraseIndex];
+        if (!deleting) {
+            charIndex++;
+            el.textContent = phrase.slice(0, charIndex);
+            if (charIndex === phrase.length) {
+                deleting = true;
+                setTimeout(tick, 1800);
+                return;
+            }
+        } else {
+            charIndex--;
+            el.textContent = phrase.slice(0, charIndex);
+            if (charIndex === 0) {
+                deleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+        }
+        setTimeout(tick, deleting ? 28 : 45);
+    }
+
+    tick();
+})();
+
+/* ================================================================
+   Animated stat counters — count up once when scrolled into view
+   ================================================================ */
+(function statCounters() {
+    const strip = document.querySelector('.stats-strip');
+    if (!strip) return;
+    const nums = Array.from(strip.querySelectorAll('.stat-num'));
+    if (!nums.length) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const targets = nums.map((n) => parseInt(n.textContent.replace(/[^\d]/g, ''), 10) || 0);
+
+    function animate() {
+        const duration = 1200;
+        const start = performance.now();
+        function frame(now) {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            nums.forEach((n, i) => {
+                n.textContent = Math.round(targets[i] * eased).toString();
+            });
+            if (t < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+    }
+
+    if (!('IntersectionObserver' in window)) {
+        animate();
+        return;
+    }
+    const observer = new IntersectionObserver(
+        (entries, obs) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animate();
+                    obs.disconnect();
+                }
+            });
+        },
+        { threshold: 0.4 }
+    );
+    observer.observe(strip);
+})();
+
+/* ================================================================
+   Tilt effect on project / research cards
+   ================================================================ */
+(function cardTilt() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const cards = document.querySelectorAll('.pub, .research-grid .card');
+    if (!cards.length) return;
+
+    const MAX_TILT = 6;
+
+    cards.forEach((card) => {
+        const isLiftCard = card.classList.contains('card');
+
+        function onMove(e) {
+            const rect = card.getBoundingClientRect();
+            const px = (e.clientX - rect.left) / rect.width - 0.5;
+            const py = (e.clientY - rect.top) / rect.height - 0.5;
+            const rotateY = px * MAX_TILT * 2;
+            const rotateX = py * -MAX_TILT * 2;
+            const lift = isLiftCard ? ' translateY(-4px)' : '';
+            card.style.transform =
+                `perspective(700px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)${lift}`;
+        }
+
+        function onLeave() {
+            card.style.transform = '';
+        }
+
+        card.addEventListener('mousemove', onMove);
+        card.addEventListener('mouseleave', onLeave);
+    });
+})();
+
+/* ================================================================
+   Custom cursor
+   ================================================================ */
+(function customCursor() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring) return;
+
+    document.body.classList.add('custom-cursor-active');
+
+    let mouseX = -100, mouseY = -100;
+    let ringX = -100, ringY = -100;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.left = mouseX + 'px';
+        dot.style.top = mouseY + 'px';
+    });
+
+    function raf() {
+        ringX += (mouseX - ringX) * 0.18;
+        ringY += (mouseY - ringY) * 0.18;
+        ring.style.left = ringX + 'px';
+        ring.style.top = ringY + 'px';
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    const hoverTargets = 'a, button, .btn, .card, .pub, .pub-filter, input, .tick-item';
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(hoverTargets)) ring.classList.add('is-hovering');
+    });
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(hoverTargets)) ring.classList.remove('is-hovering');
+    });
+})();
+
+/* ================================================================
+   Timeline accent line — fills as the section scrolls past
+   ================================================================ */
+(function timelineFill() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const timelines = Array.from(document.querySelectorAll('.timeline'));
+    if (!timelines.length) return;
+
+    let queued = false;
+    function update() {
+        queued = false;
+        const trigger = window.innerHeight * 0.72;
+        timelines.forEach((tl) => {
+            const rect = tl.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+            const progress = (trigger - rect.top) / rect.height;
+            tl.style.setProperty('--fill', Math.max(0, Math.min(1, progress)).toFixed(3));
+        });
+    }
+    function onScroll() {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(update);
+    }
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+})();
+
+/* ================================================================
+   Magnetic buttons
+   ================================================================ */
+(function magneticButtons() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const STRENGTH = 0.3, MAX = 9;
+    document.querySelectorAll('.btn').forEach((btn) => {
+        btn.addEventListener('mousemove', (e) => {
+            const r = btn.getBoundingClientRect();
+            const dx = e.clientX - (r.left + r.width / 2);
+            const dy = e.clientY - (r.top + r.height / 2);
+            const x = Math.max(-MAX, Math.min(MAX, dx * STRENGTH));
+            const y = Math.max(-MAX, Math.min(MAX, dy * STRENGTH));
+            btn.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = '';
+        });
+    });
+})();
+
+/* ================================================================
+   Section headings — scramble into place on first view
+   ================================================================ */
+(function scrambleHeadings() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+    const heads = document.querySelectorAll('.section-head h2');
+    if (!heads.length) return;
+
+    const CHARS = '!<>-_\\/[]{}=+*^?#$%&';
+
+    function scramble(el) {
+        const text = el.dataset.text || '';
+        const duration = 850;
+        const start = performance.now();
+        function frame(now) {
+            const t = Math.min(1, (now - start) / duration);
+            const settled = Math.floor(text.length * t * 1.35);
+            let out = '';
+            for (let i = 0; i < text.length; i++) {
+                const ch = text[i];
+                if (ch === ' ') { out += ' '; continue; }
+                out += i < settled ? ch : CHARS[Math.floor(Math.random() * CHARS.length)];
+            }
+            el.textContent = out;
+            if (t < 1) requestAnimationFrame(frame);
+            else el.textContent = text;
+        }
+        requestAnimationFrame(frame);
+    }
+
+    const observer = new IntersectionObserver(
+        (entries, obs) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    scramble(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.6 }
+    );
+
+    heads.forEach((h) => {
+        h.dataset.text = h.textContent.trim();
+        observer.observe(h);
+    });
+})();
