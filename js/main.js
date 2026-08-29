@@ -1237,7 +1237,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
         { code: 'ABOUT', label: 'Who I am', kind: 'section', run: () => go('#about') },
         { code: 'XP', label: 'Path so far \u2014 experience', kind: 'section', run: () => go('#experience') },
         { code: 'PORT', label: 'Academic projects', kind: 'section', run: () => go('#projects') },
-        { code: 'BSM', label: 'Black-Scholes playground', kind: 'tool', run: () => go('.bs-lab') },
         { code: 'SKILL', label: 'Toolkit \u2014 skills', kind: 'section', run: () => go('#skills') },
         { code: 'VOL', label: 'Volunteering', kind: 'section', run: () => go('#volunteering') },
         { code: 'EVTS', label: 'Conferences & industry events', kind: 'section', run: () => go('#events') },
@@ -1336,61 +1335,4 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if (hint) hint.addEventListener('click', open);
 
     render();
-})();
-
-/* ================================================================
-   Black-Scholes playground — European option, no dividends
-   ================================================================ */
-(function blackScholes() {
-    const lab = document.querySelector('.bs-lab');
-    if (!lab) return;
-    const $ = (id) => document.getElementById(id);
-    const inputs = { S: $('bs-S'), K: $('bs-K'), T: $('bs-T'), V: $('bs-V'), R: $('bs-R') };
-    if (Object.values(inputs).some((el) => !el)) return;
-
-    // Abramowitz & Stegun 26.2.17 normal CDF
-    function normCdf(x) {
-        const t = 1 / (1 + 0.2316419 * Math.abs(x));
-        const d = 0.3989422804014327 * Math.exp(-x * x / 2);
-        const p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937
-            + t * (-1.821255978 + t * 1.330274429))));
-        return x >= 0 ? 1 - p : p;
-    }
-    const normPdf = (x) => 0.3989422804014327 * Math.exp(-x * x / 2);
-
-    function compute() {
-        const S = +inputs.S.value, K = +inputs.K.value, T = +inputs.T.value;
-        const sig = +inputs.V.value, r = +inputs.R.value;
-
-        const sqrtT = Math.sqrt(T);
-        const d1 = (Math.log(S / K) + (r + sig * sig / 2) * T) / (sig * sqrtT);
-        const d2 = d1 - sig * sqrtT;
-        const disc = Math.exp(-r * T);
-
-        const call = S * normCdf(d1) - K * disc * normCdf(d2);
-        const put = K * disc * normCdf(-d2) - S * normCdf(-d1);
-
-        const gamma = normPdf(d1) / (S * sig * sqrtT);
-        const vega = S * normPdf(d1) * sqrtT;
-        const thetaC = (-S * normPdf(d1) * sig / (2 * sqrtT)) - r * K * disc * normCdf(d2);
-        const rhoC = K * T * disc * normCdf(d2);
-
-        $('bs-S-out').textContent = S;
-        $('bs-K-out').textContent = K;
-        $('bs-T-out').textContent = T.toFixed(2) + 'y';
-        $('bs-V-out').textContent = Math.round(sig * 100) + '%';
-        $('bs-R-out').textContent = (r * 100).toFixed(1) + '%';
-
-        $('bs-call').textContent = call.toFixed(2);
-        $('bs-put').textContent = put.toFixed(2);
-        $('bs-dc').textContent = normCdf(d1).toFixed(3);
-        $('bs-dp').textContent = (normCdf(d1) - 1).toFixed(3);
-        $('bs-ga').textContent = gamma.toFixed(4);
-        $('bs-ve').textContent = (vega / 100).toFixed(3);
-        $('bs-th').textContent = (thetaC / 365).toFixed(3);
-        $('bs-rh').textContent = (rhoC / 100).toFixed(3);
-    }
-
-    Object.values(inputs).forEach((el) => el.addEventListener('input', compute));
-    compute();
 })();

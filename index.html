@@ -493,8 +493,6 @@
             strategic asset allocation and quantify regime-dependent
             opportunity costs.
           </p>
-          <p class="pub-metric"><b>SR 0.66</b> <span>regime-conditional vs</span> <b>0.25</b> <span>static,
-              out-of-sample</span></p>
           <div class="pub-meta thesis-meta">
             <a class="pub-repo pub-doc" href="assets/docs/projets/Master-Thesis-Yassine-Mannai.pdf" target="_blank"
               rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -505,68 +503,16 @@
         </div>
       </div>
 
-      <div class="bs-lab reveal">
-        <div class="bs-lab-head">
-          <span class="bs-lab-tag">Interactive</span>
-          <h3>Black-Scholes playground</h3>
-          <p>European option on a non-dividend-paying underlying. Move the inputs &mdash; price and Greeks reprice
-            live.</p>
-        </div>
-        <div class="bs-grid">
-          <div class="bs-inputs">
-            <label class="bs-field">
-              <span class="bs-key">Spot <em>S</em></span>
-              <input type="range" id="bs-S" min="40" max="160" step="1" value="100">
-              <output id="bs-S-out">100</output>
-            </label>
-            <label class="bs-field">
-              <span class="bs-key">Strike <em>K</em></span>
-              <input type="range" id="bs-K" min="40" max="160" step="1" value="100">
-              <output id="bs-K-out">100</output>
-            </label>
-            <label class="bs-field">
-              <span class="bs-key">Maturity <em>T</em></span>
-              <input type="range" id="bs-T" min="0.05" max="3" step="0.05" value="1">
-              <output id="bs-T-out">1.00y</output>
-            </label>
-            <label class="bs-field">
-              <span class="bs-key">Vol <em>&sigma;</em></span>
-              <input type="range" id="bs-V" min="0.05" max="1" step="0.01" value="0.2">
-              <output id="bs-V-out">20%</output>
-            </label>
-            <label class="bs-field">
-              <span class="bs-key">Rate <em>r</em></span>
-              <input type="range" id="bs-R" min="0" max="0.1" step="0.005" value="0.03">
-              <output id="bs-R-out">3.0%</output>
-            </label>
-          </div>
-          <div class="bs-results">
-            <div class="bs-prices">
-              <div class="bs-price"><span>Call</span><b id="bs-call">&mdash;</b></div>
-              <div class="bs-price"><span>Put</span><b id="bs-put">&mdash;</b></div>
-            </div>
-            <div class="bs-greeks">
-              <div><span>&Delta; call</span><b id="bs-dc">&mdash;</b></div>
-              <div><span>&Delta; put</span><b id="bs-dp">&mdash;</b></div>
-              <div><span>&Gamma;</span><b id="bs-ga">&mdash;</b></div>
-              <div><span>Vega <em>/1%</em></span><b id="bs-ve">&mdash;</b></div>
-              <div><span>&Theta; call <em>/day</em></span><b id="bs-th">&mdash;</b></div>
-              <div><span>&rho; call <em>/1%</em></span><b id="bs-rh">&mdash;</b></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="pub-filters reveal" id="pub-filters">
-        <button type="button" class="pub-filter is-active" data-filter="all" aria-pressed="true">All <i>14</i></button>
-        <button type="button" class="pub-filter" data-filter="pricing" aria-pressed="false">Pricing <i>4</i></button>
+        <button type="button" class="pub-filter is-active" data-filter="all" aria-pressed="true">All <i>12</i></button>
+        <button type="button" class="pub-filter" data-filter="pricing" aria-pressed="false">Pricing <i>3</i></button>
         <button type="button" class="pub-filter" data-filter="vol" aria-pressed="false">Volatility <i>2</i></button>
         <button type="button" class="pub-filter" data-filter="systematic" aria-pressed="false">Systematic
           <i>4</i></button>
         <button type="button" class="pub-filter" data-filter="allocation" aria-pressed="false">Allocation
           <i>2</i></button>
         <button type="button" class="pub-filter" data-filter="stats" aria-pressed="false">Stats &amp; ML
-          <i>2</i></button>
+          <i>1</i></button>
       </div>
       <div class="pub-list" id="pub-list">
         <article class="pub reveal" data-topic="pricing">
