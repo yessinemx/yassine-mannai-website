@@ -89,7 +89,7 @@ ul {
     position: fixed;
     inset: 0;
     z-index: 0;
-    opacity: 0.5;
+    opacity: 0.3;
 }
 
 .grain {
@@ -973,15 +973,18 @@ footer {
     stroke-width: 2.5;
     stroke-linejoin: round;
     stroke-linecap: round;
-    transition: stroke-dashoffset 1.8s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.gold-area {
-    transition: opacity 1s ease 0.9s;
+/* wipes left-to-right so the line prints in like a replay */
+.gold-clip-rect {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transform-box: fill-box;
+    transition: transform 1.8s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.gold-area.gold-area-hidden {
-    opacity: 0;
+.gold-chart.is-drawn .gold-clip-rect {
+    transform: scaleX(1);
 }
 
 .gold-grid {
@@ -1909,6 +1912,19 @@ footer {
    Responsive
    ================================================================ */
 /* ---------------- custom cursor ---------------- */
+.cursor-trail {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+body.custom-cursor-active .cursor-trail {
+    opacity: 1;
+}
+
 @media (hover: hover) and (pointer: fine) {
 
     body.custom-cursor-active,
@@ -1954,6 +1970,352 @@ body.custom-cursor-active .cursor-ring {
     width: 52px;
     height: 52px;
     border-color: var(--accent-2);
+}
+
+/* ================================================================
+   Command palette (Ctrl/Cmd + K)
+   ================================================================ */
+.cmdk-hint {
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.cmdk-hint:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.cmdk-hint kbd {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+}
+
+.cmdk {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 12vh 20px 20px;
+}
+
+.cmdk[hidden] {
+    display: none;
+}
+
+.cmdk-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(27, 35, 51, 0.45);
+    backdrop-filter: blur(3px);
+}
+
+.cmdk-panel {
+    position: relative;
+    width: min(560px, 100%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 24px 70px rgba(27, 35, 51, 0.28);
+    overflow: hidden;
+    animation: cmdk-in 0.16s ease-out;
+}
+
+@keyframes cmdk-in {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.cmdk-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.cmdk-prompt {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.cmdk-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.cmdk-esc {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--text-faint);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    cursor: pointer;
+}
+
+.cmdk-list {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    max-height: 46vh;
+    overflow-y: auto;
+}
+
+.cmdk-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.cmdk-item[aria-selected="true"] {
+    background: var(--surface-2);
+}
+
+.cmdk-code {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    min-width: 54px;
+    text-align: center;
+}
+
+.cmdk-label {
+    flex: 1;
+    color: var(--text);
+}
+
+.cmdk-kind {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    color: var(--text-faint);
+}
+
+.cmdk-empty {
+    padding: 18px 12px;
+    text-align: center;
+    color: var(--text-faint);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+}
+
+.cmdk-foot {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-alt);
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    color: var(--text-faint);
+}
+
+.cmdk-foot kbd {
+    font-family: var(--mono);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin-right: 3px;
+}
+
+/* ================================================================
+   Black-Scholes playground
+   ================================================================ */
+.bs-lab {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    padding: 28px 30px;
+    margin-bottom: 40px;
+}
+
+.bs-lab-head {
+    margin-bottom: 22px;
+}
+
+.bs-lab-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent-2);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-bottom: 12px;
+}
+
+.bs-lab-head h3 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+}
+
+.bs-lab-head p {
+    font-size: 0.92rem;
+    margin: 0;
+    max-width: 60ch;
+}
+
+.bs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 34px;
+    align-items: start;
+}
+
+.bs-field {
+    display: grid;
+    grid-template-columns: 110px 1fr 62px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.bs-key {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: var(--text-dim);
+}
+
+.bs-key em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.bs-field input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.bs-field output {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.bs-prices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.bs-price {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-alt);
+    padding: 14px 16px;
+    text-align: center;
+}
+
+.bs-price span {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 4px;
+}
+
+.bs-price b {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+}
+
+.bs-greeks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.bs-greeks div {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 10px;
+    text-align: center;
+}
+
+.bs-greeks span {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    color: var(--text-faint);
+    margin-bottom: 3px;
+}
+
+.bs-greeks span em {
+    font-style: normal;
+    opacity: 0.7;
+}
+
+.bs-greeks b {
+    font-family: var(--mono);
+    font-size: 0.88rem;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 780px) {
+    .bs-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .bs-field {
+        grid-template-columns: 96px 1fr 56px;
+    }
+
+    .bs-greeks {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 980px) {
@@ -2038,6 +2400,11 @@ body.custom-cursor-active .cursor-ring {
     .journey-stop {
         transform: none;
         opacity: 1;
+        transition: none;
+    }
+
+    .gold-clip-rect {
+        transform: none;
         transition: none;
     }
 

@@ -1,40 +1,57 @@
 /* ================================================================
-   Market line background — a slow scrolling price path over a faint
-   grid, echoing the markets rather than a starfield.
+   Monte Carlo background — geometric Brownian motion paths fanning out
+   from a common origin, with the analytic ±1σ cone. Scrolling advances
+   the simulation clock, so moving down the page moves forward in time.
    ================================================================ */
-(function marketBackground() {
+(function monteCarloBackground() {
     const canvas = document.getElementById('net-bg');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const STEP = 46;   // px between price points
-    const SPEED = 0.35; // px per frame
-    let width, height, pts, offset = 0, running = false;
+    const PATHS = 8;
+    const STEPS = 260;
+    const PX_PER_STEP = 11;
+    const MU = 0.08;      // drift
+    const SIGMA = 0.55;   // vol
+    const DT = 1 / 120;
 
-    const clampY = (y) => Math.max(height * 0.22, Math.min(height * 0.82, y));
-    const nextY = (prev) => clampY(prev + (Math.random() - 0.5) * height * 0.14);
+    let width, height, paths, running = false;
+    let drift = 0, scrollShift = 0;
+
+    // Box-Muller standard normal
+    function gauss() {
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+    }
+
+    function simulate() {
+        paths = [];
+        for (let p = 0; p < PATHS; p++) {
+            const s = [1];
+            for (let i = 1; i < STEPS; i++) {
+                s.push(s[i - 1] * Math.exp((MU - 0.5 * SIGMA * SIGMA) * DT + SIGMA * Math.sqrt(DT) * gauss()));
+            }
+            paths.push(s);
+        }
+    }
+
+    const Y = (v) => height * 0.5 - Math.log(v) * height * 0.28;
+    const X = (i) => i * PX_PER_STEP - drift - scrollShift;
 
     function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
-        const need = Math.ceil(width / STEP) + 4;
-        if (!pts) {
-            pts = [];
-            let y = height * 0.55;
-            for (let i = 0; i < need; i++) { pts.push(y); y = nextY(y); }
-        } else {
-            while (pts.length < need) pts.push(nextY(pts[pts.length - 1]));
-        }
     }
 
-    function tracePath() {
-        ctx.beginPath();
-        for (let i = 0; i < pts.length; i++) {
-            const x = i * STEP - offset;
-            if (i === 0) ctx.moveTo(x, pts[i]);
-            else ctx.lineTo(x, pts[i]);
-        }
+    function updateScroll() {
+        const doc = document.documentElement;
+        const max = Math.max(1, doc.scrollHeight - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, window.scrollY / max));
+        const travel = Math.max(0, STEPS * PX_PER_STEP - width);
+        scrollShift = progress * travel;
     }
 
     function draw() {
@@ -42,42 +59,71 @@
         ctx.lineJoin = 'round';
 
         // faint horizontal grid
-        ctx.strokeStyle = 'rgba(27, 35, 51, 0.06)';
+        ctx.strokeStyle = 'rgba(27, 35, 51, 0.05)';
         ctx.lineWidth = 1;
-        const rows = 6;
-        for (let i = 1; i < rows; i++) {
-            const y = (height / rows) * i;
+        for (let i = 1; i < 6; i++) {
+            const y = (height / 6) * i;
             ctx.beginPath();
             ctx.moveTo(0, y);
             ctx.lineTo(width, y);
             ctx.stroke();
         }
 
-        // area under the line
-        tracePath();
-        ctx.lineTo((pts.length - 1) * STEP - offset, height);
-        ctx.lineTo(-offset, height);
+        // analytic ±1σ cone: log S_t ~ N((mu - sigma²/2)t, sigma²t)
+        ctx.beginPath();
+        for (let i = 0; i < STEPS; i++) {
+            const t = i * DT;
+            const up = Math.exp((MU - 0.5 * SIGMA * SIGMA) * t + SIGMA * Math.sqrt(t));
+            i === 0 ? ctx.moveTo(X(i), Y(up)) : ctx.lineTo(X(i), Y(up));
+        }
+        for (let i = STEPS - 1; i >= 0; i--) {
+            const t = i * DT;
+            const dn = Math.exp((MU - 0.5 * SIGMA * SIGMA) * t - SIGMA * Math.sqrt(t));
+            ctx.lineTo(X(i), Y(dn));
+        }
         ctx.closePath();
-        const grad = ctx.createLinearGradient(0, 0, 0, height);
-        grad.addColorStop(0, 'rgba(15, 118, 110, 0.12)');
-        grad.addColorStop(1, 'rgba(15, 118, 110, 0)');
-        ctx.fillStyle = grad;
+        ctx.fillStyle = 'rgba(15, 118, 110, 0.07)';
         ctx.fill();
 
-        // the price line
-        tracePath();
-        ctx.strokeStyle = 'rgba(15, 118, 110, 0.55)';
+        // simulated paths
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(15, 118, 110, 0.22)';
+        paths.forEach((s, p) => {
+            if (p === 0) return;
+            ctx.beginPath();
+            for (let i = 0; i < STEPS; i++) {
+                i === 0 ? ctx.moveTo(X(i), Y(s[i])) : ctx.lineTo(X(i), Y(s[i]));
+            }
+            ctx.stroke();
+        });
+
+        // one highlighted "realised" path
+        ctx.beginPath();
+        const lead = paths[0];
+        for (let i = 0; i < STEPS; i++) {
+            i === 0 ? ctx.moveTo(X(i), Y(lead[i])) : ctx.lineTo(X(i), Y(lead[i]));
+        }
+        ctx.strokeStyle = 'rgba(15, 118, 110, 0.75)';
         ctx.lineWidth = 2;
         ctx.stroke();
+
+        // expected value line
+        ctx.beginPath();
+        for (let i = 0; i < STEPS; i++) {
+            const m = Math.exp((MU - 0.5 * SIGMA * SIGMA) * i * DT);
+            i === 0 ? ctx.moveTo(X(i), Y(m)) : ctx.lineTo(X(i), Y(m));
+        }
+        ctx.strokeStyle = 'rgba(109, 40, 217, 0.35)';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
     }
 
     function step() {
-        offset += SPEED;
-        if (offset >= STEP) {
-            offset -= STEP;
-            pts.shift();
-            pts.push(nextY(pts[pts.length - 1]));
-        }
+        drift += 0.12;
+        // loop the auto-drift so the fan never runs off screen
+        if (drift > PX_PER_STEP * 40) drift = 0;
         draw();
         if (!prefersReducedMotion && !document.hidden) requestAnimationFrame(step);
         else running = false;
@@ -90,10 +136,23 @@
         }
     }
 
-    window.addEventListener('resize', resize);
-    // Pause the loop while the tab is hidden to save battery/CPU.
+    let queued = false;
+    window.addEventListener('scroll', () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+            queued = false;
+            updateScroll();
+            if (prefersReducedMotion) draw();
+        });
+    }, { passive: true });
+
+    window.addEventListener('resize', () => { resize(); updateScroll(); if (prefersReducedMotion) draw(); });
     document.addEventListener('visibilitychange', start);
+
     resize();
+    simulate();
+    updateScroll();
     start();
     if (prefersReducedMotion) draw();
 })();
@@ -721,48 +780,36 @@
     });
 
     host.innerHTML =
-        `<svg class="gold-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Gold price with career milestones, June 2023 to now">`
+        `<svg class="gold-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Gold price with career milestones, 2020 to now">`
         + '<defs><linearGradient id="goldFill" x1="0" y1="0" x2="0" y2="1">'
         + '<stop offset="0" stop-color="#d4af37" stop-opacity="0.28"/>'
-        + '<stop offset="1" stop-color="#d4af37" stop-opacity="0"/></linearGradient></defs>'
+        + '<stop offset="1" stop-color="#d4af37" stop-opacity="0"/></linearGradient>'
+        + `<clipPath id="goldClip"><rect class="gold-clip-rect" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`
         + grid
-        + `<path class="gold-area gold-area-hidden" d="${area}" fill="url(#goldFill)"/>`
+        + '<g clip-path="url(#goldClip)">'
+        + `<path class="gold-area" d="${area}" fill="url(#goldFill)"/>`
         + `<path class="gold-line" d="${line.trim()}" fill="none"/>`
+        + '</g>'
         + ms + years
         + `<text class="gold-axis-title" x="${ml - 62}" y="${(mt + ph / 2).toFixed(1)}" transform="rotate(-90 ${ml - 62} ${(mt + ph / 2).toFixed(1)})" text-anchor="middle">Gold \u00b7 USD/oz</text>`
         + '</svg>';
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const linePath = host.querySelector('.gold-line');
-    const areaPath = host.querySelector('.gold-area');
-    if (linePath && !prefersReducedMotion) {
-        const length = linePath.getTotalLength();
-        linePath.style.strokeDasharray = length;
-        linePath.style.strokeDashoffset = length;
-
-        function drawIn() {
-            linePath.style.strokeDashoffset = '0';
-            if (areaPath) areaPath.classList.remove('gold-area-hidden');
-        }
-
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver(
-                (entries, obs) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            drawIn();
-                            obs.disconnect();
-                        }
-                    });
-                },
-                { threshold: 0.3 }
-            );
-            observer.observe(host);
-        } else {
-            drawIn();
-        }
-    } else if (areaPath) {
-        areaPath.classList.remove('gold-area-hidden');
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        host.classList.add('is-drawn');
+    } else {
+        const observer = new IntersectionObserver(
+            (entries, obs) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        host.classList.add('is-drawn');
+                        obs.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+        observer.observe(host);
     }
 })();
 
@@ -911,18 +958,53 @@ document.getElementById('year').textContent = new Date().getFullYear();
     let mouseX = -100, mouseY = -100;
     let ringX = -100, ringY = -100;
 
+    // trail canvas — the cursor leaves a stepped tape, like a tick chart
+    const trail = document.getElementById('cursor-trail');
+    const tctx = trail ? trail.getContext('2d') : null;
+    const LIFE = 650;
+    let points = [];
+
+    function resizeTrail() {
+        if (!trail) return;
+        trail.width = window.innerWidth;
+        trail.height = window.innerHeight;
+    }
+    resizeTrail();
+    window.addEventListener('resize', resizeTrail);
+
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         dot.style.left = mouseX + 'px';
         dot.style.top = mouseY + 'px';
+        if (tctx) points.push({ x: mouseX, y: mouseY, t: performance.now() });
     });
 
-    function raf() {
+    function drawTrail(now) {
+        if (!tctx) return;
+        points = points.filter((p) => now - p.t < LIFE);
+        tctx.clearRect(0, 0, trail.width, trail.height);
+        if (points.length < 2) return;
+        tctx.lineWidth = 1.5;
+        tctx.lineJoin = 'round';
+        for (let i = 1; i < points.length; i++) {
+            const p0 = points[i - 1], p1 = points[i];
+            const age = (now - p1.t) / LIFE;
+            tctx.strokeStyle = `rgba(15, 118, 110, ${(1 - age) * 0.45})`;
+            tctx.beginPath();
+            tctx.moveTo(p0.x, p0.y);
+            tctx.lineTo(p1.x, p0.y);
+            tctx.lineTo(p1.x, p1.y);
+            tctx.stroke();
+        }
+    }
+
+    function raf(now) {
         ringX += (mouseX - ringX) * 0.18;
         ringY += (mouseY - ringY) * 0.18;
         ring.style.left = ringX + 'px';
         ring.style.top = ringY + 'px';
+        drawTrail(now);
         requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
@@ -1036,4 +1118,171 @@ document.getElementById('year').textContent = new Date().getFullYear();
         h.dataset.text = h.textContent.trim();
         observer.observe(h);
     });
+})();
+
+/* ================================================================
+   Command palette — Bloomberg-style navigation on Ctrl/Cmd + K
+   ================================================================ */
+(function commandPalette() {
+    const root = document.getElementById('cmdk');
+    const input = document.getElementById('cmdk-input');
+    const list = document.getElementById('cmdk-list');
+    const hint = document.getElementById('cmdk-hint');
+    if (!root || !input || !list) return;
+
+    const go = (sel) => {
+        const target = document.querySelector(sel);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const openTab = (url) => window.open(url, '_blank', 'noopener,noreferrer');
+
+    const COMMANDS = [
+        { code: 'ABOUT', label: 'Who I am', kind: 'section', run: () => go('#about') },
+        { code: 'XP', label: 'Path so far \u2014 experience', kind: 'section', run: () => go('#experience') },
+        { code: 'PORT', label: 'Academic projects', kind: 'section', run: () => go('#projects') },
+        { code: 'BSM', label: 'Black-Scholes playground', kind: 'tool', run: () => go('.bs-lab') },
+        { code: 'SKILL', label: 'Toolkit \u2014 skills', kind: 'section', run: () => go('#skills') },
+        { code: 'VOL', label: 'Volunteering', kind: 'section', run: () => go('#volunteering') },
+        { code: 'EVTS', label: 'Conferences & industry events', kind: 'section', run: () => go('#events') },
+        { code: 'BYND', label: 'Beyond the desk', kind: 'section', run: () => go('#beyond') },
+        { code: 'NOTE', label: 'Quant Finance Notes \u2014 newsletter', kind: 'section', run: () => go('#newsletter') },
+        { code: 'CONT', label: "Let's talk \u2014 contact", kind: 'section', run: () => go('#contact') },
+        { code: 'CV', label: 'Open resume (PDF)', kind: 'file', run: () => openTab('assets/docs/resume/Yassine-MANNAI-Resume.pdf') },
+        { code: 'GH', label: 'GitHub profile', kind: 'link', run: () => openTab('https://github.com/yessinemx') },
+        { code: 'LI', label: 'LinkedIn profile', kind: 'link', run: () => openTab('https://www.linkedin.com/in/yassine-mannai') },
+        { code: 'MAIL', label: 'Email me', kind: 'link', run: () => { window.location.href = 'mailto:contact@yassinemannai.com'; } },
+        { code: 'TOP', label: 'Back to top', kind: 'nav', run: () => go('#top') },
+    ];
+
+    let results = COMMANDS.slice();
+    let active = 0;
+
+    function render() {
+        if (!results.length) {
+            list.innerHTML = '<li class="cmdk-empty">No matching command</li>';
+            return;
+        }
+        list.innerHTML = results.map((c, i) =>
+            `<li class="cmdk-item" role="option" data-i="${i}" aria-selected="${i === active}">`
+            + `<span class="cmdk-code">${c.code}</span>`
+            + `<span class="cmdk-label">${c.label}</span>`
+            + `<span class="cmdk-kind">${c.kind}</span></li>`
+        ).join('');
+    }
+
+    function filter(q) {
+        const s = q.trim().toLowerCase();
+        results = !s ? COMMANDS.slice() : COMMANDS.filter((c) =>
+            c.code.toLowerCase().includes(s) || c.label.toLowerCase().includes(s));
+        active = 0;
+        render();
+    }
+
+    function open() {
+        root.hidden = false;
+        input.value = '';
+        filter('');
+        input.focus();
+    }
+    function close() {
+        root.hidden = true;
+        input.blur();
+    }
+    function runActive() {
+        const cmd = results[active];
+        if (!cmd) return;
+        close();
+        cmd.run();
+    }
+
+    document.addEventListener('keydown', (e) => {
+        const combo = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k';
+        if (combo) {
+            e.preventDefault();
+            root.hidden ? open() : close();
+            return;
+        }
+        if (root.hidden) return;
+        if (e.key === 'Escape') { e.preventDefault(); close(); }
+        else if (e.key === 'ArrowDown') { e.preventDefault(); active = (active + 1) % results.length; render(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); active = (active - 1 + results.length) % results.length; render(); }
+        else if (e.key === 'Enter') { e.preventDefault(); runActive(); }
+    });
+
+    input.addEventListener('input', () => filter(input.value));
+
+    list.addEventListener('click', (e) => {
+        const item = e.target.closest('.cmdk-item');
+        if (!item) return;
+        active = Number(item.dataset.i);
+        runActive();
+    });
+    list.addEventListener('mousemove', (e) => {
+        const item = e.target.closest('.cmdk-item');
+        if (!item) return;
+        const i = Number(item.dataset.i);
+        if (i !== active) { active = i; render(); }
+    });
+
+    root.querySelectorAll('[data-cmdk-close]').forEach((el) => el.addEventListener('click', close));
+    if (hint) hint.addEventListener('click', open);
+
+    render();
+})();
+
+/* ================================================================
+   Black-Scholes playground — European option, no dividends
+   ================================================================ */
+(function blackScholes() {
+    const lab = document.querySelector('.bs-lab');
+    if (!lab) return;
+    const $ = (id) => document.getElementById(id);
+    const inputs = { S: $('bs-S'), K: $('bs-K'), T: $('bs-T'), V: $('bs-V'), R: $('bs-R') };
+    if (Object.values(inputs).some((el) => !el)) return;
+
+    // Abramowitz & Stegun 26.2.17 normal CDF
+    function normCdf(x) {
+        const t = 1 / (1 + 0.2316419 * Math.abs(x));
+        const d = 0.3989422804014327 * Math.exp(-x * x / 2);
+        const p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937
+            + t * (-1.821255978 + t * 1.330274429))));
+        return x >= 0 ? 1 - p : p;
+    }
+    const normPdf = (x) => 0.3989422804014327 * Math.exp(-x * x / 2);
+
+    function compute() {
+        const S = +inputs.S.value, K = +inputs.K.value, T = +inputs.T.value;
+        const sig = +inputs.V.value, r = +inputs.R.value;
+
+        const sqrtT = Math.sqrt(T);
+        const d1 = (Math.log(S / K) + (r + sig * sig / 2) * T) / (sig * sqrtT);
+        const d2 = d1 - sig * sqrtT;
+        const disc = Math.exp(-r * T);
+
+        const call = S * normCdf(d1) - K * disc * normCdf(d2);
+        const put = K * disc * normCdf(-d2) - S * normCdf(-d1);
+
+        const gamma = normPdf(d1) / (S * sig * sqrtT);
+        const vega = S * normPdf(d1) * sqrtT;
+        const thetaC = (-S * normPdf(d1) * sig / (2 * sqrtT)) - r * K * disc * normCdf(d2);
+        const rhoC = K * T * disc * normCdf(d2);
+
+        $('bs-S-out').textContent = S;
+        $('bs-K-out').textContent = K;
+        $('bs-T-out').textContent = T.toFixed(2) + 'y';
+        $('bs-V-out').textContent = Math.round(sig * 100) + '%';
+        $('bs-R-out').textContent = (r * 100).toFixed(1) + '%';
+
+        $('bs-call').textContent = call.toFixed(2);
+        $('bs-put').textContent = put.toFixed(2);
+        $('bs-dc').textContent = normCdf(d1).toFixed(3);
+        $('bs-dp').textContent = (normCdf(d1) - 1).toFixed(3);
+        $('bs-ga').textContent = gamma.toFixed(4);
+        $('bs-ve').textContent = (vega / 100).toFixed(3);
+        $('bs-th').textContent = (thetaC / 365).toFixed(3);
+        $('bs-rh').textContent = (rhoC / 100).toFixed(3);
+    }
+
+    Object.values(inputs).forEach((el) => el.addEventListener('input', compute));
+    compute();
 })();
