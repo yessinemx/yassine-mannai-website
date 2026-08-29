@@ -1218,6 +1218,64 @@ document.getElementById('year').textContent = new Date().getFullYear();
 })();
 
 /* ================================================================
+   City frames — a billboard that rotates through Tunis / Lyon / Paris
+   with the live local time of each city.
+   ================================================================ */
+(function cityFrames() {
+    const host = document.getElementById('about-frames');
+    if (!host || typeof Intl === 'undefined' || !Intl.DateTimeFormat) return;
+
+    const frames = Array.from(host.querySelectorAll('.frame'));
+    if (!frames.length) return;
+
+    const fmt = frames.map((f) => {
+        try {
+            return new Intl.DateTimeFormat('en-GB', {
+                timeZone: f.dataset.tz, hourCycle: 'h23', hour: '2-digit', minute: '2-digit',
+            });
+        } catch (e) {
+            return null;
+        }
+    });
+
+    function tick() {
+        const now = new Date();
+        frames.forEach((f, i) => {
+            const out = f.querySelector('.frame-time');
+            if (out && fmt[i]) out.textContent = fmt[i].format(now) + ' local';
+        });
+    }
+
+    let active = 0;
+    function spotlight() {
+        frames.forEach((f, i) => f.classList.toggle('is-live', i === active));
+        active = (active + 1) % frames.length;
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    spotlight();
+    let rotator = setInterval(spotlight, 5000);
+
+    // pause the rotation while the section is off-screen
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (!rotator) rotator = setInterval(spotlight, 5000);
+                } else if (rotator) {
+                    clearInterval(rotator);
+                    rotator = null;
+                }
+            });
+        }, { threshold: 0.1 }).observe(host);
+    }
+})();
+
+/* ================================================================
    Command palette — Bloomberg-style navigation on Ctrl/Cmd + K
    ================================================================ */
 (function commandPalette() {

@@ -1279,6 +1279,14 @@ footer {
 .frame:hover {
     transform: rotate(0deg) scale(1.04);
     box-shadow: 0 22px 44px rgba(27, 35, 51, 0.18);
+    z-index: 2;
+}
+
+/* billboard rotation: one frame is "on air" at a time */
+.frame.is-live {
+    transform: rotate(0deg) scale(1.06);
+    box-shadow: 0 24px 48px rgba(27, 35, 51, 0.2);
+    z-index: 1;
 }
 
 .frame-photo {
@@ -1316,6 +1324,62 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1.06);
+    transition: transform 0.6s ease;
+}
+
+/* slow Ken Burns drift, only while the frame is on air */
+.frame.is-live .frame-photo img {
+    animation: frame-kenburns 9s ease-in-out infinite alternate;
+}
+
+@keyframes frame-kenburns {
+    from {
+        transform: scale(1.06) translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: scale(1.18) translate3d(-2.5%, -2%, 0);
+    }
+}
+
+.frame-live {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(27, 35, 51, 0.62);
+    backdrop-filter: blur(4px);
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.frame.is-live .frame-live,
+.frame:hover .frame-live {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.frame-live-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #34d399;
+    flex: none;
+}
+
+.frame.is-live .frame-live-dot {
+    animation: mkt-pulse 2.4s ease-in-out infinite;
 }
 
 .frame figcaption {
@@ -2719,6 +2783,15 @@ body.custom-cursor-active .cursor-ring {
     .mkt.is-open .mkt-state::before,
     .mkt.is-open .mkt-city::before {
         animation: none;
+    }
+
+    .frame.is-live .frame-photo img,
+    .frame.is-live .frame-live-dot {
+        animation: none;
+    }
+
+    .frame.is-live {
+        transform: rotate(var(--tilt, 0deg));
     }
 
     .mkt-bar i {
